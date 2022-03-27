@@ -23,14 +23,12 @@
 import PageHeader from './PageHeader/PageHeader.vue';
 import PageAside from './PageAside/PageAside.vue';
 import PageMain from './PageMain/PageMain.vue';
-// import PageEditor from './PageEditor/PageEditor.vue';
 export default {
   name: 'PageContainer',
   components: {
     PageHeader,
     PageAside,
     PageMain,
-    // PageEditor,
   },
 };
 </script>

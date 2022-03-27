@@ -1,7 +1,7 @@
 <template>
   <el-row class="header-content">
     <!-- header左区域 -->
-    <el-col :span="2"
+    <el-col :span="3"
       ><div class="header-left">
         <el-row>
           <el-col :span="8">
@@ -9,14 +9,14 @@
           </el-col>
           <el-col :span="16">
             <div class="header-left-text">
-              <text>Vue.js</text>
+              <text>W6 指令平台</text>
             </div>
           </el-col>
         </el-row>
       </div></el-col
     >
     <!-- header中区域 -->
-    <el-col :span="10"><div class="header-mid" /></el-col>
+    <el-col :span="8"><div class="header-mid" /></el-col>
     <!-- header右区域 -->
     <el-col :span="12">
       <div class="header-right">
@@ -30,8 +30,27 @@
               />
             </div>
           </el-col>
-          <el-col :span="3">
-            <div>API参考</div>
+          <el-col :span="item.span" v-for="item in navigate_options" :key="item.text">
+            <div :class="item.class" v-if="!item.dropdown">
+              {{ item.text }}
+              <el-icon v-if="item.icon" :size="item.icon.icon_size"> <edit /></el-icon>
+            </div>
+            <template v-if="item.dropdown">
+              <el-dropdown>
+                {{ item.text }}
+                <el-icon><caret-bottom /></el-icon>
+                <template #dropdown>
+                  <el-dropdown-menu>
+                    <el-dropdown-item v-for="opt in item.dropdown" :key="opt">{{
+                      opt
+                    }}</el-dropdown-item>
+                  </el-dropdown-menu>
+                </template>
+              </el-dropdown>
+            </template>
+          </el-col>
+          <!-- <el-col :span="3">
+            <div>{{ Api }}</div>
           </el-col>
           <el-col :span="3">
             <div>生态系统</div>
@@ -58,7 +77,7 @@
             <div class="right-col">
               Document <el-icon :size="16"> <edit /></el-icon>
             </div>
-          </el-col>
+          </el-col> -->
         </el-row>
       </div>
     </el-col>
@@ -68,6 +87,56 @@
 <script>
 export default {
   name: 'PageHeader',
+  data() {
+    return {
+      navigate_options: {
+        api: {
+          text: 'API参考',
+          route: '/api',
+          span: 3,
+          class: '',
+          icon: undefined,
+        },
+        system: {
+          text: '生态系统',
+          route: '/system',
+          span: 3,
+          class: '',
+          icon: undefined,
+        },
+        multilang: {
+          text: '多语言',
+          route: '/multilang',
+          span: 3,
+          class: '',
+          icon: undefined,
+          dropdown: {
+            action1: 'Action 1',
+            action2: 'Action 2',
+            action3: 'Action 3',
+            action4: 'Action 4',
+          },
+        },
+        github: {
+          text: 'Github',
+          route: '/github',
+          span: 3,
+          class: '',
+          icon: undefined,
+        },
+        document: {
+          text: 'Document',
+          route: '/document',
+          span: 4,
+          class: 'right-col',
+          icon: {
+            icon_name: 'edit',
+            icon_size: '16',
+          },
+        },
+      },
+    };
+  },
 };
 </script>
 
@@ -116,9 +185,10 @@ export default {
 }
 .header-left-img {
   height: 100%;
-  background: url('../../assets/logo.png');
+  background: url('../../assets/flower_std_128.png');
   background-size: contain;
   background-repeat: no-repeat;
+  margin-left: 15px; /* logo向右移动，微调 */
 }
 .header-left-text {
   color: rgb(0, 0, 0);
