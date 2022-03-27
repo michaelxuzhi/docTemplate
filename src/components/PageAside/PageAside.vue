@@ -21,7 +21,7 @@
         </el-sub-menu>
         <el-sub-menu index="2">
           <template #title>
-            <el-icon><icon-menu /></el-icon>Navigator Two
+            <el-icon><message /></el-icon>Navigator Two
           </template>
           <el-menu-item-group>
             <template #title>Group 1</template>

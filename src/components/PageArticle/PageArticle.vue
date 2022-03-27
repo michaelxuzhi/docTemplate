@@ -47,7 +47,7 @@ export default {
 
 <style scoped>
 .main-content {
-  width: 60%;
+  width: 70%;
   padding-left: 120px;
   padding-right: 120px;
   overflow: hidden;

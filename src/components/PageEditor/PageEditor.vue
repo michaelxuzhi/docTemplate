@@ -157,7 +157,7 @@ export default {
 
 <style scoped>
 .editor-content {
-  width: 60%;
+  width: 70%;
   padding: 60px;
 }
 </style>

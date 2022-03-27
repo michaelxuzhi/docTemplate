@@ -8,6 +8,10 @@ const routes = [
     component: PageArticle,
   },
   {
+    path: "/home",
+    component: PageArticle,
+  },
+  {
     path: "/editor",
     component: PageEditor,
   },
