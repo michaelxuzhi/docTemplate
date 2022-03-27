@@ -20,5 +20,6 @@ export default {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  background-color: rgb(145, 145, 145); /* 背景色，开发的时候不那么刺眼 */
 }
 </style>
