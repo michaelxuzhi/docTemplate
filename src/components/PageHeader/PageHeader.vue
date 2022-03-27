@@ -49,35 +49,6 @@
               </el-dropdown>
             </template>
           </el-col>
-          <!-- <el-col :span="3">
-            <div>{{ Api }}</div>
-          </el-col>
-          <el-col :span="3">
-            <div>生态系统</div>
-          </el-col>
-          <el-col :span="3">
-            <el-dropdown>
-              多语言
-              <el-icon><caret-bottom /></el-icon>
-              <template #dropdown>
-                <el-dropdown-menu>
-                  <el-dropdown-item>Action 1</el-dropdown-item>
-                  <el-dropdown-item>Action 2</el-dropdown-item>
-                  <el-dropdown-item>Action 3</el-dropdown-item>
-                  <el-dropdown-item disabled>Action 4</el-dropdown-item>
-                  <el-dropdown-item divided>Action 5</el-dropdown-item>
-                </el-dropdown-menu>
-              </template>
-            </el-dropdown>
-          </el-col>
-          <el-col :span="3">
-            <div>Github</div>
-          </el-col>
-          <el-col :span="4">
-            <div class="right-col">
-              Document <el-icon :size="16"> <edit /></el-icon>
-            </div>
-          </el-col> -->
         </el-row>
       </div>
     </el-col>
