@@ -1,4 +1,14 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from "vue";
+import ElementPlus from "element-plus";
+import "element-plus/dist/index.css";
+import * as EleIcons from "@element-plus/icons-vue";
+import router from "./router";
+import App from "./App.vue";
 
-createApp(App).mount('#app')
+let app = createApp(App);
+for (const name in EleIcons) {
+  app.component(name, EleIcons[name]);
+}
+app.use(ElementPlus);
+app.use(router);
+app.mount("#app");
