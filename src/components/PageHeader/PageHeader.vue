@@ -62,23 +62,23 @@ export default {
     return {
       navigate_options: {
         api: {
-          text: 'API参考',
+          text: '物品查询',
           route: '/api',
           span: 3,
           class: '',
           icon: undefined,
         },
         system: {
-          text: '生态系统',
+          text: '测试技巧',
           route: '/system',
           span: 3,
           class: '',
           icon: undefined,
         },
         multilang: {
-          text: '多语言',
+          text: '多语言切换',
           route: '/multilang',
-          span: 3,
+          span: 4,
           class: '',
           icon: undefined,
           dropdown: {
@@ -87,13 +87,6 @@ export default {
             action3: 'Action 3',
             action4: 'Action 4',
           },
-        },
-        github: {
-          text: 'Github',
-          route: '/github',
-          span: 3,
-          class: '',
-          icon: undefined,
         },
         document: {
           text: 'Document',

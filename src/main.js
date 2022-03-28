@@ -3,6 +3,7 @@ import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
 import * as EleIcons from "@element-plus/icons-vue";
 import router from "./router";
+import axios from "axios";
 import App from "./App.vue";
 
 let app = createApp(App);
@@ -11,4 +12,5 @@ for (const name in EleIcons) {
 }
 app.use(ElementPlus);
 app.use(router);
+app.config.globalProperties.axios = axios;
 app.mount("#app");

@@ -6,11 +6,11 @@
       </el-header>
       <el-container>
         <el-aside class="page-aside">
-          <PageAside />
+          <PageAside :at="atObjGlobal" v-if="atObjGlobal" />
         </el-aside>
         <el-container>
           <el-main class="page-main">
-            <PageMain />
+            <PageMain :at="atObjGlobal" v-if="atObjGlobal" />
           </el-main>
           <!-- <el-footer class="page-footer">Footer</el-footer> -->
         </el-container>
@@ -30,6 +30,46 @@ export default {
     PageAside,
     PageMain,
   },
+  data() {
+    return {
+      atObjGlobal: null,
+      atAsideData: {},
+      atMainData: {},
+    };
+  },
+  methods: {
+    requestJSON() {
+      console.log('requestJSON');
+      let that = this;
+      let xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && this.status === 200) {
+          that.atObjGlobal = JSON.parse(xhr.responseText);
+          // console.log('requestJSON success', that.atObjGlobal);
+          // return JSON.parse(xhr.responseText);
+        } else if (xhr.readyState === 4 && this.status !== 200) {
+          console.log('请求失败');
+        }
+      };
+      // 请求本地json只允许请求public下的json文件
+      xhr.open('GET', '/static/data/data.json', true);
+      // xhr.open('GET', 'http://127.0.0.1:8888', true);
+      xhr.send();
+    },
+  },
+  created() {
+    // console.log('PageContainer created');
+    this.requestJSON();
+  },
+  mounted() {
+    // this.handleAsideAtData(this.atObjGlobal);
+    // console.log('PageContainer mounted', this.atObjGlobal);
+  },
+  // watch:{
+  //   atObjGlobal(){
+  //     this.atObjGlobal = atObjGlobal;
+  //   },
+  // }
 };
 </script>
 
@@ -57,7 +97,7 @@ export default {
   z-index: 999;
 }
 .page-aside {
-  /* width: 200px; */
+  width: 250px;
   height: calc(100vh - 60px);
   /* 空出el-header的高度 */
   margin-top: 60px;
@@ -73,9 +113,10 @@ export default {
   /* background-color: rgb(121, 118, 118); */
   /* 空出el-header的高度 */
   margin-top: 60px;
-  padding-bottom: 100px;
+  /* padding-bottom: 100px; */
   position: absolute;
-  right: 0;
+  /* right: 0; */
+  left: 250px;
 }
 .page-footer {
   width: 100%;

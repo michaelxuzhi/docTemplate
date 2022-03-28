@@ -61,6 +61,30 @@
 <script>
 export default {
   name: 'PageAside',
+  props: {
+    at: {
+      return: {
+        type: Object,
+        default: {},
+      },
+    },
+  },
+  data() {
+    return {};
+  },
+  method: {},
+  created() {
+    // console.log('PageAside created', this.at);
+  },
+  computed: {
+    keyObj: function () {
+      // let keyItem;
+      // for (let item in this.at) {
+      //   keyItem[item.key] = item.value['parentName'];
+      // }
+      return typeof this.at;
+    },
+  },
 };
 </script>
 
