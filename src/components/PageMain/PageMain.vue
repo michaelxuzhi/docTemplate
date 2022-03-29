@@ -33,7 +33,7 @@ export default {
       },
     },
   },
-  method: {},
+  methods: {},
   created() {
     console.log('PageMain created');
   },
@@ -42,8 +42,11 @@ export default {
   },
   watch: {
     $route() {
+      if (this.$route.meta[0] == this.bread_list[this.bread_list.length - 1].name) {
+        return;
+      }
       let index = this.bread_list.indexOf(
-        this.bread_list.filter(item => item.name == this.$route.matched[0].name)[0]
+        this.bread_list.filter(item => item.name == this.$route.meta[0])[0]
       );
       if (index != -1) {
         this.bread_list.splice(index);
@@ -55,8 +58,8 @@ export default {
         }
       } else {
         this.bread_list.push({
-          path: this.$route.matched[0].path,
-          name: this.$route.matched[0].name,
+          name: this.$route.meta[0],
+          path: this.$route.path,
         });
       }
     },

@@ -6,25 +6,25 @@ import PageShow from "../components/PageShow/PageShow.vue";
 const routes = [
   {
     path: "/",
-    name: "首页",
+    name: "home",
     component: PageShow,
     meta: ["首页"],
   },
   {
     path: "/article",
-    name: "展示页",
+    name: "article",
     component: PageArticle,
     meta: ["展示页"],
   },
   {
     path: "/editor",
-    name: "编辑器",
+    name: "editor",
     component: PageEditor,
     meta: ["编辑器"],
   },
   {
     path: "/at",
-    name: "指令详情",
+    name: "at",
     component: PageAt,
     meta: ["指令详情"],
   },

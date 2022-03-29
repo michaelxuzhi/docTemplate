@@ -40,9 +40,9 @@ export default {
   },
   methods: {
     toPageAt() {
-      console.log('toPageAt');
+      // console.log('toPageAt');
       //通过push进行跳转
-      this.$router.push('/at');
+      this.$router.push({ name: 'at', params: { atInfo1: this.atInfo1 } });
     },
   },
 

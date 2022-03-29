@@ -22,9 +22,6 @@
           atInfo.name
         }}','参数'])</el-descriptions-item
       >
-      <!-- <el-descriptions-item label="Username">kooriookami</el-descriptions-item> -->
-      <!-- <el-descriptions-item label="Telephone">18100000000</el-descriptions-item> -->
-      <!-- <el-descriptions-item label="Place" :span="2">Suzhou</el-descriptions-item> -->
       <!-- <el-descriptions-item label="Remarks"> -->
       <!-- <el-tag size="default">School</el-tag> -->
       <!-- </el-descriptions-item> -->
@@ -54,29 +51,9 @@ export default {
   },
   created() {
     console.log('PageAt created');
-    this.requestJSON();
     // this.handleAtInfo(this.atObjGlobal['guild']['detail']['get_list']);
   },
   methods: {
-    // 发送请求，获取json格式数据
-    async requestJSON() {
-      console.log('requestJSON');
-      let xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && this.status === 200) {
-          this.atObjGlobal = JSON.parse(xhr.responseText);
-          //   getAtNum(atObjGlobal);
-          //   renderAtList(atObjGlobal);
-          console.log(this.atObjGlobal);
-        } else if (xhr.readyState === 4 && this.status !== 200) {
-          console.log('请求失败');
-        }
-      };
-      // 请求本地json只允许请求public下的json文件
-      xhr.open('GET', '/static/data/data_.json', true);
-      // xhr.open('GET', 'http://127.0.0.1:8888', true);
-      xhr.send();
-    },
     handleAtInfo(atInfo) {
       this.atInfo = atInfo;
     },
@@ -87,27 +64,9 @@ export default {
       }
       return defalut;
     },
-    // 获取指令数量
-    getAtNum(atObj) {
-      // console.log(atObj);
-      let atNum = 0;
-      for (const key in atObj) {
-        if (Object.hasOwnProperty.call(atObj, key)) {
-          // let detail = atObj[key]['detail'];
-          // atNum += Object.keys(detail).length;
-          // 缺少指令detail的情况下的健壮性
-          let detail = this.getattr(atObj[key], 'detail', null);
-          detail && (atNum += Object.keys(detail).length);
-        }
-      }
-      // return atNum;
-      this.renderAtNum(atNum);
-    },
-    // 指令数量渲染
-    renderAtNum(num) {
-      console.log('renderAt', num);
-      return;
-    },
+  },
+  mounted() {
+    console.log('PageAt mounted', this.$route.params);
   },
 };
 </script>
