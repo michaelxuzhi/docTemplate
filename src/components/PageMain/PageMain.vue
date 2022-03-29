@@ -2,10 +2,12 @@
   <div>
     <div class="main-bread">
       <el-breadcrumb :separator-icon="ArrowRight">
-        <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>
-        <el-breadcrumb-item>promotion management</el-breadcrumb-item>
-        <el-breadcrumb-item>promotion list</el-breadcrumb-item>
-        <el-breadcrumb-item>promotion detail</el-breadcrumb-item>
+        <el-breadcrumb-item
+          v-for="item in bread_list"
+          :key="item"
+          :to="{ path: item.path }"
+          >{{ item.name }}</el-breadcrumb-item
+        >
       </el-breadcrumb>
     </div>
     <!-- 路由占位符 -->
@@ -20,6 +22,7 @@ export default {
     return {
       myname: 'michael',
       ArrowRight: 'ArrowRight',
+      bread_list: [],
     };
   },
   props: {
@@ -35,13 +38,28 @@ export default {
     console.log('PageMain created');
   },
   mounted() {
-    //   let that = this;
-    //   console.log('PageMain mounted');
-    //   this.axios.get('/static/data/data_.json').then(response => {
-    //     that.atObjGlobal = response.data;
-    //     console.log('PageMain mounted success', that.atObjGlobal);
-    //   });
-    // },
+    this.bread_list.push({ name: this.$route.meta[0], path: this.$route.path });
+  },
+  watch: {
+    $route() {
+      let index = this.bread_list.indexOf(
+        this.bread_list.filter(item => item.name == this.$route.matched[0].name)[0]
+      );
+      if (index != -1) {
+        this.bread_list.splice(index);
+        if (this.bread_list.length == 0) {
+          this.bread_list.push({
+            name: this.$route.meta[0],
+            path: this.$route.path,
+          });
+        }
+      } else {
+        this.bread_list.push({
+          path: this.$route.matched[0].path,
+          name: this.$route.matched[0].name,
+        });
+      }
+    },
   },
 };
 </script>
