@@ -10,7 +10,7 @@
       class="at-btn"
       v-for="item in atInfo1"
       :key="item"
-      @click="toPageAt"
+      @click="toPageAt(item)"
       >{{ item }}</el-button
     >
   </div>
@@ -39,10 +39,13 @@ export default {
     },
   },
   methods: {
-    toPageAt() {
+    toPageAt(name) {
       // console.log('toPageAt');
       //通过push进行跳转
-      this.$router.push({ name: 'at', params: { atInfo1: this.atInfo1 } });
+      this.$router.push({
+        name: 'at',
+        params: { atInfo2: name },
+      });
     },
   },
 

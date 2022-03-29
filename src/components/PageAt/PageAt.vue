@@ -66,7 +66,7 @@ export default {
     },
   },
   mounted() {
-    console.log('PageAt mounted', this.$route.params);
+    console.log('PageAt mounted', this.$route.params.atInfo2);
   },
 };
 </script>
