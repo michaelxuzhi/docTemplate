@@ -34,11 +34,12 @@ export default {
     },
   },
   methods: {},
-  created() {
-    console.log('PageMain created');
-  },
+  created() {},
   mounted() {
-    this.bread_list.push({ name: this.$route.meta[0], path: this.$route.path });
+    // 容错：在其他界面刷新，强制回退到home界面
+    this.$router.push({ name: 'home' });
+    this.bread_list = [];
+    this.bread_list.push({ name: '首页', path: '/' });
   },
   watch: {
     $route() {
