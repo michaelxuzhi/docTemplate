@@ -1,3 +1,5 @@
+// 全局通知控件
+import { ElNotification } from "element-plus";
 // 兼容复制操作
 export function utilsCopy(tool_dom, text) {
   let textarea = document.createElement("textarea"); //创建input对象
@@ -20,4 +22,14 @@ export function utilsCopy(tool_dom, text) {
   tool_div.removeChild(textarea); //删除元素
   current_focus.focus();
   return flag;
+}
+
+export function utilsNotice(type, title, text) {
+  return ElNotification({
+    title: title,
+    message: text,
+    type: type,
+    duration: 2000,
+    offset: 80,
+  });
 }

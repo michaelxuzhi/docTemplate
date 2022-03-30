@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { utilsCopy } from '../../utils/utils.js';
+import { utilsCopy, utilsNotice } from '../../utils/utils.js';
 export default {
   name: 'PageAt',
   data() {
@@ -107,13 +107,7 @@ export default {
     },
     // 通用提示
     noticeText(type, title, text) {
-      return this.$notify({
-        title: title,
-        message: text,
-        type: type,
-        duration: 2000,
-        offset: 80,
-      });
+      utilsNotice(type, title, text);
     },
   },
   mounted() {

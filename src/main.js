@@ -14,3 +14,5 @@ app.use(ElementPlus);
 app.use(router);
 app.config.globalProperties.axios = axios;
 app.mount("#app");
+
+export default app;
