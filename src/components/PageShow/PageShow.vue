@@ -8,10 +8,10 @@
       round
       plain
       class="at-btn"
-      v-for="item in atInfo1"
-      :key="item"
-      @click="toPageAt(item)"
-      >{{ item }}</el-button
+      @click="handleClick(val,key)"
+      v-for="(val,key) in atInfoShow"
+      :key="key"
+      >{{ val.desc?val.desc:key }}</el-button
     >
   </div>
 </template>
@@ -39,12 +39,10 @@ export default {
     },
   },
   methods: {
-    toPageAt(name) {
-      // console.log('toPageAt');
-      //通过push进行跳转
+    handleClick(val,key) {
       this.$router.push({
         name: 'at',
-        params: { atInfo2: name },
+        params: {key: key,val:JSON.stringify(val) },
       });
     },
   },
@@ -57,14 +55,10 @@ export default {
     // this.requestJSON();
   },
   computed: {
-    atInfo1: function () {
-      let keyItem = {};
-      for (let item in this.atInfo) {
-        if (this.atInfo[item]['desc'] == '') {
-          keyItem[this.atInfo[item]['name']] = this.atInfo[item]['name'];
-        } else {
-          keyItem[this.atInfo[item]['name']] = this.atInfo[item]['desc'];
-        }
+    atInfoShow() {
+      let keyItem={};
+      for (let val of Object.values(this.atInfo)){
+        keyItem[val.name] = val;
       }
       return keyItem;
     },

@@ -11,32 +11,20 @@
       <el-descriptions-item v-for="(val, key) in atInfo" :key="key" :label="key">{{
         val
       }}</el-descriptions-item>
-      <el-descriptions-item label="短指令" :span="2"
-        >{{ atInfo.example }}
+      <el-descriptions-item label="短指令" :span="2">
+        {{ handleAtShort(atInfo.ParentName, atInfo.name) }}
         <span style="width: 0; height: 0" id="at_copy_tool"></span>
-        <el-button class="desc-btn" type="primary" @click="handleAtShort(atInfo.example)"
+        <el-button class="desc-btn" ol="12" type="primary" @click="handleCopy(1)"
           >copy</el-button
         >
       </el-descriptions-item>
       <el-descriptions-item label="通用指令" :span="2"
-        >at.ff("{{ atInfo.parent }}/{{ atInfo.name }}",参数)
-        <el-button
-          class="desc-btn"
-          type="primary"
-          @click="handleAtCommom(atInfo.parent, atInfo.name)"
-          >copy</el-button
-        >
+        >{{ handleAtCommom(atInfo.ParentName, atInfo.name) }}
+        <el-button class="desc-btn" type="primary" @click="handleCopy(2)">copy</el-button>
       </el-descriptions-item>
       <el-descriptions-item label="长指令" :span="2"
-        >prot_$.doSendToServer_$('game.at_admin','on_com_at',['at','{{ atInfo.parent }}/{{
-          atInfo.name
-        }}','参数'])
-        <el-button
-          class="desc-btn"
-          type="primary"
-          @click="handleAtLong(atInfo.parent, atInfo.name)"
-          >copy</el-button
-        >
+        >{{ handleAtLong(atInfo.ParentName, atInfo.name) }}
+        <el-button class="desc-btn" type="primary" @click="handleCopy(3)">copy</el-button>
       </el-descriptions-item>
       <!-- <el-descriptions-item label="Remarks"> -->
       <!-- <el-tag size="default">School</el-tag> -->
@@ -54,65 +42,84 @@ export default {
   name: 'PageAt',
   data() {
     return {
-      // 定义一个全局变量来存请求到的指令数据
-      atObjGlobal: null,
       size: 'large',
-      atInfo: {
-        desc: '获取同盟列表',
-        example: 'at.guild.get_list()',
-        name: 'get_list',
-        params: '参数1 当前页数 参数2 每页数量',
-        parent: 'guild',
+      atName: '',
+      atInfo: {},
+      shortAtCmd: '',
+      commonShortAtCmd: '',
+      longAtCmd: '',
+      noticeObj: {
+        1: '短指令',
+        2: '通用指令',
+        3: '长指令',
       },
     };
   },
   created() {
     // console.log('PageAt created');
-    // this.handleAtInfo(this.atObjGlobal['guild']['detail']['get_list']);
   },
   methods: {
-    handleAtInfo(atInfo) {
-      this.atInfo = atInfo;
-    },
-    handleAtShort(at) {
-      let flag = this.copyText('at_copy_tool', at);
-      if (flag) {
-        this.noticeText('success', 'OK', '短指令 复制成功');
-      } else {
-        this.noticeText('error', 'Fail', '短指令 复制失败');
+    handleAtShort(atParent, atName) {
+      // 处理短指令
+      if (atParent == 'at') {
+        this.shortAtCmd = `at.${atName}()`;
+        return this.shortAtCmd;
       }
+      this.shortAtCmd = `at.${atParent}.${atName}()`;
+      return this.shortAtCmd;
     },
-    handleAtCommom(at1, at2) {
-      let atText = `at.ff("${at1}/${at2}",参数)`;
-      let flag = this.copyText('at_copy_tool', atText);
-      if (flag) {
-        this.noticeText('success', 'OK', '通用指令 复制成功');
-      } else {
-        this.noticeText('error', 'Fail', '通用指令 复制失败');
+    handleAtCommom(atParent, atName) {
+      // 处理通用短指令
+      if (atParent == 'at') {
+        this.commonShortAtCmd = `at.ff('${atName}','参数')`;
+        return this.commonShortAtCmd;
       }
+      this.commonShortAtCmd = `at.ff('${atParent}/${atName}','参数')`;
+      return this.commonShortAtCmd;
     },
-    handleAtLong(at1, at2) {
-      let atText = `prot_$.doSendToServer_$('game.at_admin','on_com_at',['at','${at1}/${at2}','参数'])`;
-      let flag = this.copyText('at_copy_tool', atText);
-      if (flag) {
-        this.noticeText('success', 'OK', '长指令 复制成功');
-      } else {
-        this.noticeText('error', 'Fail', '长指令 复制失败');
+    handleAtLong(atParent, atName) {
+      // 处理长指令
+      let cmd = `prot_$.doSendToServer_$('game.at_admin','on_com_at',['at',`;
+      if (atParent == 'at') {
+        this.longAtCmd = `${cmd}'${atName}','参数'])`;
+        return this.longAtCmd;
+      }
+      this.longAtCmd = `${cmd}'${atParent}/${atName}','参数'])`;
+      return this.longAtCmd;
+    },
+    // 通用处理复制
+    handleCopy(idx) {
+      switch (idx) {
+        case 1:
+          this.copyText('at_copy_tool', this.shortAtCmd, idx);
+          break;
+        case 2:
+          this.copyText('at_copy_tool', this.commonShortAtCmd, idx);
+          break;
+        case 3:
+          this.copyText('at_copy_tool', this.longAtCmd, idx);
+          break;
+        default:
+          break;
       }
     },
 
     // 兼容复制
-    copyText(dom, text) {
-      return utilsCopy(dom, text);
-    },
-    // 通用提示
-    noticeText(type, title, text) {
-      utilsNotice(type, title, text);
+    copyText(dom, text, idx) {
+      let res = utilsCopy(dom, text);
+      if (res) {
+        utilsNotice('success', 'Ok', this.noticeObj[idx] + ' 复制成功');
+      } else {
+        utilsNotice('error', 'Fail', this.noticeObj[idx] + ' 复制失败');
+      }
     },
   },
   mounted() {
-    // console.log('PageAt mounted', this.$route.params.atInfo2);
+    // 格式化由PageShow传入的参数
+    this.atName = this.$route.params.key;
+    this.atInfo = JSON.parse(this.$route.params.val);
   },
+  computed: {},
 };
 </script>
 <style scoped>
