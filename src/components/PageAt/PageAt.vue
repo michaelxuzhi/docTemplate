@@ -26,12 +26,6 @@
         >{{ handleAtLong(atInfo.ParentName, atInfo.name) }}
         <el-button class="desc-btn" type="primary" @click="handleCopy(3)">copy</el-button>
       </el-descriptions-item>
-      <!-- <el-descriptions-item label="Remarks"> -->
-      <!-- <el-tag size="default">School</el-tag> -->
-      <!-- </el-descriptions-item> -->
-      <!-- <el-descriptions-item label="Address" -->
-      <!-- >No.1188, Wuzhong Avenue, Wuzhong District, Suzhou, Jiangsu Province -->
-      <!-- </el-descriptions-item> -->
     </el-descriptions>
   </div>
 </template>
@@ -54,9 +48,6 @@ export default {
         3: '长指令',
       },
     };
-  },
-  created() {
-    // console.log('PageAt created');
   },
   methods: {
     handleAtShort(atParent, atName) {
@@ -116,8 +107,12 @@ export default {
   },
   mounted() {
     // 格式化由PageShow传入的参数
-    this.atName = this.$route.params.key;
-    this.atInfo = JSON.parse(this.$route.params.val);
+    if (this.$route.params.key) {
+      this.atName = this.$route.params.key;
+      this.atInfo = JSON.parse(this.$route.params.val);
+    } else {
+      this.$router.push({ name: 'home' });
+    }
   },
   computed: {},
 };

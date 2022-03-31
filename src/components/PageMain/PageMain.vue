@@ -11,7 +11,7 @@
       </el-breadcrumb>
     </div>
     <!-- 路由占位符 -->
-    <router-view class="main-router" :data1="myname" :at-info="at"></router-view>
+    <router-view class="main-router" :at-info="at"></router-view>
   </div>
 </template>
 
@@ -20,7 +20,6 @@ export default {
   name: 'PageMain',
   data() {
     return {
-      myname: 'michael',
       ArrowRight: 'ArrowRight',
       bread_list: [],
     };
@@ -34,10 +33,11 @@ export default {
     },
   },
   methods: {},
-  created() {},
+  created() {
+    this.$router.push({ name: 'home' });
+  },
   mounted() {
     // 容错：在其他界面刷新，强制回退到home界面
-    this.$router.push({ name: 'home' });
     this.bread_list = [];
     this.bread_list.push({ name: '首页', path: '/' });
   },
