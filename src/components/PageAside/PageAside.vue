@@ -1,58 +1,16 @@
 <template>
   <div>
     <el-scrollbar>
-      <el-menu :default-openeds="['1', '3']">
-        <el-sub-menu index="1">
-          <template #title>
-            <el-icon><message /></el-icon>Navigator One
-          </template>
-          <el-menu-item-group>
-            <template #title>Group 1</template>
-            <el-menu-item index="1-1">Option 1</el-menu-item>
-            <el-menu-item index="1-2">Option 2</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="Group 2">
-            <el-menu-item index="1-3">Option 3</el-menu-item>
-          </el-menu-item-group>
-          <el-sub-menu index="1-4">
-            <template #title>Option4</template>
-            <el-menu-item index="1-4-1">Option 4-1</el-menu-item>
-          </el-sub-menu>
-        </el-sub-menu>
-        <el-sub-menu index="2">
-          <template #title>
-            <el-icon><message /></el-icon>Navigator Two
-          </template>
-          <el-menu-item-group>
-            <template #title>Group 1</template>
-            <el-menu-item index="2-1">Option 1</el-menu-item>
-            <el-menu-item index="2-2">Option 2</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="Group 2">
-            <el-menu-item index="2-3">Option 3</el-menu-item>
-          </el-menu-item-group>
-          <el-sub-menu index="2-4">
-            <template #title>Option 4</template>
-            <el-menu-item index="2-4-1">Option 4-1</el-menu-item>
-          </el-sub-menu>
-        </el-sub-menu>
-        <el-sub-menu index="3">
-          <template #title>
-            <el-icon><setting /></el-icon>Navigator Three
-          </template>
-          <el-menu-item-group>
-            <template #title>Group 1</template>
-            <el-menu-item index="3-1">Option 1</el-menu-item>
-            <el-menu-item index="3-2">Option 2</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="Group 2">
-            <el-menu-item index="3-3">Option 3</el-menu-item>
-          </el-menu-item-group>
-          <el-sub-menu index="3-4">
-            <template #title>Option 4</template>
-            <el-menu-item index="3-4-1">Option 4-1</el-menu-item>
-          </el-sub-menu>
-        </el-sub-menu>
+      <el-menu>
+        <el-menu-item
+          v-for="(val, key, idx) in keyObj"
+          :key="key"
+          :index="idx.toString()"
+          @click="handleAsideClick(key)"
+        >
+          <el-icon><paperclip /></el-icon>
+          <span>{{ key }}</span>
+        </el-menu-item>
       </el-menu>
     </el-scrollbar>
   </div>
@@ -70,19 +28,41 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      asideAtKey: '',
+    };
   },
-  method: {},
+  methods: {
+    handleAsideClick(key) {
+      // console.log('handleAsideClick', key);
+      // this.asideAtKey = key;
+
+      // 广播assideClick事件
+      console.log('handleAsideClick', key);
+      this.$eventBus.emit('asideClick', key);
+    },
+  },
   created() {
     // console.log('PageAside created', this.at);
   },
   computed: {
     keyObj: function () {
-      // let keyItem;
-      // for (let item in this.at) {
-      //   keyItem[item.key] = item.value['parentName'];
-      // }
-      return typeof this.at;
+      let keyItem = {};
+      for (let item of Object.values(this.at)) {
+        if (keyItem[item.ParentName]) {
+          keyItem[item.ParentName]++;
+        } else {
+          keyItem[item.ParentName] = 1;
+        }
+        // console.log(item.ParentName);
+      }
+      console.log('keyObj', keyItem);
+      return keyItem;
+    },
+  },
+  watch: {
+    asideAtKey(newVal, oldVal) {
+      console.log('asideAtKey', newVal, oldVal);
     },
   },
 };

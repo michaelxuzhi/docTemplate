@@ -4,8 +4,14 @@
     <el-col :span="3"
       ><div class="header-left">
         <el-row>
-          <el-col :span="8">
-            <div class="header-left-img" />
+          <el-col :span="6">
+            <div class="header-left-img-zone">
+              <img
+                class="header-left-img"
+                src="../../assets/flower_std_128.png"
+                alt="logo"
+              />
+            </div>
           </el-col>
           <el-col :span="16">
             <div class="header-left-text">
@@ -16,14 +22,15 @@
       </div></el-col
     >
     <!-- header中区域 -->
-    <el-col :span="8"><div class="header-mid" /></el-col>
+    <el-col :span="7"><div class="header-mid" /></el-col>
     <!-- header右区域 -->
-    <el-col :span="12">
+    <el-col :span="14">
       <div class="header-right">
         <el-row>
-          <el-col :span="8">
+          <el-col :span="10">
             <div>
               <el-input
+                v-model="headerInput"
                 class="header-right-input"
                 placeholder="Please Input"
                 suffix-icon="Search"
@@ -60,6 +67,7 @@ export default {
   name: 'PageHeader',
   data() {
     return {
+      headerInput: '',
       navigate_options: {
         api: {
           text: '物品查询',
@@ -147,14 +155,28 @@ export default {
 .bg-purple {
   background: #1659a5;
 }
+.header-left-img-zone {
+  height: 100%;
+  width: 100%;
+  /* background: url('../../assets/flower_std_128.png'); */
+  /* margin-left: 15px; logo向右移动，微调 */
+  /* margin-left: 15px; */
+  /* float: right; */
+}
 .header-left-img {
   height: 100%;
-  background: url('../../assets/flower_std_128.png');
-  background-size: contain;
+  display: inline;
+  float: right;
+  margin-right: 10px;
+  background-size: 100% auto;
   background-repeat: no-repeat;
-  margin-left: 15px; /* logo向右移动，微调 */
 }
 .header-left-text {
+  color: rgb(0, 0, 0);
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.header-right-text {
   color: rgb(0, 0, 0);
   font-size: 1.2rem;
   font-weight: bold;
@@ -162,6 +184,6 @@ export default {
 }
 /* 高度用的是默认的 */
 .header-right-input {
-  width: 230px;
+  width: 320px;
 }
 </style>

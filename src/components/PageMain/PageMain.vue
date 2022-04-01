@@ -22,6 +22,7 @@ export default {
     return {
       ArrowRight: 'ArrowRight',
       bread_list: [],
+      asideAtKey: '',
     };
   },
   props: {
@@ -35,6 +36,10 @@ export default {
   methods: {},
   created() {
     this.$router.push({ name: 'home' });
+    // 监听来自PageAside的assideClick事件
+    this.$eventBus.on('asideClick', key => {
+      console.log('PageMain', key);
+    });
   },
   mounted() {
     // 容错：在其他界面刷新，强制回退到home界面
