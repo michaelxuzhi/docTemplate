@@ -9,7 +9,8 @@
           :disabled="isDisabled"
           @click="handleAsideClick(key)"
         >
-          <el-icon><paperclip /></el-icon>
+          <!-- <el-icon><paperclip /></el-icon> -->
+          <el-tag class="AsidetagStyle" type="primary" effect="light">{{ val }}</el-tag>
           <span>{{ key }}</span>
         </el-menu-item>
       </el-menu>
@@ -81,5 +82,8 @@ export default {
 .is-active {
   background-color: #ecf5ff;
   border-right: 10px solid #7252e7;
+}
+.AsidetagStyle {
+  margin-right: 10px;
 }
 </style>

@@ -74,12 +74,12 @@ export default {
   height: 100vh;
   position: fixed;
   overflow: hidden;
+  /* background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%); */
 }
 .main-bread {
-  width: 70%;
+  width: 100%;
   height: 20px;
   padding: 20px;
-  margin-left: 15px;
   position: fixed;
   top: 60px;
   background-color: #fff;

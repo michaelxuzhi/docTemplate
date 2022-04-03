@@ -9,23 +9,46 @@
     >
       >
       <el-descriptions-item v-for="(val, key) in atInfo" :key="key" :label="key">
+        <div v-if="key === 'tag'">
+          <el-tag
+            class="tagItemStyle"
+            v-for="tagItem in val"
+            :key="tagItem"
+            type="danger"
+            effect="light"
+          >
+            <div>{{ tagItem }}</div>
+          </el-tag>
+        </div>
         <el-tooltip v-if="val.length > 30" effect="dark" :content="val" placement="top">
           {{ val.substr(0, 30) + '...' }}
         </el-tooltip>
-        <div v-if="val.length <= 30">{{ val }}</div>
+        <div v-if="val.length <= 30 && key !== 'tag'">{{ val }}</div>
       </el-descriptions-item>
       <el-descriptions-item label="短指令" :span="2">
         {{ handleAtShort(atInfo.ParentName, atInfo.name) }}
         <span style="width: 0; height: 0" id="at_copy_tool"></span>
-        <el-button class="desc-btn" ol="12" type="primary" @click="handleCopy(1)"
+        <el-button
+          class="desc-btn"
+          ol="12"
+          :type="copyBtnStatus1 || 'primary'"
+          :icon="copyBtnStatus1 ? iconList[copyBtnStatus1] : ''"
+          @click="handleCopy(1)"
           >copy</el-button
         >
       </el-descriptions-item>
       <el-descriptions-item label="通用指令" :span="2"
         >{{ handleAtCommom(atInfo.ParentName, atInfo.name) }}
-        <el-button class="desc-btn" type="primary" @click="handleCopy(2)">copy</el-button>
+        <el-button
+          class="desc-btn"
+          :type="copyBtnStatus2 || 'primary'"
+          :icon="copyBtnStatus2 ? iconList[copyBtnStatus2] : ''"
+          @click="handleCopy(2)"
+          >copy</el-button
+        >
       </el-descriptions-item>
       <el-descriptions-item label="长指令" :span="2">
+        <el-icon><info-filled /></el-icon>
         <el-tooltip
           effect="dark"
           :content="handleAtLong(atInfo.ParentName, atInfo.name)"
@@ -33,7 +56,13 @@
         >
           移动鼠标至此处查看长指令详情
         </el-tooltip>
-        <el-button class="desc-btn" type="primary" @click="handleCopy(3)">copy</el-button>
+        <el-button
+          class="desc-btn"
+          :type="copyBtnStatus3 || 'primary'"
+          :icon="copyBtnStatus3 ? iconList[copyBtnStatus3] : ''"
+          @click="handleCopy(3)"
+          >copy</el-button
+        >
       </el-descriptions-item>
     </el-descriptions>
   </div>
@@ -51,6 +80,13 @@ export default {
       shortAtCmd: '',
       commonShortAtCmd: '',
       longAtCmd: '',
+      copyBtnStatus1: '',
+      copyBtnStatus2: '',
+      copyBtnStatus3: '',
+      iconList: {
+        success: 'CircleCheckFilled',
+        danger: 'CircleCloseFilled',
+      },
       noticeObj: {
         1: '短指令',
         2: '通用指令',
@@ -109,8 +145,10 @@ export default {
       let res = utilsCopy(dom, text);
       if (res) {
         utilsNotice('success', 'Ok', this.noticeObj[idx] + ' 复制成功');
+        this[`copyBtnStatus${idx}`] = 'success';
       } else {
         utilsNotice('error', 'Fail', this.noticeObj[idx] + ' 复制失败');
+        this[`copyBtnStatus${idx}`] = 'danger';
       }
     },
   },
@@ -119,6 +157,7 @@ export default {
     if (this.$route.params.key) {
       this.atName = this.$route.params.key;
       this.atInfo = JSON.parse(this.$route.params.val);
+      this.atInfo.tag = [this.atInfo.ParentName, this.atInfo.name];
     } else {
       this.$router.push({ name: 'home' });
     }
@@ -137,5 +176,8 @@ export default {
 }
 .el-descriptions {
   width: 50vw;
+}
+.tagItemStyle {
+  margin-right: 5px;
 }
 </style>
