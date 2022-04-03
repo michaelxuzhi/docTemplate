@@ -72,7 +72,9 @@ export default {
     atInfoShow() {
       let keyItem = {};
       for (let val of Object.values(this.atInfo)) {
-        keyItem[val.name] = val;
+        keyItem[val.name]
+          ? (keyItem[val.ParentName + val.name] = val)
+          : (keyItem[val.name] = val);
       }
       return keyItem;
     },
