@@ -10,7 +10,7 @@
       class="at-btn"
       :class="{
         'at-btn-disappear':
-          (val.desc + val.ParentName).indexOf(asideSearchText) == -1 ||
+          val.ParentName.indexOf(asideSearchText) == -1 ||
           (val.desc + val.name + val.ParentName).indexOf(headerSearchText) == -1,
       }"
       @click="handleClick(val, key)"
