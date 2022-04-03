@@ -63,11 +63,11 @@ export default {
     // 监听来自PageAside的assideClick事件
     this.$eventBus.on('asideClick', key => {
       this.asideSearchText = key;
+      // 重置showw-content的位置
+      document.getElementsByClassName('show-content')[0].scrollTop = 0;
     });
   },
-  mounted() {
-    // this.requestJSON();
-  },
+  mounted() {},
   computed: {
     atInfoShow() {
       let keyItem = {};

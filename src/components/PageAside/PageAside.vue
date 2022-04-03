@@ -1,11 +1,11 @@
 <template>
   <div>
     <el-scrollbar>
-      <el-menu>
+      <el-menu :default-active="asideAtKey">
         <el-menu-item
-          v-for="(val, key, idx) in keyObj"
+          v-for="(val, key) in keyObj"
           :key="key"
-          :index="idx.toString()"
+          :index="key"
           @click="handleAsideClick(key)"
         >
           <el-icon><paperclip /></el-icon>
@@ -35,11 +35,11 @@ export default {
   methods: {
     handleAsideClick(key) {
       // console.log('handleAsideClick', key);
-      // this.asideAtKey = key;
 
       // 广播assideClick事件
-      // console.log('handleAsideClick', key);
-      this.$eventBus.emit('asideClick', key);
+      // 重复点击同一个subMenuItem时，发送空字符串并取消选中
+      key == this.asideAtKey ? (this.asideAtKey = '') : (this.asideAtKey = key);
+      this.$eventBus.emit('asideClick', this.asideAtKey);
     },
   },
   created() {
@@ -61,9 +61,9 @@ export default {
     },
   },
   watch: {
-    asideAtKey(newVal, oldVal) {
-      console.log('asideAtKey', newVal, oldVal);
-    },
+    // asideAtKey(newVal, oldVal) {
+    //   console.log('asideAtKey', newVal, oldVal);
+    // },
   },
 };
 </script>
@@ -75,4 +75,8 @@ export default {
 } */
 /* .aside-content {
 } */
+.is-active {
+  background-color: #ecf5ff;
+  border-right: 10px solid #7252e7;
+}
 </style>
