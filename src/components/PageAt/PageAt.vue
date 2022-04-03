@@ -8,9 +8,12 @@
       border
     >
       >
-      <el-descriptions-item v-for="(val, key) in atInfo" :key="key" :label="key">{{
-        val
-      }}</el-descriptions-item>
+      <el-descriptions-item v-for="(val, key) in atInfo" :key="key" :label="key">
+        <el-tooltip v-if="val.length > 30" effect="dark" :content="val" placement="top">
+          {{ val.substr(0, 30) + '...' }}
+        </el-tooltip>
+        <div v-if="val.length <= 30">{{ val }}</div>
+      </el-descriptions-item>
       <el-descriptions-item label="短指令" :span="2">
         {{ handleAtShort(atInfo.ParentName, atInfo.name) }}
         <span style="width: 0; height: 0" id="at_copy_tool"></span>
@@ -22,8 +25,14 @@
         >{{ handleAtCommom(atInfo.ParentName, atInfo.name) }}
         <el-button class="desc-btn" type="primary" @click="handleCopy(2)">copy</el-button>
       </el-descriptions-item>
-      <el-descriptions-item label="长指令" :span="2"
-        >{{ handleAtLong(atInfo.ParentName, atInfo.name) }}
+      <el-descriptions-item label="长指令" :span="2">
+        <el-tooltip
+          effect="dark"
+          :content="handleAtLong(atInfo.ParentName, atInfo.name)"
+          placement="top"
+        >
+          移动鼠标至此处查看长指令详情
+        </el-tooltip>
         <el-button class="desc-btn" type="primary" @click="handleCopy(3)">copy</el-button>
       </el-descriptions-item>
     </el-descriptions>
@@ -119,10 +128,14 @@ export default {
 </script>
 <style scoped>
 .at-content {
-  width: 70%;
+  /* width: inherit; */
   padding: 60px;
 }
 .desc-btn {
+  margin-left: 30px;
   float: right;
+}
+.el-descriptions {
+  width: 50vw;
 }
 </style>
