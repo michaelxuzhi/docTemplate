@@ -6,6 +6,7 @@
           v-for="(val, key) in keyObj"
           :key="key"
           :index="key"
+          :disabled="isDisabled"
           @click="handleAsideClick(key)"
         >
           <el-icon><paperclip /></el-icon>
@@ -30,6 +31,7 @@ export default {
   data() {
     return {
       asideAtKey: '',
+      isDisabled: false,
     };
   },
   methods: {
@@ -61,9 +63,10 @@ export default {
     },
   },
   watch: {
-    // asideAtKey(newVal, oldVal) {
-    //   console.log('asideAtKey', newVal, oldVal);
-    // },
+    $route() {
+      this.isDisabled = this.$route.name !== 'home';
+      this.asideAtKey = '';
+    },
   },
 };
 </script>
