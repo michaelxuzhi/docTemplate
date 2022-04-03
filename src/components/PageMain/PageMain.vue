@@ -1,14 +1,21 @@
 <template>
   <div class="main-content">
     <div class="main-bread">
-      <el-breadcrumb :separator-icon="ArrowRight">
-        <el-breadcrumb-item
-          v-for="item in bread_list"
-          :key="item"
-          :to="{ path: item.path }"
-          >{{ item.name }}</el-breadcrumb-item
-        >
-      </el-breadcrumb>
+      <el-tooltip
+        effect="dark"
+        content="点击此处返回"
+        placement="left-start"
+        :visible="this.$route.path !== '/'"
+      >
+        <el-breadcrumb :separator-icon="ArrowRight">
+          <el-breadcrumb-item
+            v-for="item in bread_list"
+            :key="item"
+            :to="{ path: item.path }"
+            >{{ item.name }}
+          </el-breadcrumb-item>
+        </el-breadcrumb>
+      </el-tooltip>
     </div>
     <!-- 路由占位符 -->
     <router-view class="main-router" :at-info="at"></router-view>

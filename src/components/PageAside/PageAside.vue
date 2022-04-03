@@ -10,7 +10,7 @@
           @click="handleAsideClick(key)"
         >
           <!-- <el-icon><paperclip /></el-icon> -->
-          <el-tag class="AsidetagStyle" type="primary" effect="light">{{ val }}</el-tag>
+          <el-tag class="AsidetagStyle" effect="dark">{{ val }}</el-tag>
           <span>{{ key }}</span>
         </el-menu-item>
       </el-menu>

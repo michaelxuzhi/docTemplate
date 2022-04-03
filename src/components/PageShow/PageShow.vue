@@ -59,6 +59,7 @@ export default {
     // 监听来自PageHeader的搜索框handleInput事件
     this.$eventBus.on('headerInputEvent', val => {
       this.headerSearchText = val;
+      document.getElementsByClassName('show-content')[0].scrollTop = 0;
     });
     // 监听来自PageAside的assideClick事件
     this.$eventBus.on('asideClick', key => {
