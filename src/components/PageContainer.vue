@@ -107,15 +107,12 @@ export default {
   border-right: solid 1px #dcdfe6;
 }
 .page-main {
-  width: 80%;
+  /* width: 80%; */
   height: 100%;
   /* height: 1000px; */
   /* background-color: rgb(121, 118, 118); */
-  /* 空出el-header的高度 */
-  margin-top: 60px;
-  /* padding-bottom: 100px; */
+  /* 空出el-header的高度-由main-router补充设置，这里不设置 */
   position: absolute;
-  /* right: 0; */
   left: 250px;
 }
 .page-footer {

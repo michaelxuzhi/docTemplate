@@ -8,11 +8,12 @@
       round
       plain
       class="at-btn"
-      @click="handleClick(val,key)"
-      v-for="(val,key) in atInfoShow"
+      @click="handleClick(val, key)"
+      v-for="(val, key) in atInfoShow"
       :key="key"
-      >{{ val.desc?val.desc:key }}</el-button
+      >{{ val.desc ? val.desc : key }}</el-button
     >
+    <el-backtop target=".show-content" :visibility-height="20"></el-backtop>
   </div>
 </template>
 <script>
@@ -39,10 +40,10 @@ export default {
     },
   },
   methods: {
-    handleClick(val,key) {
+    handleClick(val, key) {
       this.$router.push({
         name: 'at',
-        params: {key: key,val:JSON.stringify(val) },
+        params: { key: key, val: JSON.stringify(val) },
       });
     },
   },
@@ -56,8 +57,8 @@ export default {
   },
   computed: {
     atInfoShow() {
-      let keyItem={};
-      for (let val of Object.values(this.atInfo)){
+      let keyItem = {};
+      for (let val of Object.values(this.atInfo)) {
         keyItem[val.name] = val;
       }
       return keyItem;
@@ -70,6 +71,8 @@ export default {
 .show-content {
   width: 70%;
   padding: 60px;
+  height: 80%;
+  overflow-x: hidden;
   /* background-color: rgb(172, 172, 172); */
   /* background-color: #4149e0; */
 }

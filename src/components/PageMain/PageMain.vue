@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-content">
     <div class="main-bread">
       <el-breadcrumb :separator-icon="ArrowRight">
         <el-breadcrumb-item
@@ -75,18 +75,18 @@ export default {
 
 <style scoped>
 .main-content {
-  width: 70%;
-  padding-left: 120px;
-  padding-right: 120px;
+  height: 100vh;
+  position: fixed;
   overflow: hidden;
   /* background-color: rgb(121, 118, 118); */
 }
 .main-bread {
-  width: 60%;
+  width: 70%;
   height: 20px;
   padding: 20px;
   margin-left: 15px;
   position: fixed;
+  top: 60px;
   background-color: #fff;
   /* background-color: rgb(121, 118, 118); */
 }
@@ -95,6 +95,6 @@ export default {
   line-height: 20px;
 }
 .main-router {
-  margin-top: 30px;
+  margin-top: 60px;
 }
 </style>
