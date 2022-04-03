@@ -30,10 +30,14 @@
           <el-col :span="10">
             <div>
               <el-input
-                v-model="headerInput"
+                v-model="headerInputText"
                 class="header-right-input"
                 placeholder="Please Input"
                 suffix-icon="Search"
+                clearable
+                :disabled="isDisabled"
+                @input="handleInput"
+                @change="handleChange"
               />
             </div>
           </el-col>
@@ -63,11 +67,13 @@
 </template>
 
 <script>
+// import { utilsSearchAt } from '../../utils/utils.js';
 export default {
   name: 'PageHeader',
   data() {
     return {
-      headerInput: '',
+      headerInputText: '',
+      isDisabled: false,
       navigate_options: {
         api: {
           text: '物品查询',
@@ -108,6 +114,23 @@ export default {
         },
       },
     };
+  },
+  methods: {
+    handleInput() {
+      // console.log('触发input事件', this.headerInputText);
+      // utilsSearchAt(this.headerInputText);
+      this.$eventBus.emit('headerInputEvent', this.headerInputText);
+    },
+    handleChange() {
+      // console.log('触发change事件', this.headerInputText);
+      // utilsSearchAt(this.headerInputText);
+    },
+  },
+  watch: {
+    $route() {
+      this.isDisabled = this.$route.name !== 'home';
+      this.headerInputText = '';
+    },
   },
 };
 </script>

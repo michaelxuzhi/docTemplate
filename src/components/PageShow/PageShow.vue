@@ -8,6 +8,11 @@
       round
       plain
       class="at-btn"
+      :class="{
+        'at-btn-disappear':
+          (val.desc + val.name + val.ParentName).indexOf(asideSearchText) == -1 ||
+          (val.desc + val.name + val.ParentName).indexOf(headerSearchText) == -1,
+      }"
       @click="handleClick(val, key)"
       v-for="(val, key) in atInfoShow"
       :key="key"
@@ -23,6 +28,8 @@ export default {
     return {
       size: 'default',
       type: 'primary',
+      asideSearchText: '',
+      headerSearchText: '',
     };
   },
   props: {
@@ -49,8 +56,14 @@ export default {
   },
 
   created() {
-    // console.log('PageShow created', this.atInfo);
-    // this.requestJSON();
+    // 监听来自PageHeader的搜索框handleInput事件
+    this.$eventBus.on('headerInputEvent', val => {
+      this.headerSearchText = val;
+    });
+    // 监听来自PageAside的assideClick事件
+    this.$eventBus.on('asideClick', key => {
+      this.asideSearchText = key;
+    });
   },
   mounted() {
     // this.requestJSON();
@@ -69,19 +82,17 @@ export default {
 
 <style scoped>
 .show-content {
-  width: 70%;
+  width: 60%;
   padding: 60px;
   height: 80%;
   overflow-x: hidden;
-  /* background-color: rgb(172, 172, 172); */
-  /* background-color: #4149e0; */
 }
 .at-btn {
   padding: 15px;
   margin: 10px;
   font-size: 16px;
 }
-/* .at-btn > span {
-  height: 20px;
-} */
+.at-btn-disappear {
+  display: none;
+}
 </style>

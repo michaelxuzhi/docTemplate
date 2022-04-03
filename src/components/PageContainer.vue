@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     requestJSON() {
-      console.log('requestJSON');
+      // console.log('requestJSON');
       let that = this;
       let xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function () {

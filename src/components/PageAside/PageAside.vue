@@ -38,7 +38,7 @@ export default {
       // this.asideAtKey = key;
 
       // 广播assideClick事件
-      console.log('handleAsideClick', key);
+      // console.log('handleAsideClick', key);
       this.$eventBus.emit('asideClick', key);
     },
   },
@@ -56,7 +56,7 @@ export default {
         }
         // console.log(item.ParentName);
       }
-      console.log('keyObj', keyItem);
+      // console.log('keyObj', keyItem);
       return keyItem;
     },
   },
