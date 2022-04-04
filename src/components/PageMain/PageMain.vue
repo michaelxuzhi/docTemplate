@@ -88,7 +88,7 @@ export default {
   height: 20px;
   padding: 20px;
   position: fixed;
-  top: 60px;
+  top: 3.6rem;
   background-color: #fff;
   /* background-color: rgb(121, 118, 118); */
 }
@@ -97,6 +97,6 @@ export default {
   line-height: 20px;
 }
 .main-router {
-  margin-top: 60px;
+  margin-top: 3.6rem;
 }
 </style>

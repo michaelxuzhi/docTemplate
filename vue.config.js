@@ -10,8 +10,9 @@ module.exports = defineConfig({
     resolve: {
       alias: {
         "@": resolve(__dirname, "src"),
-        "@components": resolve(__dirname, "src/components"),
-        "@router": resolve(__dirname, "src/router"),
+        "@components": resolve(__dirname, "./src/components"),
+        "@router": resolve(__dirname, "./src/router"),
+        "@views": resolve(__dirname, "./src/views"),
       },
     },
   },

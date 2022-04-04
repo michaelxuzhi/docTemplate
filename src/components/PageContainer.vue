@@ -90,7 +90,7 @@ export default {
 .page-header {
   width: 100%;
   /* 固定el-header */
-  height: 60px;
+  height: 3.6rem;
   position: fixed;
   top: 0;
   border-bottom: solid 1px #dcdfe6;
@@ -98,9 +98,9 @@ export default {
 }
 .page-aside {
   width: 250px;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 3.6rem);
   /* 空出el-header的高度 */
-  margin-top: 60px;
+  margin-top: 3.6rem;
   position: fixed;
   left: 0;
   background-color: #fff;

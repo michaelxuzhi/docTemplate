@@ -1,31 +1,40 @@
 <template>
   <div class="show-content">
-    <el-affix class="showAffix" target=".show-content" :offset="120">
-      <el-tag type="success">cnt : {{ atNum }}</el-tag>
-    </el-affix>
-    <el-button
-      color="#4149e0"
-      :size="size"
-      :type="type"
-      round
-      plain
-      class="at-btn"
-      :class="{
-        'at-btn-disappear':
-          val.ParentName.indexOf(asideSearchText) == -1 ||
-          (val.desc + val.name + val.ParentName).indexOf(headerSearchText) == -1,
-      }"
-      @click="handleClick(val, key)"
-      v-for="(val, key) in atInfoShow"
-      :key="key"
-      >{{ val.desc ? val.desc : key }}</el-button
-    >
-    <el-backtop target=".show-content" :visibility-height="20"></el-backtop>
+    <div v-show="atNum">
+      <el-affix class="showAffix" target=".show-content" :offset="120">
+        <el-tag type="success">cnt : {{ atNum }}</el-tag>
+      </el-affix>
+      <el-button
+        color="#4149e0"
+        :size="size"
+        :type="type"
+        round
+        plain
+        class="at-btn"
+        :class="{
+          'at-btn-disappear':
+            val.ParentName.indexOf(asideSearchText) == -1 ||
+            (val.desc + val.name + val.ParentName).indexOf(headerSearchText) == -1,
+        }"
+        @click="handleClick(val, key)"
+        v-for="(val, key) in atInfoShow"
+        :key="key"
+        >{{ val.desc ? val.desc : key }}</el-button
+      >
+      <el-backtop target=".show-content" :visibility-height="20"></el-backtop>
+    </div>
+    <div v-show="!atNum">
+      <EmptyView />
+    </div>
   </div>
 </template>
 <script>
+import EmptyView from '../../views/emptyView.vue';
 export default {
   name: 'PageShow',
+  components: {
+    EmptyView,
+  },
   data() {
     return {
       size: 'default',

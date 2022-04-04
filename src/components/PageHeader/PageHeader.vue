@@ -174,6 +174,7 @@ export default {
 .header-right {
   /* height: 100%; */
   text-align: center;
+  font-size: 16px;
 }
 .bg-purple {
   background: #1659a5;
@@ -196,12 +197,12 @@ export default {
 }
 .header-left-text {
   color: rgb(0, 0, 0);
-  font-size: 1.2rem;
+  font-size: 16px;
   font-weight: bold;
 }
 .header-right-text {
   color: rgb(0, 0, 0);
-  font-size: 1.2rem;
+  font-size: 16px;
   font-weight: bold;
   text-align: center;
 }
