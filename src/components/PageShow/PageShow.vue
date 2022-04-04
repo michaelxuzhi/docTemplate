@@ -45,12 +45,6 @@ export default {
     };
   },
   props: {
-    data1: {
-      return: {
-        type: String,
-        default: '',
-      },
-    },
     atInfo: {
       return: {
         type: Object,

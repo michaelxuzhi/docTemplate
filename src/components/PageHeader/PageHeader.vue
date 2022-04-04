@@ -37,12 +37,15 @@
                 clearable
                 :disabled="isDisabled"
                 @input="handleInput"
-                @change="handleChange"
               />
             </div>
           </el-col>
           <el-col :span="item.span" v-for="item in navigate_options" :key="item.text">
-            <div :class="item.class" v-if="!item.dropdown">
+            <div
+              :class="item.class"
+              v-if="!item.dropdown"
+              @click="headerOptClick(item.route)"
+            >
               {{ item.text }}
               <el-icon v-if="item.icon" :size="item.icon.icon_size"> <edit /></el-icon>
             </div>
@@ -77,21 +80,21 @@ export default {
       navigate_options: {
         api: {
           text: '物品查询',
-          route: '/api',
+          route: 'object',
           span: 3,
           class: '',
           icon: undefined,
         },
         system: {
           text: '测试技巧',
-          route: '/system',
+          route: 'system',
           span: 3,
           class: '',
           icon: undefined,
         },
         multilang: {
           text: '多语言切换',
-          route: '/multilang',
+          route: 'multilang',
           span: 4,
           class: '',
           icon: undefined,
@@ -104,7 +107,7 @@ export default {
         },
         document: {
           text: 'Document',
-          route: '/document',
+          route: 'document',
           span: 4,
           class: 'right-col',
           icon: {
@@ -117,13 +120,10 @@ export default {
   },
   methods: {
     handleInput() {
-      // console.log('触发input事件', this.headerInputText);
-      // utilsSearchAt(this.headerInputText);
       this.$eventBus.emit('headerInputEvent', this.headerInputText);
     },
-    handleChange() {
-      // console.log('触发change事件', this.headerInputText);
-      // utilsSearchAt(this.headerInputText);
+    headerOptClick(route) {
+      this.$router.push({ name: route });
     },
   },
   watch: {

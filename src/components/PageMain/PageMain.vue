@@ -18,7 +18,10 @@
       </el-tooltip>
     </div>
     <!-- 路由占位符 -->
-    <router-view class="main-router" :at-info="at"></router-view>
+    <router-view
+      class="main-router"
+      :at-info="this.$route.name == 'home' ? at : ''"
+    ></router-view>
   </div>
 </template>
 
@@ -90,6 +93,8 @@ export default {
   position: fixed;
   top: 3.6rem;
   background-color: #fff;
+  /* 层级提高避免被遮挡 */
+  z-index: 999;
   /* background-color: rgb(121, 118, 118); */
 }
 .el-breadcrumb {

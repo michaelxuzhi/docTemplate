@@ -1,0 +1,58 @@
+{
+  "coin": {
+    "name": "铜币",
+    "id": "coin",
+    "img": "coin1",
+    "quantity": 1,
+    "desc": "这是铜币",
+    "type": "resource"
+  },
+  "wood": {
+    "name": "木材",
+    "id": "wood",
+    "img": "wood1",
+    "quantity": 1,
+    "desc": "这是木材",
+    "type": "resource"
+  },
+  "stone": {
+    "name": "石头",
+    "id": "stone",
+    "img": "stone1",
+    "quantity": 1,
+    "desc": "这是石头",
+    "type": "resource"
+  },
+  "iron": {
+    "name": "铁矿",
+    "id": "iron",
+    "img": "iron1",
+    "quantity": 1,
+    "desc": "这是铁矿",
+    "type": "resource"
+  },
+  "food": {
+    "name": "粮食",
+    "id": "food",
+    "img": "food1",
+    "quantity": 1,
+    "desc": "这是粮食",
+    "type": "resource"
+  },
+  "gold": {
+    "name": "宝石",
+    "id": "gold",
+    "img": "gold",
+    "quantity": 4,
+    "desc": "这是宝币",
+    "type": "currency"
+  },
+  "skill_point": {
+    "name": "技能点",
+    "id": "skill_point",
+    "img": "skill_point",
+    "quantity": 5,
+    "desc": "这是技能点",
+    "type": "resource"
+  }
+}
