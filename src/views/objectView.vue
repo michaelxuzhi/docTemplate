@@ -54,10 +54,12 @@ export default {
   padding: 60px 60px 60px 80px;
   height: 80%;
   overflow-x: hidden;
+  overflow: auto;
 }
 .object-card {
   float: left;
   width: 40%;
+  height: 150px;
   margin: 30px 30px 10px 0;
 }
 .object-card-inner {
