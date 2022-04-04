@@ -1,6 +1,8 @@
 <template>
   <div class="show-content">
-    <!-- {{ atInfo1 }} -->
+    <el-affix class="showAffix" target=".show-content" :offset="120">
+      <el-tag type="success">cnt : {{ atNum }}</el-tag>
+    </el-affix>
     <el-button
       color="#4149e0"
       :size="size"
@@ -30,6 +32,7 @@ export default {
       type: 'primary',
       asideSearchText: '',
       headerSearchText: '',
+      atNum: 0,
     };
   },
   props: {
@@ -53,6 +56,12 @@ export default {
         params: { key: key, val: JSON.stringify(val) },
       });
     },
+    // 统计一下界面上的指令数量
+    handleCountAtNum() {
+      let showNum = document.getElementsByClassName('at-btn').length;
+      let unshowNum = document.getElementsByClassName('at-btn-disappear').length;
+      this.atNum = showNum - unshowNum;
+    },
   },
 
   created() {
@@ -60,15 +69,22 @@ export default {
     this.$eventBus.on('headerInputEvent', val => {
       this.headerSearchText = val;
       document.getElementsByClassName('show-content')[0].scrollTop = 0;
+      this.handleCountAtNum();
     });
     // 监听来自PageAside的assideClick事件
     this.$eventBus.on('asideClick', key => {
       this.asideSearchText = key;
       // 重置showw-content的位置
       document.getElementsByClassName('show-content')[0].scrollTop = 0;
+      this.handleCountAtNum();
     });
   },
-  mounted() {},
+  mounted() {
+    this.handleCountAtNum();
+  },
+  updated() {
+    this.handleCountAtNum();
+  },
   computed: {
     atInfoShow() {
       let keyItem = {};
@@ -86,7 +102,7 @@ export default {
 <style scoped>
 .show-content {
   width: 60%;
-  padding: 60px;
+  padding: 60px 60px 60px 80px;
   height: 80%;
   overflow-x: hidden;
 }
@@ -97,5 +113,10 @@ export default {
 }
 .at-btn-disappear {
   display: none;
+}
+.showAffix {
+  position: absolute;
+  left: 0px;
+  font-weight: bold;
 }
 </style>
