@@ -1,7 +1,7 @@
 <template>
   <div class="show-content">
     <div v-show="atNum">
-      <el-affix class="showAffix" target=".show-content" :offset="120">
+      <el-affix class="showAffix" target=".show-content">
         <el-tag type="success">cnt : {{ atNum }}</el-tag>
       </el-affix>
       <el-button
@@ -76,7 +76,11 @@ export default {
   created() {
     // 监听来自PageHeader的搜索框handleInput事件
     this.$eventBus.on('headerInputEvent', val => {
-      this.headerSearchText = val;
+      if (val.trim().length === 0) {
+        this.headerSearchText = '';
+        return;
+      }
+      this.headerSearchText = val.trim();
       document.getElementsByClassName('show-content')[0].scrollTop = 0;
       this.handleCountAtNum();
     });
