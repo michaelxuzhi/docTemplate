@@ -66,7 +66,7 @@ export default {
   watch: {
     $route() {
       this.isDisabled = this.$route.name !== 'home';
-      this.asideAtKey = '';
+      //   this.asideAtKey = '';
     },
   },
 };

@@ -1,9 +1,9 @@
 <template>
   <div class="show-content">
+    <el-affix class="showAffix" target=".show-content">
+      <el-tag type="success">cnt : {{ atNum }}</el-tag>
+    </el-affix>
     <div v-show="atNum">
-      <el-affix class="showAffix" target=".show-content">
-        <el-tag type="success">cnt : {{ atNum }}</el-tag>
-      </el-affix>
       <el-button
         color="#4149e0"
         :size="size"
@@ -13,7 +13,7 @@
         class="at-btn"
         :class="{
           'at-btn-disappear':
-            val.ParentName.indexOf(asideSearchText) == -1 ||
+            (val.ParentName !== asideSearchText && asideSearchText.length) ||
             (val.desc + val.name + val.ParentName).indexOf(headerSearchText) == -1,
         }"
         @click="handleClick(val, key)"

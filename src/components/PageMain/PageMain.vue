@@ -21,7 +21,12 @@
     <router-view
       class="main-router"
       :at-info="this.$route.name == 'home' ? at : ''"
-    ></router-view>
+      v-slot="{ Component }"
+    >
+      <keep-alive>
+        <component :is="Component"></component>
+      </keep-alive>
+    </router-view>
   </div>
 </template>
 

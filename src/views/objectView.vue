@@ -15,7 +15,7 @@
             v-for="(v, k) in val"
             :key="k"
             :type="val.type == 'resource' ? 'success' : 'warning'"
-            >{{ k + ':' + v }}</el-tag
+            >{{ k + ': ' + v }}</el-tag
           >
         </div>
       </div>
@@ -74,6 +74,6 @@ export default {
   margin: 0 8px 10px 0;
 }
 .el-card:hover {
-  background-color: #5e5c5c;
+  background-color: #fbfbfb;
 }
 </style>

@@ -29,15 +29,24 @@
         <el-row>
           <el-col :span="10">
             <div>
-              <el-input
-                v-model="headerInputText"
-                class="header-right-input"
-                placeholder="Please Input"
-                suffix-icon="Search"
-                clearable
-                :disabled="isDisabled"
-                @input="handleInput"
-              />
+              <el-tooltip
+                effect="dark"
+                :content="inputTips"
+                placement="bottom"
+                :visible="inputTipsVisible"
+              >
+                <el-input
+                  v-model="headerInputText"
+                  class="header-right-input"
+                  :placeholder="inputHolder"
+                  suffix-icon="Search"
+                  clearable
+                  :disabled="isDisabled"
+                  @input="handleInput"
+                  @focus="handleFocus"
+                  @blur="handleBlur"
+                />
+              </el-tooltip>
             </div>
           </el-col>
           <el-col :span="item.span" v-for="item in navigate_options" :key="item.text">
@@ -75,28 +84,31 @@ export default {
   name: 'PageHeader',
   data() {
     return {
+      inputHolder: '请输入关键字',
       headerInputText: '',
       isDisabled: false,
+      inputTipsVisible: false,
+      inputTips: '匹配: 指令名 | 描述 | 指令父文件夹',
       navigate_options: {
         api: {
-          text: '物品查询',
+          text: '道具展示',
           route: 'object',
           span: 3,
-          class: '',
+          class: 'right-col',
           icon: undefined,
         },
         system: {
           text: '测试技巧',
           route: 'system',
           span: 3,
-          class: '',
+          class: 'right-col',
           icon: undefined,
         },
         multilang: {
           text: '多语言切换',
           route: 'multilang',
           span: 4,
-          class: '',
+          class: 'right-col',
           icon: undefined,
           dropdown: {
             action1: 'Action 1',
@@ -122,6 +134,12 @@ export default {
     handleInput() {
       this.$eventBus.emit('headerInputEvent', this.headerInputText);
     },
+    handleFocus() {
+      this.inputTipsVisible = true;
+    },
+    handleBlur() {
+      this.inputTipsVisible = false;
+    },
     headerOptClick(route) {
       this.$router.push({ name: route });
     },
@@ -129,7 +147,7 @@ export default {
   watch: {
     $route() {
       this.isDisabled = this.$route.name !== 'home';
-      this.headerInputText = '';
+      // this.headerInputText = '';
     },
   },
 };
@@ -199,6 +217,9 @@ export default {
   color: rgb(0, 0, 0);
   font-size: 16px;
   font-weight: bold;
+}
+.header-right .right-col:hover {
+  cursor: pointer;
 }
 .header-right-text {
   color: rgb(0, 0, 0);
