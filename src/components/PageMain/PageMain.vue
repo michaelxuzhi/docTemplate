@@ -23,7 +23,7 @@
       :at-info="this.$route.name == 'home' ? at : ''"
       v-slot="{ Component }"
     >
-      <keep-alive>
+      <keep-alive include="PageShow">
         <component :is="Component"></component>
       </keep-alive>
     </router-view>
@@ -67,6 +67,8 @@ export default {
       if (index != -1) {
         this.bread_list.splice(index);
         if (this.bread_list.length == 0) {
+          this.bread_list.push({ name: '首页', path: '/' });
+        } else {
           this.bread_list.push({
             name: this.$route.meta[0],
             path: this.$route.path,
