@@ -38,7 +38,7 @@ export default {
         for (const i in response.data) {
           that.resData[i] = response.data[i];
         }
-        console.log(that.resData);
+        // console.log(that.resData);
       });
     },
   },

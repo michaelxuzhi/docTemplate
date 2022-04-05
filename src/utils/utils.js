@@ -33,3 +33,12 @@ export function utilsNotice(type, title, text) {
     offset: 80,
   });
 }
+
+export function utilsArrayDel(arr, ele) {
+  let eleIndex = arr.indexOf(ele);
+  if (eleIndex !== -1) {
+    arr.splice(eleIndex, 1);
+    return arr;
+  }
+  return arr;
+}

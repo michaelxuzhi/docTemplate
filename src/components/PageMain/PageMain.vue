@@ -23,7 +23,7 @@
       :at-info="this.$route.name == 'home' ? at : ''"
       v-slot="{ Component }"
     >
-      <keep-alive include="PageShow">
+      <keep-alive :include="aliveCompsList">
         <component :is="Component"></component>
       </keep-alive>
     </router-view>
@@ -37,6 +37,7 @@ export default {
     return {
       ArrowRight: 'ArrowRight',
       bread_list: [],
+      aliveCompsList: ['PageShow'],
     };
   },
   props: {
@@ -80,6 +81,10 @@ export default {
           path: this.$route.path,
         });
       }
+      // 将当前页面的组件名加入kee-alive动态缓存列表，无限地加，然后根据面包屑导航长度来决定最终缓存
+      let compsName = this.$route.matched.map(item => item.components.default.name);
+      this.aliveCompsList.push(...compsName);
+      this.aliveCompsList.splice(this.bread_list.length);
     },
   },
 };
