@@ -1,13 +1,22 @@
 <template>
   <div class="main-content">
     <div class="main-bread">
-      <el-tooltip
+      <el-icon v-show="this.$route.path !== '/'" @click="handleGoBack"
+        ><arrow-left-bold
+      /></el-icon>
+      <!-- <el-button
+        icon="arrow-left"
+        size="small"
+        v-show="this.$route.path !== '/'"
+        @click="handleGoBack"
+      ></el-button> -->
+      <!-- <el-tooltip
         effect="dark"
         content="点击此处返回"
         placement="left-start"
         :visible="this.$route.path !== '/'"
-      >
-        <el-breadcrumb :separator-icon="ArrowRight">
+      > -->
+      <el-breadcrumb>
           <el-breadcrumb-item
             v-for="item in bread_list"
             :key="item"
@@ -15,7 +24,7 @@
             >{{ item.name }}
           </el-breadcrumb-item>
         </el-breadcrumb>
-      </el-tooltip>
+      <!-- </el-tooltip> -->
     </div>
     <!-- 路由占位符 -->
     <router-view
@@ -35,7 +44,7 @@ export default {
   name: 'PageMain',
   data() {
     return {
-      ArrowRight: 'ArrowRight',
+      icon: 'ArrowLeft',
       bread_list: [],
       aliveCompsList: ['PageShow'],
     };
@@ -48,8 +57,13 @@ export default {
       },
     },
   },
-  methods: {},
+  methods: {
+    handleGoBack() {
+      this.$router.back();
+    },
+  },
   created() {
+    // 容错：在其他界面刷新，强制回退到home界面
     this.$router.push({ name: 'home' });
   },
   mounted() {
@@ -99,6 +113,7 @@ export default {
   /* background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%); */
 }
 .main-bread {
+  display: flex;
   width: 100%;
   height: 20px;
   padding: 20px;
@@ -107,6 +122,7 @@ export default {
   background-color: #fff;
   /* 层级提高避免被遮挡 */
   z-index: 999;
+  align-items: center;
   /* background-color: rgb(121, 118, 118); */
 }
 .el-breadcrumb {
