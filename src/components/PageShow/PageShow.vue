@@ -5,11 +5,11 @@
     </el-affix>
     <div v-show="atNum">
       <el-button
-        color="#4149e0"
+        :color="globalTheme ? '#686877' : '#4149e0'"
         :size="size"
         :type="type"
         round
-        plain
+        :plain="!globalTheme"
         class="at-btn"
         :class="{
           'at-btn-disappear':
@@ -42,6 +42,7 @@ export default {
       asideSearchText: '',
       headerSearchText: '',
       atNum: 0,
+      globalTheme: false,
     };
   },
   props: {
@@ -85,12 +86,20 @@ export default {
       document.getElementsByClassName('show-content')[0].scrollTop = 0;
       this.handleCountAtNum();
     });
+    // 监听PageHeader的themeChange事件，改变全局主题
+    this.$eventBus.on('themeChange', val => {
+      this.globalTheme = val;
+    });
   },
   mounted() {
     this.handleCountAtNum();
   },
   updated() {
     this.handleCountAtNum();
+  },
+  activated() {
+    // 重置showw-content的位置，但是不起效果
+    document.getElementsByClassName('show-content')[0].scrollTop = 0;
   },
   computed: {
     atInfoShow() {
@@ -117,6 +126,7 @@ export default {
   padding: 15px;
   margin: 10px;
   font-size: 16px;
+  /* color: var(--current-btn-font-color); */
 }
 .at-btn-disappear {
   display: none;

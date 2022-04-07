@@ -86,6 +86,8 @@ export default {
   width: 100vw;
   height: 100vh;
   /* background-color: rgb(0, 0, 0); */
+  background-color: var(--current-background-color);
+  color: var(--current-font-color);
 }
 .page-header {
   width: 100%;

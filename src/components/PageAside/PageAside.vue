@@ -1,8 +1,9 @@
 <template>
   <div>
     <el-scrollbar>
-      <el-menu :default-active="asideAtKey">
+      <el-menu :default-active="asideAtKey" class="aside-content">
         <el-menu-item
+          :class="isDisabled ? 'aside-item-disabled ' : 'aside-item'"
           v-for="(val, key) in keyObj"
           :key="key"
           :index="key"
@@ -77,9 +78,21 @@ export default {
 /* .el-menu {
   border: 0;
 } */
-/* .aside-content {
-} */
+.aside-content {
+  background-color: var(--current-background-color);
+  color: var(--current-aside-font-color);
+}
+.aside-item {
+  color: var(--current-aside-font-color);
+}
+.aside-item:hover {
+  color: var(--current-aside-item-hover-font-color);
+}
+.aside-item-disabled {
+  color: var(--current-aside-font-color);
+}
 .is-active {
+  color: var(--current-background-color);
   background-color: #ecf5ff;
   border-right: 10px solid #7252e7;
 }

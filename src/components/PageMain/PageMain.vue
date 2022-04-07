@@ -17,13 +17,14 @@
         :visible="this.$route.path !== '/'"
       > -->
       <el-breadcrumb>
-          <el-breadcrumb-item
-            v-for="item in bread_list"
-            :key="item"
-            :to="{ path: item.path }"
-            >{{ item.name }}
-          </el-breadcrumb-item>
-        </el-breadcrumb>
+        <el-breadcrumb-item
+          class="breadcrumb-item"
+          v-for="item in bread_list"
+          :key="item"
+          :to="{ path: item.path }"
+          >{{ item.name }}
+        </el-breadcrumb-item>
+      </el-breadcrumb>
       <!-- </el-tooltip> -->
     </div>
     <!-- 路由占位符 -->
@@ -67,7 +68,6 @@ export default {
     this.$router.push({ name: 'home' });
   },
   mounted() {
-    // 容错：在其他界面刷新，强制回退到home界面
     this.bread_list = [];
     this.bread_list.push({ name: '首页', path: '/' });
   },
@@ -110,6 +110,7 @@ export default {
   height: 100vh;
   position: fixed;
   overflow: hidden;
+  background-color: var(--current-background-color);
   /* background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%); */
 }
 .main-bread {
@@ -119,16 +120,23 @@ export default {
   padding: 20px;
   position: fixed;
   top: 3.6rem;
-  background-color: #fff;
   /* 层级提高避免被遮挡 */
   z-index: 999;
   align-items: center;
-  /* background-color: rgb(121, 118, 118); */
+  background-color: var(--current-background-color);
 }
 .el-breadcrumb {
   font-size: 16px;
   line-height: 20px;
+  color: var(--current-font-color);
 }
+.breadcrumb-item >>> .el-breadcrumb__inner {
+  color: var(--current-font-color);
+}
+.breadcrumb-item >>> .el-breadcrumb__inner:hover {
+  color: var(--current-font-color);
+}
+
 .main-router {
   margin-top: 3.6rem;
 }

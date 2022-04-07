@@ -59,7 +59,7 @@
               <el-icon v-if="item.icon" :size="item.icon.icon_size"> <edit /></el-icon>
             </div>
             <template v-if="item.dropdown">
-              <el-dropdown>
+              <el-dropdown class="header-dropdown">
                 {{ item.text }}
                 <el-icon><caret-bottom /></el-icon>
                 <template #dropdown>
@@ -71,6 +71,20 @@
                 </template>
               </el-dropdown>
             </template>
+          </el-col>
+          <el-col :span="2">
+            <el-tooltip effect="dark" content="Beta功能" placement="right">
+              <el-switch
+                v-model="switchVal"
+                inline-prompt
+                style="float: right"
+                active-color="#d77658"
+                inactive-color="#8cd383"
+                :active-icon="Check"
+                :inactive-icon="Close"
+                @change="handleSwitchChange"
+              />
+            </el-tooltip>
           </el-col>
         </el-row>
       </div>
@@ -89,6 +103,10 @@ export default {
       isDisabled: false,
       inputTipsVisible: false,
       inputTips: '匹配: 指令名 | 描述 | 指令父文件夹',
+      switchVal: '',
+      Check: 'sunny',
+      Close: 'moon',
+      theme: false,
       navigate_options: {
         api: {
           text: '道具展示',
@@ -98,14 +116,14 @@ export default {
           icon: undefined,
         },
         system: {
-          text: '测试技巧',
+          text: '功能1',
           route: 'system',
           span: 3,
           class: 'right-col',
           icon: undefined,
         },
         multilang: {
-          text: '多语言切换',
+          text: '功能2',
           route: 'multilang',
           span: 4,
           class: 'right-col',
@@ -117,16 +135,16 @@ export default {
             action4: 'Action 4',
           },
         },
-        document: {
-          text: 'Document',
-          route: 'document',
-          span: 4,
-          class: 'right-col',
-          icon: {
-            icon_name: 'edit',
-            icon_size: '16',
-          },
-        },
+        // document: {
+        //   text: 'Document',
+        //   route: 'document',
+        //   span: 4,
+        //   class: 'right-col',
+        //   icon: {
+        //     icon_name: 'edit',
+        //     icon_size: '16',
+        //   },
+        // },
       },
     };
   },
@@ -143,6 +161,18 @@ export default {
     headerOptClick(route) {
       this.$router.push({ name: route });
     },
+    handleSwitchChange() {
+      this.theme = !this.theme;
+      if (this.theme == true) {
+        window.document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        window.document.documentElement.setAttribute('data-theme', 'light');
+      }
+      this.$eventBus.emit('themeChange', this.theme);
+    },
+  },
+  mouted() {
+    this.$eventBus.emit('themeChange', this.theme);
   },
   watch: {
     $route() {
@@ -166,9 +196,9 @@ export default {
   vertical-align: middle;
 }
 .el-dropdown {
-  color: #000;
   font-size: 16px;
   line-height: 2.1rem; /* 稍微提高一下位置 */
+  color: var(--current-header-dropdown-font-color);
 }
 
 /* 右区域通用icon调整样式 */
@@ -181,7 +211,8 @@ export default {
   height: 100%;
   padding: 0.7rem 1.5rem;
   line-height: 2.2rem;
-  background-color: #fff;
+  background-color: var(--current-background-color);
+  color: var(--current-font-color);
 }
 .header-left {
   height: 100%;
@@ -193,9 +224,6 @@ export default {
   /* height: 100%; */
   text-align: center;
   font-size: 16px;
-}
-.bg-purple {
-  background: #1659a5;
 }
 .header-left-img-zone {
   height: 100%;
@@ -214,7 +242,6 @@ export default {
   background-repeat: no-repeat;
 }
 .header-left-text {
-  color: rgb(0, 0, 0);
   font-size: 16px;
   font-weight: bold;
 }
@@ -222,7 +249,6 @@ export default {
   cursor: pointer;
 }
 .header-right-text {
-  color: rgb(0, 0, 0);
   font-size: 16px;
   font-weight: bold;
   text-align: center;

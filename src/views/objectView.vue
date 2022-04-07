@@ -61,6 +61,7 @@ export default {
   width: 40%;
   height: 150px;
   margin: 30px 30px 10px 0;
+  background-color: var(--current-object-bg-color);
 }
 .object-card-inner {
   display: flex;
@@ -74,6 +75,6 @@ export default {
   margin: 0 8px 10px 0;
 }
 .el-card:hover {
-  background-color: #fbfbfb;
+  background-color: #b9b9b9;
 }
 </style>

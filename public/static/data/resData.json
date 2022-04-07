@@ -44,7 +44,7 @@
     "id": "gold",
     "img": "gold",
     "quantity": 4,
-    "desc": "这是宝币",
+    "desc": "这是宝石",
     "type": "currency"
   },
   "skill_point": {
