@@ -130,10 +130,10 @@ export default {
   line-height: 20px;
   color: var(--current-font-color);
 }
-.breadcrumb-item >>> .el-breadcrumb__inner {
+:deep(.breadcrumb-item .el-breadcrumb__inner) {
   color: var(--current-font-color);
 }
-.breadcrumb-item >>> .el-breadcrumb__inner:hover {
+:deep(.breadcrumb-item .el-breadcrumb__inner:hover) {
   color: var(--current-font-color);
 }
 

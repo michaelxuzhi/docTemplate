@@ -181,14 +181,14 @@ export default {
 .tagItemStyle {
   margin-right: 5px;
 }
-.el-descriptions >>> .el-descriptions__title {
+:deep(.el-descriptions .el-descriptions__title) {
   color: var(--current-at-font-color);
 }
-.el-descriptions >>> .el-descriptions__label {
+:deep(.el-descriptions .el-descriptions__label) {
   background-color: var(--current-at-bg-color);
   color: var(--current-at-font-color);
 }
-/* .el-descriptions >>> .el-descriptions__content {
+/* :deep(.el-descriptions > .el-descriptions__content) {
   background-color: var(--current-at-content-bg-color);
 } */
 </style>

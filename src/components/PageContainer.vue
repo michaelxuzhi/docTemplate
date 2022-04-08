@@ -79,7 +79,7 @@ export default {
   height: 100%;
   padding: 0;
 }
-.page-aside >>> .el-menu {
+:deep(.page-aside .el-menu) {
   border-right: none;
 }
 .page-container {
