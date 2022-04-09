@@ -22,7 +22,11 @@
       </div></el-col
     >
     <!-- header中区域 -->
-    <el-col :span="7"><div class="header-mid" /></el-col>
+    <el-col :span="7"
+      ><div class="header-mid">
+        <el-button @click="reloadPage">reload</el-button>
+      </div></el-col
+    >
     <!-- header右区域 -->
     <el-col :span="14">
       <div class="header-right">
@@ -59,14 +63,17 @@
               <el-icon v-if="item.icon" :size="item.icon.icon_size"> <edit /></el-icon>
             </div>
             <template v-if="item.dropdown">
-              <el-dropdown class="header-dropdown">
+              <el-dropdown class="header-dropdown" @command="handleDropdownItemClick">
                 {{ item.text }}
                 <el-icon><caret-bottom /></el-icon>
                 <template #dropdown>
                   <el-dropdown-menu>
-                    <el-dropdown-item v-for="opt in item.dropdown" :key="opt">{{
-                      opt
-                    }}</el-dropdown-item>
+                    <el-dropdown-item
+                      v-for="opt in item.dropdown"
+                      :key="opt"
+                      :command="opt.command"
+                      >{{ opt.text }}</el-dropdown-item
+                    >
                   </el-dropdown-menu>
                 </template>
               </el-dropdown>
@@ -106,7 +113,7 @@ export default {
       switchVal: '',
       Check: 'sunny',
       Close: 'moon',
-      theme: false,
+      // theme: false,
       navigate_options: {
         api: {
           text: '道具展示',
@@ -123,16 +130,33 @@ export default {
           icon: undefined,
         },
         multilang: {
-          text: '功能2',
+          text: '测试网址',
           route: 'multilang',
           span: 4,
           class: 'right-col',
           icon: undefined,
           dropdown: {
-            action1: 'Action 1',
-            action2: 'Action 2',
-            action3: 'Action 3',
-            action4: 'Action 4',
+            action1: {
+              text: 'trunk',
+              command: '点击了trunk',
+            },
+            action2: {
+              text: '事业部内测服',
+              // command: 'https://www.baidu.com',
+              command: 'https://w6.game.163.com/game/',
+            },
+            action3: {
+              text: '新手编辑器',
+              command: '点击了事业部外测服',
+            },
+            action4: {
+              text: 'LQA测试服',
+              command: '点击了LQA测试服',
+            },
+            action5: {
+              text: 'banshu测试服',
+              command: '点击了banshu测试服',
+            },
           },
         },
         // document: {
@@ -162,23 +186,42 @@ export default {
       this.$router.push({ name: route });
     },
     handleSwitchChange() {
-      this.theme = !this.theme;
-      if (this.theme == true) {
+      if (this.switchVal == true) {
         window.document.documentElement.setAttribute('data-theme', 'dark');
       } else {
         window.document.documentElement.setAttribute('data-theme', 'light');
       }
-      this.$eventBus.emit('themeChange', this.theme);
+      localStorage.setItem('webTheme', this.switchVal.toString());
+      this.broadcastTheme();
+    },
+    handleDropdownItemClick(command) {
+      // this.$router.push({ name: command });
+      console.log('command:', command);
+      // let newPage = window.open(command, 'newBaidu');
+      let newPage = window.open('../../static/staticHtml/sonPage.html', 'newSonPage');
+      newPage.onload = function () {
+        newPage.postMessage('发给子页面的数据', '*');
+      };
+    },
+    reloadPage() {
+      this.$emit('reloadPage');
+    },
+    broadcastTheme() {
+      console.log('broadcastTheme');
+      this.$eventBus.emit('themeChange', this.switchVal);
     },
   },
-  mouted() {
-    this.$eventBus.emit('themeChange', this.theme);
-  },
+  mouted() {},
   watch: {
     $route() {
       this.isDisabled = this.$route.name !== 'home';
       // this.headerInputText = '';
     },
+  },
+  created() {
+    // 初始化的时候，获取本地存储的主题
+    this.switchVal = localStorage.getItem('webTheme') === 'true' ? true : false;
+    this.handleSwitchChange();
   },
 };
 </script>

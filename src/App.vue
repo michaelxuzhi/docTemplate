@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PageContainer />
+    <PageContainer v-if="isRouterAlive" />
   </div>
 </template>
 
@@ -12,6 +12,25 @@ export default {
   components: {
     PageContainer,
   },
+  provide() {
+    return {
+      reload: this.reload,
+    };
+  },
+  data() {
+    return {
+      isRouterAlive: true,
+    };
+  },
+  methods: {
+    reload() {
+      this.isRouterAlive = false;
+      this.$nextTick(() => {
+        this.isRouterAlive = true;
+      });
+    },
+  },
+  created() {},
 };
 </script>
 
@@ -41,7 +60,7 @@ export default {
 
   /* 深色主题 */
   /* --dark-background-color: #282c34; */
-  --dark-background-color: #0c0c0c;
+  --dark-background-color: #1a1a1a;
   --dark-font-color: #d3d3d3;
   --dark-btn-bg: #409eff;
   --dark-tag-bg: #409eff;
@@ -49,8 +68,8 @@ export default {
   --dark-btn-font-color: #d3d3d3;
 
   --dark-aside-font-color: #d3d3d3;
-  --dark-aside-background-color: #0c0c0c;
-  --dark-aside-item-hover-font-color: #000;
+  --dark-aside-background-color: #1a1a1a;
+  --dark-aside-item-hover-font-color: #1a1a1a;
   --dark-header-dropdown-font-color: #d3d3d3;
 
   --dark-object-bg-color: #3e3e48;

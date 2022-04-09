@@ -2,7 +2,7 @@
   <div class="page-container">
     <el-container>
       <el-header class="page-header">
-        <PageHeader />
+        <PageHeader @reloadPage="reloadPage" />
       </el-header>
       <el-container>
         <el-aside class="page-aside">
@@ -24,6 +24,7 @@ import PageHeader from './PageHeader/PageHeader.vue';
 import PageAside from './PageAside/PageAside.vue';
 import PageMain from './PageMain/PageMain.vue';
 export default {
+  inject: ['reload'],
   name: 'PageContainer',
   components: {
     PageHeader,
@@ -52,9 +53,13 @@ export default {
         }
       };
       // 请求本地json只允许请求public下的json文件
-      xhr.open('GET', '/static/data/data.json', true);
-      // xhr.open('GET', 'http://127.0.0.1:8888', true);
+      // xhr.open('GET', '/static/data/data.json', true);
+      xhr.open('GET', 'http://127.0.0.1:8888', true);
       xhr.send();
+    },
+    reloadPage() {
+      // console.log('reloadPage');
+      this.reload();
     },
   },
   created() {

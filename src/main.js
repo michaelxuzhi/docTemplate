@@ -14,9 +14,8 @@ for (const name in EleIcons) {
 app.use(ElementPlus);
 app.use(router);
 app.config.globalProperties.axios = axios;
-app.mount("#app");
-
 // 创建事件总线
 app.config.globalProperties.$eventBus = new mitt();
+app.mount("#app");
 
 export default app;

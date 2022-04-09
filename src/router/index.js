@@ -4,12 +4,14 @@ import PageEditor from "../components/PageEditor/PageEditor.vue";
 import PageAt from "../components/PageAt/PageAt.vue";
 import PageShow from "../components/PageShow/PageShow.vue";
 import objectView from "../views/objectView.vue";
+// import iframeView from "../views/iframeView.vue";
 
 const routes = [
   {
     path: "/",
     name: "home",
     component: PageShow,
+    // component: iframeView,
     meta: ["首页"],
   },
   {

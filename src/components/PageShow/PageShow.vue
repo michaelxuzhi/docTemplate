@@ -90,6 +90,8 @@ export default {
     this.$eventBus.on('themeChange', val => {
       this.globalTheme = val;
     });
+    // 初始化的时候，获取本地存储的主题，因为PageHeader的themeChange事件不会在created中触发
+    this.globalTheme = localStorage.getItem('webTheme') === 'true' ? true : false;
   },
   mounted() {
     this.handleCountAtNum();

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sonPage</title>
+    <style>
+      .son-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+      }
+      .son-content {
+        font-size: 16px;
+        color: #666;
+        line-height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="sonPage">
+      <div class="son-title">子界面</div>
+      <div class="son-content">子内容</div>
+      <button onclick="sonPageClick()">按钮</button>
+    </div>
+    <script>
+      function sonPageClick() {
+        window.opener.postMessage('sendToParent', '*');
+      }
+      function parseMsg(objStr) {
+        // console.log(arguments);
+        let obj = JSON.parse(objStr);
+        return obj;
+      }
+      function doThings(arr) {
+        let str = '';
+        for (let i = 0; i < arr.length; i++) {
+          // console.log(str + 'doThings');
+          str += arr[i];
+        }
+        console.log(str + '  nb');
+      }
+      window.addEventListener(
+        'message',
+        e => {
+          console.log(e.data, '父页面发送来的数据');
+          let msgObj = parseMsg(e.data);
+          this[msgObj.func](msgObj.args);
+        },
+        false
+      );
+      window.addEventListener('load', () => {
+        console.log(window.opener);
+        window.opener.postMessage('子页面加载完成', '*');
+      });
+    </script>
+  </body>
+</html>
