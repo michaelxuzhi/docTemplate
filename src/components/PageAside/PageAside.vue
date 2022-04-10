@@ -53,11 +53,9 @@ export default {
     keyObj: function () {
       let keyItem = {};
       for (let item of Object.values(this.at)) {
-        if (keyItem[item.ParentName]) {
-          keyItem[item.ParentName]++;
-        } else {
-          keyItem[item.ParentName] = 1;
-        }
+        keyItem[item.ParentName]
+          ? keyItem[item.ParentName]++
+          : (keyItem[item.ParentName] = 1);
         // console.log(item.ParentName);
       }
       // console.log('keyObj', keyItem);

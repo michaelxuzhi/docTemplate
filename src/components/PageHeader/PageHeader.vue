@@ -100,7 +100,8 @@
 </template>
 
 <script>
-// import { utilsSearchAt } from '../../utils/utils.js';
+import { headerData } from '../../../public/static/data/headerData.js';
+import { setLocalStorage, getLocalStorage } from '../../utils/utils.js';
 export default {
   name: 'PageHeader',
   data() {
@@ -114,62 +115,7 @@ export default {
       Check: 'sunny',
       Close: 'moon',
       // theme: false,
-      navigate_options: {
-        api: {
-          text: '道具展示',
-          route: 'object',
-          span: 3,
-          class: 'right-col',
-          icon: undefined,
-        },
-        system: {
-          text: '功能1',
-          route: 'system',
-          span: 3,
-          class: 'right-col',
-          icon: undefined,
-        },
-        multilang: {
-          text: '测试网址',
-          route: 'multilang',
-          span: 4,
-          class: 'right-col',
-          icon: undefined,
-          dropdown: {
-            action1: {
-              text: 'trunk',
-              command: '点击了trunk',
-            },
-            action2: {
-              text: '事业部内测服',
-              // command: 'https://www.baidu.com',
-              command: 'https://w6.game.163.com/game/',
-            },
-            action3: {
-              text: '新手编辑器',
-              command: '点击了事业部外测服',
-            },
-            action4: {
-              text: 'LQA测试服',
-              command: '点击了LQA测试服',
-            },
-            action5: {
-              text: 'banshu测试服',
-              command: '点击了banshu测试服',
-            },
-          },
-        },
-        // document: {
-        //   text: 'Document',
-        //   route: 'document',
-        //   span: 4,
-        //   class: 'right-col',
-        //   icon: {
-        //     icon_name: 'edit',
-        //     icon_size: '16',
-        //   },
-        // },
-      },
+      navigate_options: {},
     };
   },
   methods: {
@@ -191,7 +137,7 @@ export default {
       } else {
         window.document.documentElement.setAttribute('data-theme', 'light');
       }
-      localStorage.setItem('webTheme', this.switchVal.toString());
+      setLocalStorage('webTheme', this.switchVal.toString());
       this.broadcastTheme();
     },
     handleDropdownItemClick(command) {
@@ -207,7 +153,6 @@ export default {
       this.$emit('reloadPage');
     },
     broadcastTheme() {
-      console.log('broadcastTheme');
       this.$eventBus.emit('themeChange', this.switchVal);
     },
   },
@@ -220,8 +165,10 @@ export default {
   },
   created() {
     // 初始化的时候，获取本地存储的主题
-    this.switchVal = localStorage.getItem('webTheme') === 'true' ? true : false;
+    this.switchVal = getLocalStorage('webTheme') === 'true' ? true : false;
     this.handleSwitchChange();
+    // 加载headerData
+    this.navigate_options = headerData();
   },
 };
 </script>

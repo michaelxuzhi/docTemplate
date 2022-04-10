@@ -42,3 +42,39 @@ export function utilsArrayDel(arr, ele) {
   }
   return arr;
 }
+
+// localStorage存储
+export function setLocalStorage(key, value) {
+  try {
+    localStorage.setItem(key, value);
+    return true;
+  } catch (error) {
+    console.log(error);
+  }
+}
+// localStorage获取
+export function getLocalStorage(key) {
+  try {
+    return localStorage.getItem(key);
+  } catch (error) {
+    console.log(error);
+  }
+}
+// localStorage删除
+export function removeLocalStorage(key) {
+  try {
+    localStorage.removeItem(key);
+    return getLocalStorage(key) ? false : true;
+  } catch (error) {
+    console.error(error);
+  }
+}
+// localStorage清空
+export function clearLocalStorage() {
+  try {
+    localStorage.clear();
+    return localStorage.length === 0 ? true : false;
+  } catch (error) {
+    console.error(error);
+  }
+}

@@ -159,6 +159,7 @@ export default {
       this.atInfo = JSON.parse(this.$route.params.val);
       this.atInfo.tag = [this.atInfo.ParentName, this.atInfo.name];
     } else {
+      // 如果没有传入参数，则强制跳转到首页
       this.$router.push({ name: 'home' });
     }
   },

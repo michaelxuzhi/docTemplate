@@ -30,6 +30,7 @@
 </template>
 <script>
 import EmptyView from '../../views/emptyView.vue';
+import { getLocalStorage, setLocalStorage } from '../../utils/utils.js';
 export default {
   name: 'PageShow',
   components: {
@@ -59,6 +60,11 @@ export default {
         name: 'at',
         params: { key: key, val: JSON.stringify(val) },
       });
+      // 记录历史搜索次数
+      let searchInfo = getLocalStorage('searchInfo');
+      searchInfo = searchInfo ? JSON.parse(searchInfo) : {};
+      searchInfo[key] ? searchInfo[key]++ : (searchInfo[key] = 1);
+      setLocalStorage('searchInfo', JSON.stringify(searchInfo));
     },
     // 统计一下界面上的指令数量
     handleCountAtNum() {
@@ -82,7 +88,7 @@ export default {
     // 监听来自PageAside的assideClick事件
     this.$eventBus.on('asideClick', key => {
       this.asideSearchText = key;
-      // 重置showw-content的位置
+      // 重置show-content的位置
       document.getElementsByClassName('show-content')[0].scrollTop = 0;
       this.handleCountAtNum();
     });
@@ -91,7 +97,7 @@ export default {
       this.globalTheme = val;
     });
     // 初始化的时候，获取本地存储的主题，因为PageHeader的themeChange事件不会在created中触发
-    this.globalTheme = localStorage.getItem('webTheme') === 'true' ? true : false;
+    this.globalTheme = getLocalStorage('webTheme') === 'true' ? true : false;
   },
   mounted() {
     this.handleCountAtNum();

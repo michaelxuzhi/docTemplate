@@ -23,6 +23,7 @@
 import PageHeader from './PageHeader/PageHeader.vue';
 import PageAside from './PageAside/PageAside.vue';
 import PageMain from './PageMain/PageMain.vue';
+import { requestData } from '../../public/static/data/requestData.js';
 export default {
   inject: ['reload'],
   name: 'PageContainer',
@@ -39,23 +40,13 @@ export default {
     };
   },
   methods: {
-    requestJSON() {
+    requestJSON(url) {
       // console.log('requestJSON');
       let that = this;
-      let xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && this.status === 200) {
-          that.atObjGlobal = JSON.parse(xhr.responseText);
-          // console.log('requestJSON success', that.atObjGlobal);
-          // return JSON.parse(xhr.responseText);
-        } else if (xhr.readyState === 4 && this.status !== 200) {
-          console.log('请求失败');
-        }
-      };
-      // 请求本地json只允许请求public下的json文件
-      // xhr.open('GET', '/static/data/data.json', true);
-      xhr.open('GET', 'http://127.0.0.1:8888', true);
-      xhr.send();
+      this.axios.get(url).then(response => {
+        that.atObjGlobal = response.data;
+        // console.log(response);
+      });
     },
     reloadPage() {
       // console.log('reloadPage');
@@ -64,7 +55,9 @@ export default {
   },
   created() {
     // console.log('PageContainer created');
-    this.requestJSON();
+    // 初始化时，获取请求的url
+    let requestURL = requestData().url;
+    this.requestJSON(requestURL);
   },
   mounted() {
     // this.handleAsideAtData(this.atObjGlobal);
@@ -86,6 +79,10 @@ export default {
 }
 :deep(.page-aside .el-menu) {
   border-right: none;
+}
+/* 去除ele自带边距 */
+.el-header {
+  padding: 0;
 }
 .page-container {
   width: 100vw;
@@ -110,7 +107,7 @@ export default {
   margin-top: 3.6rem;
   position: fixed;
   left: 0;
-  background-color: #fff;
+  background-color: var(--current-background-color);
   border-right: solid 1px #dcdfe6;
 }
 .page-main {
@@ -125,13 +122,9 @@ export default {
 .page-footer {
   width: 100%;
   /* height: 50px; */
-  background-color: rgb(99, 96, 96);
+  /* background-color: rgb(99, 96, 96); */
   position: fixed;
   bottom: 0;
   right: 0;
-}
-/* 去除ele自带边距 */
-.el-header {
-  padding: 0;
 }
 </style>
