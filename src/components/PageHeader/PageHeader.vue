@@ -107,7 +107,7 @@
 
 <script>
 import { headerData } from '../../../public/static/data/headerData.js';
-import { utilsSetLocalStorage, utilsGetLocalStorage } from '../../utils/utils.js';
+// import { utilsSetLocalStorage, utilsGetLocalStorage } from '../../utils/utils.js';
 export default {
   name: 'PageHeader',
   data() {
@@ -117,7 +117,7 @@ export default {
       isDisabled: false,
       inputTipsVisible: false,
       inputTips: '匹配: 指令名 | 描述 | 指令父文件夹',
-      switchVal: '',
+      switchVal: false,
       Check: 'sunny',
       Close: 'moon',
       RefreshRight: 'refresh-right',
@@ -144,7 +144,6 @@ export default {
       } else {
         window.document.documentElement.setAttribute('data-theme', 'light');
       }
-      utilsSetLocalStorage('webTheme', this.switchVal.toString());
       this.broadcastTheme();
     },
     handleDropdownItemClick(command) {
@@ -176,9 +175,6 @@ export default {
     },
   },
   created() {
-    // 初始化的时候，获取本地存储的主题
-    this.switchVal = utilsGetLocalStorage('webTheme') === 'true' ? true : false;
-    this.handleSwitchChange();
     // 加载headerData
     this.navigate_options = headerData();
   },

@@ -43,7 +43,7 @@ export function utilsArrayDel(arr, ele) {
   return arr;
 }
 
-// 指令对象的排序
+// 历史搜索指令对象的排序与长度限制
 export function utilsSearchInfoSort(searchInfoObj) {
   let searchInfoArr = [];
   for (let key in searchInfoObj) {
@@ -52,6 +52,9 @@ export function utilsSearchInfoSort(searchInfoObj) {
   searchInfoArr.sort(function (a, b) {
     return b.cnt - a.cnt;
   });
+  // 只显示最近的10条
+  searchInfoArr.length > 10 && searchInfoArr.splice(10);
+
   console.log(searchInfoArr);
   return searchInfoArr;
 }
@@ -68,9 +71,11 @@ export function utilsSetLocalStorage(key, value) {
 // localStorage获取
 export function utilsGetLocalStorage(key) {
   try {
+    // localStorage中存的是字符串，JSON.parse可以将boolean字符串转成真正的boolean值(即使是false也可以)，数字字符串转成真正的数字
     let searchInfoObj = localStorage.getItem(key)
       ? JSON.parse(localStorage.getItem(key))
       : {};
+    console.log(searchInfoObj);
     return searchInfoObj;
   } catch (error) {
     console.log(error);

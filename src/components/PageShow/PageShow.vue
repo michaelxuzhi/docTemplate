@@ -126,8 +126,6 @@ export default {
     });
     // 初始化的时候，获取历史搜索记录
     this.initSearchRecord();
-    // 初始化的时候，获取本地存储的主题，因为PageHeader的themeChange事件不会在created中触发
-    this.globalTheme = utilsGetLocalStorage('webTheme') === 'true' ? true : false;
   },
   mounted() {
     this.handleCountAtNum();
