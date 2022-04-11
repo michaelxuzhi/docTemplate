@@ -61,16 +61,24 @@ export default {
         params: { key: key, val: JSON.stringify(val) },
       });
       // 记录历史搜索次数
-      let searchInfo = getLocalStorage('searchInfo');
-      searchInfo = searchInfo ? JSON.parse(searchInfo) : {};
-      searchInfo[key] ? searchInfo[key]++ : (searchInfo[key] = 1);
-      setLocalStorage('searchInfo', JSON.stringify(searchInfo));
+      this.handleSearchRecord(key, val.desc);
     },
     // 统计一下界面上的指令数量
     handleCountAtNum() {
       let showNum = document.getElementsByClassName('at-btn').length;
       let unshowNum = document.getElementsByClassName('at-btn-disappear').length;
       this.atNum = showNum - unshowNum;
+    },
+    handleSearchRecord(key, valDesc) {
+      let searchDesc = valDesc.length > 10 ? valDesc.substr(0, 10) + '...' : valDesc;
+      let searchInfo = getLocalStorage('searchInfo');
+      searchInfo = searchInfo ? JSON.parse(searchInfo) : {};
+      searchInfo[key]
+        ? searchInfo[key]['cnt']++
+        : ((searchInfo[key] = {}),
+          (searchInfo[key]['desc'] = searchDesc),
+          (searchInfo[key]['cnt'] = 1));
+      setLocalStorage('searchInfo', JSON.stringify(searchInfo));
     },
   },
 

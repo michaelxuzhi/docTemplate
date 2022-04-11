@@ -33,26 +33,29 @@
         <el-row>
           <el-col :span="10">
             <div>
-              <el-tooltip
+              <!-- <el-tooltip
                 effect="dark"
                 :content="inputTips"
-                placement="bottom"
+                placement="left"
                 :visible="inputTipsVisible"
+              > -->
+              <el-autocomplete
+                class="header-right-input"
+                :placeholder="inputHolder"
+                suffix-icon="Search"
+                clearable
+                :disabled="isDisabled"
+                :fetch-suggestions="handleFetchSuggestions"
+                @select="handleSuggestionClick"
               >
-                <el-input
-                  v-model="headerInputText"
-                  class="header-right-input"
-                  :placeholder="inputHolder"
-                  suffix-icon="Search"
-                  clearable
-                  :disabled="isDisabled"
-                  @input="handleInput"
-                  @focus="handleFocus"
-                  @blur="handleBlur"
-                />
-              </el-tooltip>
+                <template #default="{ item }">
+                  <div class="value">{{ item.desc }}</div>
+                </template>
+              </el-autocomplete>
+              <!-- </el-tooltip> -->
             </div>
           </el-col>
+          <!-- header选项区域 -->
           <el-col :span="item.span" v-for="item in navigate_options" :key="item.text">
             <div
               :class="item.class"
@@ -79,6 +82,7 @@
               </el-dropdown>
             </template>
           </el-col>
+          <!-- 模式选择开关 -->
           <el-col :span="2">
             <el-tooltip effect="dark" content="Beta功能" placement="right">
               <el-switch
@@ -109,7 +113,7 @@ export default {
       inputHolder: '请输入关键字',
       headerInputText: '',
       isDisabled: false,
-      inputTipsVisible: false,
+      // inputTipsVisible: false,
       inputTips: '匹配: 指令名 | 描述 | 指令父文件夹',
       switchVal: '',
       Check: 'sunny',
@@ -119,15 +123,15 @@ export default {
     };
   },
   methods: {
-    handleInput() {
-      this.$eventBus.emit('headerInputEvent', this.headerInputText);
+    handleInput(queryString) {
+      this.$eventBus.emit('headerInputEvent', queryString);
     },
-    handleFocus() {
-      this.inputTipsVisible = true;
-    },
-    handleBlur() {
-      this.inputTipsVisible = false;
-    },
+    // handleFocus() {
+    // this.inputTipsVisible = true;
+    // },
+    // handleBlur() {
+    // this.inputTipsVisible = false;
+    // },
     headerOptClick(route) {
       this.$router.push({ name: route });
     },
@@ -148,6 +152,21 @@ export default {
       newPage.onload = function () {
         newPage.postMessage('发给子页面的数据', '*');
       };
+    },
+    handleFetchSuggestions(queryString, cb) {
+      this.handleInput(queryString);
+      let searchRecord = JSON.parse(getLocalStorage('searchInfo'));
+      let res = [];
+      for (let item in searchRecord) {
+        res.push(searchRecord[item]);
+      }
+      cb(res);
+    },
+    handleSuggestionClick(sug) {
+      console.log('sug:', sug);
+      // this.headerInputText = sug.desc;
+      console.log(this.headerInputText);
+      this.handleInput(sug.desc);
     },
     reloadPage() {
       this.$emit('reloadPage');
