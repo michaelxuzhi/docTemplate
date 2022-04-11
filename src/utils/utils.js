@@ -43,8 +43,21 @@ export function utilsArrayDel(arr, ele) {
   return arr;
 }
 
+// 指令对象的排序
+export function utilsSearchInfoSort(searchInfoObj) {
+  let searchInfoArr = [];
+  for (let key in searchInfoObj) {
+    searchInfoArr.push(searchInfoObj[key]);
+  }
+  searchInfoArr.sort(function (a, b) {
+    return b.cnt - a.cnt;
+  });
+  console.log(searchInfoArr);
+  return searchInfoArr;
+}
+
 // localStorage存储
-export function setLocalStorage(key, value) {
+export function utilsSetLocalStorage(key, value) {
   try {
     localStorage.setItem(key, value);
     return true;
@@ -53,24 +66,27 @@ export function setLocalStorage(key, value) {
   }
 }
 // localStorage获取
-export function getLocalStorage(key) {
+export function utilsGetLocalStorage(key) {
   try {
-    return localStorage.getItem(key);
+    let searchInfoObj = localStorage.getItem(key)
+      ? JSON.parse(localStorage.getItem(key))
+      : {};
+    return searchInfoObj;
   } catch (error) {
     console.log(error);
   }
 }
 // localStorage删除
-export function removeLocalStorage(key) {
+export function utilsRemoveLocalStorage(key) {
   try {
     localStorage.removeItem(key);
-    return getLocalStorage(key) ? false : true;
+    return utilsGetLocalStorage(key) ? false : true;
   } catch (error) {
     console.error(error);
   }
 }
 // localStorage清空
-export function clearLocalStorage() {
+export function utilsClearLocalStorage() {
   try {
     localStorage.clear();
     return localStorage.length === 0 ? true : false;

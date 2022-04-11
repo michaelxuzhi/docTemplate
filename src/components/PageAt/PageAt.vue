@@ -23,7 +23,7 @@
         <el-tooltip v-if="val.length > 30" effect="dark" :content="val" placement="top">
           {{ val.substr(0, 30) + '...' }}
         </el-tooltip>
-        <div v-if="val.length <= 30 && key !== 'tag'">{{ val }}</div>
+        <div v-if="val.toString().length <= 30 && key !== 'tag'">{{ val }}</div>
       </el-descriptions-item>
       <el-descriptions-item label="短指令" :span="2">
         {{ handleAtShort(atInfo.ParentName, atInfo.name) }}
@@ -158,6 +158,7 @@ export default {
       this.atName = this.$route.params.key;
       this.atInfo = JSON.parse(this.$route.params.val);
       this.atInfo.tag = [this.atInfo.ParentName, this.atInfo.name];
+      console.log(this.atInfo);
     } else {
       // 如果没有传入参数，则强制跳转到首页
       this.$router.push({ name: 'home' });

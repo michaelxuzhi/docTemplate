@@ -1,5 +1,16 @@
 <template>
   <div class="show-content">
+    <div class="searchHistory" v-show="searchHistoryCnt">
+      <el-button
+        :size="size"
+        class="at-btn-search"
+        round
+        v-for="item in searchHistoryInfo"
+        :key="item"
+        @click="handleClick(item, item.name)"
+        >{{ item.desc }}
+      </el-button>
+    </div>
     <el-affix class="showAffix" target=".show-content">
       <el-tag type="success">cnt : {{ atNum }}</el-tag>
     </el-affix>
@@ -30,7 +41,11 @@
 </template>
 <script>
 import EmptyView from '../../views/emptyView.vue';
-import { getLocalStorage, setLocalStorage } from '../../utils/utils.js';
+import {
+  utilsGetLocalStorage,
+  utilsSetLocalStorage,
+  utilsSearchInfoSort,
+} from '../../utils/utils.js';
 export default {
   name: 'PageShow',
   components: {
@@ -44,6 +59,8 @@ export default {
       headerSearchText: '',
       atNum: 0,
       globalTheme: false,
+      searchHistoryCnt: 0,
+      searchHistoryInfo: {},
     };
   },
   props: {
@@ -61,7 +78,7 @@ export default {
         params: { key: key, val: JSON.stringify(val) },
       });
       // 记录历史搜索次数
-      this.handleSearchRecord(key, val.desc);
+      this.handleSearchRecord(key, val);
     },
     // 统计一下界面上的指令数量
     handleCountAtNum() {
@@ -69,16 +86,19 @@ export default {
       let unshowNum = document.getElementsByClassName('at-btn-disappear').length;
       this.atNum = showNum - unshowNum;
     },
-    handleSearchRecord(key, valDesc) {
-      let searchDesc = valDesc.length > 10 ? valDesc.substr(0, 10) + '...' : valDesc;
-      let searchInfo = getLocalStorage('searchInfo');
-      searchInfo = searchInfo ? JSON.parse(searchInfo) : {};
+    // 存储搜索历史到localStorage
+    handleSearchRecord(key, val) {
+      let searchInfo = utilsGetLocalStorage('searchInfo');
       searchInfo[key]
         ? searchInfo[key]['cnt']++
-        : ((searchInfo[key] = {}),
-          (searchInfo[key]['desc'] = searchDesc),
-          (searchInfo[key]['cnt'] = 1));
-      setLocalStorage('searchInfo', JSON.stringify(searchInfo));
+        : ((searchInfo[key] = {}), (searchInfo[key] = val), (searchInfo[key]['cnt'] = 1));
+      utilsSetLocalStorage('searchInfo', JSON.stringify(searchInfo));
+    },
+    initSearchRecord() {
+      let searchInfo = utilsGetLocalStorage('searchInfo');
+      this.searchHistoryCnt = Object.keys(searchInfo).length;
+      // 如果有搜索记录，则进行排序
+      this.searchHistoryCnt && (this.searchHistoryInfo = utilsSearchInfoSort(searchInfo));
     },
   },
 
@@ -104,8 +124,10 @@ export default {
     this.$eventBus.on('themeChange', val => {
       this.globalTheme = val;
     });
+    // 初始化的时候，获取历史搜索记录
+    this.initSearchRecord();
     // 初始化的时候，获取本地存储的主题，因为PageHeader的themeChange事件不会在created中触发
-    this.globalTheme = getLocalStorage('webTheme') === 'true' ? true : false;
+    this.globalTheme = utilsGetLocalStorage('webTheme') === 'true' ? true : false;
   },
   mounted() {
     this.handleCountAtNum();
@@ -114,6 +136,7 @@ export default {
     this.handleCountAtNum();
   },
   activated() {
+    this.initSearchRecord();
     // 重置showw-content的位置，但是不起效果
     document.getElementsByClassName('show-content')[0].scrollTop = 0;
   },
@@ -151,5 +174,17 @@ export default {
   position: absolute;
   left: 0px;
   font-weight: bold;
+}
+.searchHistory {
+  /* position: absolute; */
+  /* height: 60px; */
+  width: 100%;
+  /* background-color: #8d2323; */
+}
+.at-btn-search {
+  padding: 15px;
+  margin: 10px;
+  font-size: 16px;
+  /* color: var(--current-btn-font-color); */
 }
 </style>

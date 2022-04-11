@@ -24,7 +24,10 @@
     <!-- header中区域 -->
     <el-col :span="7"
       ><div class="header-mid">
-        <el-button @click="reloadPage">reload</el-button>
+        <el-button @click="reloadPage" :icon="RefreshRight">reload</el-button>
+        <el-button @click="resetPage" :icon="Refresh" :disabled="this.$route.path !== '/'"
+          >reset</el-button
+        >
       </div></el-col
     >
     <!-- header右区域 -->
@@ -33,26 +36,25 @@
         <el-row>
           <el-col :span="10">
             <div>
-              <!-- <el-tooltip
+              <el-tooltip
                 effect="dark"
                 :content="inputTips"
-                placement="left"
+                placement="bottom"
                 :visible="inputTipsVisible"
-              > -->
-              <el-autocomplete
-                class="header-right-input"
-                :placeholder="inputHolder"
-                suffix-icon="Search"
-                clearable
-                :disabled="isDisabled"
-                :fetch-suggestions="handleFetchSuggestions"
-                @select="handleSuggestionClick"
               >
-                <template #default="{ item }">
-                  <div class="value">{{ item.desc }}</div>
-                </template>
-              </el-autocomplete>
-              <!-- </el-tooltip> -->
+                <el-input
+                  v-model="headerInputText"
+                  class="header-right-input"
+                  :placeholder="inputHolder"
+                  suffix-icon="Search"
+                  clearable
+                  :disabled="isDisabled"
+                  @input="handleInput"
+                  @focus="handleFocus"
+                  @blur="handleBlur"
+                >
+                </el-input>
+              </el-tooltip>
             </div>
           </el-col>
           <!-- header选项区域 -->
@@ -105,7 +107,7 @@
 
 <script>
 import { headerData } from '../../../public/static/data/headerData.js';
-import { setLocalStorage, getLocalStorage } from '../../utils/utils.js';
+import { utilsSetLocalStorage, utilsGetLocalStorage } from '../../utils/utils.js';
 export default {
   name: 'PageHeader',
   data() {
@@ -113,25 +115,26 @@ export default {
       inputHolder: '请输入关键字',
       headerInputText: '',
       isDisabled: false,
-      // inputTipsVisible: false,
+      inputTipsVisible: false,
       inputTips: '匹配: 指令名 | 描述 | 指令父文件夹',
       switchVal: '',
       Check: 'sunny',
       Close: 'moon',
-      // theme: false,
+      RefreshRight: 'refresh-right',
+      Refresh: 'refresh',
       navigate_options: {},
     };
   },
   methods: {
-    handleInput(queryString) {
-      this.$eventBus.emit('headerInputEvent', queryString);
+    handleInput() {
+      this.$eventBus.emit('headerInputEvent', this.headerInputText);
     },
-    // handleFocus() {
-    // this.inputTipsVisible = true;
-    // },
-    // handleBlur() {
-    // this.inputTipsVisible = false;
-    // },
+    handleFocus() {
+      this.inputTipsVisible = true;
+    },
+    handleBlur() {
+      this.inputTipsVisible = false;
+    },
     headerOptClick(route) {
       this.$router.push({ name: route });
     },
@@ -141,7 +144,7 @@ export default {
       } else {
         window.document.documentElement.setAttribute('data-theme', 'light');
       }
-      setLocalStorage('webTheme', this.switchVal.toString());
+      utilsSetLocalStorage('webTheme', this.switchVal.toString());
       this.broadcastTheme();
     },
     handleDropdownItemClick(command) {
@@ -153,23 +156,13 @@ export default {
         newPage.postMessage('发给子页面的数据', '*');
       };
     },
-    handleFetchSuggestions(queryString, cb) {
-      this.handleInput(queryString);
-      let searchRecord = JSON.parse(getLocalStorage('searchInfo'));
-      let res = [];
-      for (let item in searchRecord) {
-        res.push(searchRecord[item]);
-      }
-      cb(res);
-    },
-    handleSuggestionClick(sug) {
-      console.log('sug:', sug);
-      // this.headerInputText = sug.desc;
-      console.log(this.headerInputText);
-      this.handleInput(sug.desc);
-    },
     reloadPage() {
       this.$emit('reloadPage');
+    },
+    resetPage() {
+      this.headerInputText = '';
+      this.handleInput();
+      this.$eventBus.emit('resetPage', true);
     },
     broadcastTheme() {
       this.$eventBus.emit('themeChange', this.switchVal);
@@ -184,7 +177,7 @@ export default {
   },
   created() {
     // 初始化的时候，获取本地存储的主题
-    this.switchVal = getLocalStorage('webTheme') === 'true' ? true : false;
+    this.switchVal = utilsGetLocalStorage('webTheme') === 'true' ? true : false;
     this.handleSwitchChange();
     // 加载headerData
     this.navigate_options = headerData();

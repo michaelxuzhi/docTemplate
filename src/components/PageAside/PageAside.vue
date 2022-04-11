@@ -48,6 +48,10 @@ export default {
   },
   created() {
     // console.log('PageAside created', this.at);
+    // 监听header广播的reset事件
+    this.$eventBus.on('resetPage', () => {
+      this.handleAsideClick(this.asideAtKey);
+    });
   },
   computed: {
     keyObj: function () {
