@@ -34,6 +34,32 @@ export function utilsNotice(type, title, text) {
   });
 }
 
+export function utilsObjectFrag(originObj, showNum) {
+  let cnt = 0,
+    newObj = {};
+  for (const key in originObj) {
+    if (Object.hasOwnProperty.call(originObj, key)) {
+      cnt++;
+      cnt <= showNum && (newObj[key] = originObj[key]);
+    }
+  }
+  return newObj;
+}
+
+export function utilsArrayFrag(
+  originArr,
+  beginIdx = 0,
+  endIdx = originArr.length
+) {
+  try {
+    let newArr = originArr.slice(beginIdx, endIdx);
+    return newArr;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
+
 export function utilsArrayDel(arr, ele) {
   let eleIndex = arr.indexOf(ele);
   if (eleIndex !== -1) {
@@ -44,42 +70,80 @@ export function utilsArrayDel(arr, ele) {
 }
 
 // 历史搜索指令对象的排序与长度限制
-export function utilsSearchInfoSort(searchInfoObj) {
-  let searchInfoArr = [];
-  for (let key in searchInfoObj) {
-    searchInfoArr.push(searchInfoObj[key]);
+export function utilsSortLocalStorage(LSObj, LSObjType) {
+  let LSSearchInfoArr = [];
+  if (LSObjType === "object") {
+    for (let key in LSObj) {
+      LSSearchInfoArr.push(LSObj[key]);
+    }
+    LSSearchInfoArr.sort(function (a, b) {
+      return b.cnt - a.cnt;
+    });
+  } else if (LSObjType === "array") {
+    // todo：localstorage对数组的处理
   }
-  searchInfoArr.sort(function (a, b) {
-    return b.cnt - a.cnt;
-  });
-  // 只显示最近的10条
-  searchInfoArr.length > 10 && searchInfoArr.splice(10);
-
-  console.log(searchInfoArr);
-  return searchInfoArr;
+  // 限制长度<=20
+  if (LSSearchInfoArr.length > 20) {
+    LSSearchInfoArr = utilsLimitLocalStorage(LSSearchInfoArr);
+  }
+  console.log(LSSearchInfoArr);
+  return LSSearchInfoArr;
 }
 
 // localStorage存储
-export function utilsSetLocalStorage(key, value) {
-  try {
-    localStorage.setItem(key, value);
+export function utilsSetLocalStorage(LSkey, LSval) {
+  let LSObj = utilsGetLocalStorage(LSkey);
+  let LSObjType = checkType(LSObj);
+  if (LSObjType === "string") {
+    localStorage.setItem(LSkey, LSval);
     return true;
+  } else if (LSObjType === "array") {
+    // todo: localstorage存数组操作
+  } else if (LSObjType === "object") {
+    let key = LSval.name;
+    LSObj[key]
+      ? LSObj[key]["cnt"]++
+      : ((LSObj[key] = LSval), (LSObj[key]["cnt"] = 1));
+    // console.log(LSObj);
+    let sortedArr = utilsSortLocalStorage(LSObj, LSObjType);
+    // console.log(sortedArr);
+    let newObj = {};
+    sortedArr.forEach((item) => {
+      newObj[item.name] = item;
+      // console.log(item);
+    });
+    localStorage.setItem(LSkey, JSON.stringify(newObj));
+  }
+}
+// localStorage获取
+export function utilsGetLocalStorage(LSkey) {
+  try {
+    // localStorage中存的是字符串，JSON.parse可以将boolean字符串转成真正的boolean值(即使是false也可以)，数字字符串转成真正的数字
+    let recordInfoObj = localStorage.getItem(LSkey);
+    try {
+      JSON.parse(recordInfoObj);
+    } catch (error) {
+      // console.log(recordInfoObj);
+      return recordInfoObj;
+    }
+    let parseObj = recordInfoObj ? JSON.parse(recordInfoObj) : {};
+    // 这里会和set冲突，因为set用到了get，需要解决get返回限制长度的obj
+    // if (checkType(parseObj) === "object") {
+    //   console.log(utilsObjectFrag(parseObj, 10));
+    //   return utilsObjectFrag(parseObj, 10);
+    // }
+    return parseObj;
   } catch (error) {
     console.log(error);
   }
 }
-// localStorage获取
-export function utilsGetLocalStorage(key) {
-  try {
-    // localStorage中存的是字符串，JSON.parse可以将boolean字符串转成真正的boolean值(即使是false也可以)，数字字符串转成真正的数字
-    let searchInfoObj = localStorage.getItem(key)
-      ? JSON.parse(localStorage.getItem(key))
-      : {};
-    console.log(searchInfoObj);
-    return searchInfoObj;
-  } catch (error) {
-    console.log(error);
-  }
+// localStorage对象和数组类型长度限制
+export function utilsLimitLocalStorage(LSSearchInfoArr) {
+  // 截取前10个
+  let headInfo = utilsArrayFrag(LSSearchInfoArr, 0, 10);
+  // 截取后5个
+  let tailInfo = utilsArrayFrag(LSSearchInfoArr, LSSearchInfoArr.length - 5);
+  return [...headInfo, ...tailInfo];
 }
 // localStorage删除
 export function utilsRemoveLocalStorage(key) {
@@ -97,5 +161,20 @@ export function utilsClearLocalStorage() {
     return localStorage.length === 0 ? true : false;
   } catch (error) {
     console.error(error);
+  }
+}
+
+// 判断数据类型
+export function checkType(item) {
+  // es6中null的类型为object
+  if (item === null) {
+    return item + "";
+  }
+  if (typeof item === "object") {
+    let val = Object.prototype.toString.call(item).split(" ")[1];
+    let type = val.substr(0, val.length - 1).toLowerCase();
+    return type;
+  } else {
+    return typeof item;
   }
 }

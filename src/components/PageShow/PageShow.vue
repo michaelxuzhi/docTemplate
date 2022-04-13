@@ -44,7 +44,7 @@ import EmptyView from '../../views/emptyView.vue';
 import {
   utilsGetLocalStorage,
   utilsSetLocalStorage,
-  utilsSearchInfoSort,
+  // utilsSearchInfoSort,
 } from '../../utils/utils.js';
 export default {
   name: 'PageShow',
@@ -78,7 +78,7 @@ export default {
         params: { key: key, val: JSON.stringify(val) },
       });
       // 记录历史搜索次数
-      this.handleSearchRecord(key, val);
+      this.handleSearchRecord('searchInfo', val);
     },
     // 统计一下界面上的指令数量
     handleCountAtNum() {
@@ -87,18 +87,14 @@ export default {
       this.atNum = showNum - unshowNum;
     },
     // 存储搜索历史到localStorage
-    handleSearchRecord(key, val) {
-      let searchInfo = utilsGetLocalStorage('searchInfo');
-      searchInfo[key]
-        ? searchInfo[key]['cnt']++
-        : ((searchInfo[key] = {}), (searchInfo[key] = val), (searchInfo[key]['cnt'] = 1));
-      utilsSetLocalStorage('searchInfo', JSON.stringify(searchInfo));
+    handleSearchRecord(LSkey, LSval) {
+      utilsSetLocalStorage(LSkey, LSval);
     },
     initSearchRecord() {
       let searchInfo = utilsGetLocalStorage('searchInfo');
+      // console.log(searchInfo);
       this.searchHistoryCnt = Object.keys(searchInfo).length;
-      // 如果有搜索记录，则进行排序
-      this.searchHistoryCnt && (this.searchHistoryInfo = utilsSearchInfoSort(searchInfo));
+      this.searchHistoryInfo = searchInfo;
     },
   },
 
@@ -124,8 +120,8 @@ export default {
     this.$eventBus.on('themeChange', val => {
       this.globalTheme = val;
     });
-    // 初始化的时候，获取历史搜索记录
-    this.initSearchRecord();
+    // 初始化的时候，获取历史搜索记录-可以注释，在activated中获取即可
+    // this.initSearchRecord();
   },
   mounted() {
     this.handleCountAtNum();
@@ -135,6 +131,7 @@ export default {
   },
   activated() {
     this.initSearchRecord();
+    // console.log('PageShow activated');
     // 重置showw-content的位置，但是不起效果
     document.getElementsByClassName('show-content')[0].scrollTop = 0;
   },

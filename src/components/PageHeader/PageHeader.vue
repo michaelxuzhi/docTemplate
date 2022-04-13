@@ -107,7 +107,6 @@
 
 <script>
 import { headerData } from '../../../public/static/data/headerData.js';
-// import { utilsSetLocalStorage, utilsGetLocalStorage } from '../../utils/utils.js';
 export default {
   name: 'PageHeader',
   data() {
