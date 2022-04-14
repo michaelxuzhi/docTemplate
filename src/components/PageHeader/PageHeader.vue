@@ -107,6 +107,7 @@
 
 <script>
 import { headerData } from '../../../public/static/data/headerData.js';
+import { utilsNotice } from '../../utils/utils.js';
 export default {
   name: 'PageHeader',
   data() {
@@ -155,12 +156,15 @@ export default {
       };
     },
     reloadPage() {
+      this.switchVal = false;
+      this.handleSwitchChange();
       this.$emit('reloadPage');
     },
     resetPage() {
       this.headerInputText = '';
       this.handleInput();
       this.$eventBus.emit('resetPage', true);
+      utilsNotice('success', '页面重置', '筛选条件已清除');
     },
     broadcastTheme() {
       this.$eventBus.emit('themeChange', this.switchVal);

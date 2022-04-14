@@ -71,7 +71,6 @@ export function utilsArrayDel(arr, ele) {
 
 // 历史搜索指令对象的排序与长度限制
 export function utilsSortLocalStorage(LSObj, LSObjType) {
-  console.log(LSObj);
   let LSSearchInfoArr = [];
   if (LSObjType === "object") {
     for (let key in LSObj) {
@@ -83,7 +82,7 @@ export function utilsSortLocalStorage(LSObj, LSObjType) {
   } else if (LSObjType === "array") {
     // todo：localstorage对数组的处理
   }
-  // 限制长度<=20
+  // 限制长度<=20,对象类型只存20个元素
   if (LSSearchInfoArr.length > 20) {
     LSSearchInfoArr = utilsLimitLocalStorage(LSSearchInfoArr);
   }
@@ -97,7 +96,7 @@ export function utilsSetLocalStorage(LSkey, LSval) {
   let LSObjType = checkType(LSObj);
   if (LSObjType === "string") {
     localStorage.setItem(LSkey, LSval);
-    return true;
+    return;
   } else if (LSObjType === "array") {
     // todo: localstorage存数组操作
   } else if (LSObjType === "object") {
@@ -107,13 +106,10 @@ export function utilsSetLocalStorage(LSkey, LSval) {
     LSObj[key]
       ? LSObj[key]["cnt"]++
       : ((LSObj[key] = nowObj), (LSObj[key]["cnt"] = 1));
-    // console.log(LSObj);
     let sortedArr = utilsSortLocalStorage(LSObj, LSObjType);
-    // console.log(sortedArr);
     let newObj = {};
     sortedArr.forEach((item) => {
       newObj[item.name] = item;
-      // console.log(item);
     });
     localStorage.setItem(LSkey, JSON.stringify(newObj));
   }
@@ -130,11 +126,6 @@ export function utilsGetLocalStorage(LSkey) {
       return recordInfoObj;
     }
     let parseObj = recordInfoObj ? JSON.parse(recordInfoObj) : {};
-    // 这里会和set冲突，因为set用到了get，需要解决get返回限制长度的obj
-    // if (checkType(parseObj) === "object") {
-    //   console.log(utilsObjectFrag(parseObj, 10));
-    //   return utilsObjectFrag(parseObj, 10);
-    // }
     return parseObj;
   } catch (error) {
     console.log(error);

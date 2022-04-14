@@ -5,10 +5,12 @@
         :size="size"
         class="at-btn-search"
         round
-        v-for="item in searchHistoryInfo"
-        :key="item"
-        @click="handleClick(item, item.name)"
-        >{{ item.desc }}
+        v-for="(v, k, idx) in searchHistoryInfo"
+        v-show="idx < 10"
+        :key="k"
+        @click="handleClick(v, k)"
+        :icon="v.cnt >= 5 ? hotIcon : ''"
+        >{{ v.desc ? (v.desc.length >= 35 ? v.desc.slice(0, 35) + '...' : v.desc) : k }}
       </el-button>
     </div>
     <el-affix class="showAffix" target=".show-content">
@@ -30,7 +32,13 @@
         @click="handleClick(val, key)"
         v-for="(val, key) in atInfoShow"
         :key="key"
-        >{{ val.desc ? val.desc : key }}</el-button
+        >{{
+          val.desc
+            ? val.desc.length >= 35
+              ? val.desc.slice(0, 35) + '...'
+              : val.desc
+            : key
+        }}</el-button
       >
       <el-backtop target=".show-content" :visibility-height="20"></el-backtop>
     </div>
@@ -41,11 +49,7 @@
 </template>
 <script>
 import EmptyView from '../../views/emptyView.vue';
-import {
-  utilsGetLocalStorage,
-  utilsSetLocalStorage,
-  // utilsSearchInfoSort,
-} from '../../utils/utils.js';
+import { utilsGetLocalStorage, utilsSetLocalStorage } from '../../utils/utils.js';
 export default {
   name: 'PageShow',
   components: {
@@ -59,6 +63,7 @@ export default {
       headerSearchText: '',
       atNum: 0,
       globalTheme: false,
+      hotIcon: 'flag',
       searchHistoryCnt: 0,
       searchHistoryInfo: {},
     };
@@ -91,7 +96,7 @@ export default {
       utilsSetLocalStorage(LSkey, LSval);
     },
     initSearchRecord() {
-      let searchInfo = utilsGetLocalStorage('searchInfo');
+      let searchInfo = utilsGetLocalStorage('searchInfo') || {};
       // console.log(searchInfo);
       this.searchHistoryCnt = Object.keys(searchInfo).length;
       this.searchHistoryInfo = searchInfo;
