@@ -71,6 +71,7 @@ export function utilsArrayDel(arr, ele) {
 
 // 历史搜索指令对象的排序与长度限制
 export function utilsSortLocalStorage(LSObj, LSObjType) {
+  console.log(LSObj);
   let LSSearchInfoArr = [];
   if (LSObjType === "object") {
     for (let key in LSObj) {
@@ -100,10 +101,12 @@ export function utilsSetLocalStorage(LSkey, LSval) {
   } else if (LSObjType === "array") {
     // todo: localstorage存数组操作
   } else if (LSObjType === "object") {
-    let key = LSval.name;
+    // 将proxy对象转换为json字符串再转成普通对象
+    let nowObj = JSON.parse(JSON.stringify(LSval));
+    let key = nowObj.name;
     LSObj[key]
       ? LSObj[key]["cnt"]++
-      : ((LSObj[key] = LSval), (LSObj[key]["cnt"] = 1));
+      : ((LSObj[key] = nowObj), (LSObj[key]["cnt"] = 1));
     // console.log(LSObj);
     let sortedArr = utilsSortLocalStorage(LSObj, LSObjType);
     // console.log(sortedArr);
