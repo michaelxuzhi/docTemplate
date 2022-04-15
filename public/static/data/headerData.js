@@ -4,7 +4,7 @@ export function headerData() {
    * key: 字段名
    * text: 展示文本
    * route: 路由名称，需要在router/index.js中配置
-   * span: 占用的列数
+   * span: 占用的列数--所有项的span相加<=12，因为主题开关占了2，搜索框占了10
    * class：样式，需要在PageHeader.vue中配置
    * icon：是否有图标
    * * icon_name: elementUI图标
@@ -18,21 +18,21 @@ export function headerData() {
     api: {
       text: "道具展示",
       route: "object",
-      span: 3,
+      span: 2,
       class: "right-col",
       icon: undefined,
     },
     system: {
-      text: "功能1",
-      route: "system",
+      text: "编辑器",
+      route: "editor",
       span: 3,
       class: "right-col",
-      icon: undefined,
+      icon: "edit",
     },
     multilang: {
       text: "测试网址",
       route: "multilang",
-      span: 4,
+      span: 3,
       class: "right-col",
       icon: undefined,
       dropdown: {
@@ -59,15 +59,15 @@ export function headerData() {
         },
       },
     },
-    // document: {
-    //   text: "Document",
-    //   route: "document",
-    //   span: 4,
-    //   class: "right-col",
-    //   icon: {
-    //     icon_name: "edit",
-    //     icon_size: "16",
-    //   },
-    // },
+    document: {
+      text: "Document",
+      route: "document",
+      span: 3,
+      class: "right-col",
+      icon: {
+        icon_name: "document",
+        icon_size: "16",
+      },
+    },
   };
 }
