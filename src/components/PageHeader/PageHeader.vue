@@ -180,6 +180,8 @@ export default {
   created() {
     // 加载headerData
     this.navigate_options = headerData();
+    // 初始化时设置主题
+    this.handleSwitchChange();
   },
 };
 </script>
