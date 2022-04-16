@@ -52,6 +52,7 @@ export default {
   --current-aside-background-color: var(--dark-aside-background-color);
   --current-aside-item-hover-font-color: var(--dark-aside-item-hover-font-color);
   --current-header-dropdown-font-color: var(--dark-header-dropdown-font-color);
+  --current-aside-active-font-color: var(--dark-aside-active-font-color);
   --current-object-bg-color: var(--dark-object-bg-color);
   --current-at-bg-color: var(--dark-at-bg-color);
   --current-at-font-color: var(--dark-at-font-color);
@@ -70,6 +71,7 @@ export default {
   --dark-aside-font-color: #d3d3d3;
   --dark-aside-background-color: #1a1a1a;
   --dark-aside-item-hover-font-color: #1a1a1a;
+  --dark-aside-active-font-color: #1a1a1a;
   --dark-header-dropdown-font-color: #d3d3d3;
 
   --dark-object-bg-color: #3e3e48;
@@ -84,9 +86,16 @@ export default {
   --current-background-color: var(--light-background-color);
   --current-at-bg-color: var(--light-at-bg-color);
   --current-btn-font-color: var(--light-btn-font-color);
+  --current-aside-font-color: var(--light-aside-font-color);
+  --current-aside-item-hover-font-color: var(--light-aside-item-hover-font-color);
+  --current-aside-active-font-color: var(--light-aside-active-font-color);
   /* 浅色主题 */
   --light-background-color: #fff;
   --light-at-bg-color: #f5f7fa;
   --light-btn-font-color: #4149e0;
+
+  --light-aside-font-color: #1a1a1a;
+  --light-aside-item-hover-font-color: #1a1a1a;
+  --light-aside-active-font-color: #1a1a1a;
 }
 </style>

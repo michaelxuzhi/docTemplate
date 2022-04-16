@@ -4,18 +4,6 @@
       <el-icon v-show="this.$route.path !== '/'" @click="handleGoBack"
         ><arrow-left-bold
       /></el-icon>
-      <!-- <el-button
-        icon="arrow-left"
-        size="small"
-        v-show="this.$route.path !== '/'"
-        @click="handleGoBack"
-      ></el-button> -->
-      <!-- <el-tooltip
-        effect="dark"
-        content="点击此处返回"
-        placement="left-start"
-        :visible="this.$route.path !== '/'"
-      > -->
       <el-breadcrumb>
         <el-breadcrumb-item
           class="breadcrumb-item"
@@ -25,7 +13,6 @@
           >{{ item.name }}
         </el-breadcrumb-item>
       </el-breadcrumb>
-      <!-- </el-tooltip> -->
     </div>
     <!-- 路由占位符 -->
     <router-view

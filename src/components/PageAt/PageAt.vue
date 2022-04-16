@@ -30,7 +30,6 @@
         <span style="width: 0; height: 0" id="at_copy_tool"></span>
         <el-button
           class="desc-btn"
-          ol="12"
           :type="copyBtnStatus1 || 'primary'"
           :icon="copyBtnStatus1 ? iconList[copyBtnStatus1] : ''"
           @click="handleCopy(1)"

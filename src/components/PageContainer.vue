@@ -41,33 +41,21 @@ export default {
   },
   methods: {
     requestJSON(url) {
-      // console.log('requestJSON');
       let that = this;
       this.axios.get(url).then(response => {
         that.atObjGlobal = response.data;
-        // console.log(response);
       });
     },
     reloadPage() {
-      // console.log('reloadPage');
       this.reload();
     },
   },
   created() {
-    // console.log('PageContainer created');
     // 初始化时，获取请求的url
     let requestURL = requestData().url;
     this.requestJSON(requestURL);
   },
-  mounted() {
-    // this.handleAsideAtData(this.atObjGlobal);
-    // console.log('PageContainer mounted', this.atObjGlobal);
-  },
-  // watch:{
-  //   atObjGlobal(){
-  //     this.atObjGlobal = atObjGlobal;
-  //   },
-  // }
+  mounted() {},
 };
 </script>
 
@@ -87,7 +75,6 @@ export default {
 .page-container {
   width: 100vw;
   height: 100vh;
-  /* background-color: rgb(0, 0, 0); */
   background-color: var(--current-background-color);
   color: var(--current-font-color);
 }
@@ -111,18 +98,13 @@ export default {
   border-right: solid 1px #dcdfe6;
 }
 .page-main {
-  /* width: 80%; */
   height: 100%;
-  /* height: 1000px; */
-  /* background-color: rgb(121, 118, 118); */
   /* 空出el-header的高度-由main-router补充设置，这里不设置 */
   position: absolute;
   left: 250px;
 }
 .page-footer {
   width: 100%;
-  /* height: 50px; */
-  /* background-color: rgb(99, 96, 96); */
   position: fixed;
   bottom: 0;
   right: 0;

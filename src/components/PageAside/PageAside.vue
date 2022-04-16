@@ -94,7 +94,7 @@ export default {
   color: var(--current-aside-font-color);
 }
 .is-active {
-  color: var(--current-background-color);
+  color: var(--current-aside-active-font-color);
   background-color: #ecf5ff;
   border-right: 10px solid #7252e7;
 }
