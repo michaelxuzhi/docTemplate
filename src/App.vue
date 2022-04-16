@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import PageContainer from './components/PageContainer.vue';
+import PageContainer from '@components/PageContainer.vue';
 
 export default {
   name: 'App',

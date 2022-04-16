@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import { utilsCopy, utilsNotice } from '../../utils/utils.js';
+import { utilsCopy, utilsNotice } from '@utils/utils.js';
 export default {
   name: 'PageAt',
   data() {

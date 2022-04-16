@@ -48,8 +48,8 @@
   </div>
 </template>
 <script>
-import EmptyView from '../../views/emptyView.vue';
-import { utilsGetLocalStorage, utilsSetLocalStorage } from '../../utils/utils.js';
+import EmptyView from '@views/emptyView.vue';
+import { utilsGetLocalStorage, utilsSetLocalStorage } from '@utils/utils.js';
 export default {
   name: 'PageShow',
   components: {

@@ -1,24 +1,32 @@
 import { createRouter, createWebHistory } from "vue-router";
-import PageArticle from "../components/PageArticle/PageArticle.vue";
-import PageEditor from "../components/PageEditor/PageEditor.vue";
-import PageAt from "../components/PageAt/PageAt.vue";
-import PageShow from "../components/PageShow/PageShow.vue";
-import objectView from "../views/objectView.vue";
+import PageArticle from "@components/PageArticle/PageArticle.vue";
+import PageEditor from "@components/PageEditor/PageEditor.vue";
+import PageAt from "@components/PageAt/PageAt.vue";
+// import PageShow from "../components/PageShow/PageShow.vue";
+import objectView from "@views/objectView.vue";
 // import iframeView from "../views/iframeView.vue";
+import wsServer from "@views/wsServer.vue";
 
 const routes = [
+  // {
+  //   path: "/",
+  //   name: "home",
+  //   component: PageShow,
+  //   // component: iframeView,
+  //   meta: ["首页"],
+  // },
   {
     path: "/",
     name: "home",
-    component: PageShow,
+    component: wsServer,
     // component: iframeView,
-    meta: ["首页"],
+    meta: ["websocket"],
   },
   {
     path: "/article",
     name: "article",
     component: PageArticle,
-    meta: ["展示页"],
+    meta: ["文章展示"],
   },
   {
     path: "/editor",

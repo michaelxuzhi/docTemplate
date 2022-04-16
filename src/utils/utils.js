@@ -86,7 +86,7 @@ export function utilsSortLocalStorage(LSObj, LSObjType) {
   if (LSSearchInfoArr.length > 20) {
     LSSearchInfoArr = utilsLimitLocalStorage(LSSearchInfoArr);
   }
-  console.log(LSSearchInfoArr);
+  // console.log(LSSearchInfoArr);
   return LSSearchInfoArr;
 }
 

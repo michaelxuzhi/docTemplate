@@ -108,8 +108,8 @@
 </template>
 
 <script>
-import { headerData } from '../../../public/static/data/headerData.js';
-import { utilsNotice } from '../../utils/utils.js';
+import { headerData } from '@static/data/headerData.js';
+import { utilsNotice } from '@utils/utils.js';
 export default {
   name: 'PageHeader',
   data() {

@@ -9,10 +9,12 @@ module.exports = defineConfig({
   configureWebpack: {
     resolve: {
       alias: {
-        "@": resolve(__dirname, "src"),
-        "@components": resolve(__dirname, "./src/components"),
-        "@router": resolve(__dirname, "./src/router"),
-        "@views": resolve(__dirname, "./src/views"),
+        "@": resolve("src"),
+        "@static": resolve("public/static"),
+        "@components": resolve("src/components"),
+        "@router": resolve("src/router"),
+        "@views": resolve("src/views"),
+        "@utils": resolve("src/utils"),
       },
     },
   },

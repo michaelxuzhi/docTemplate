@@ -64,7 +64,7 @@ export function headerData() {
     },
     document: {
       text: "Document",
-      route: "document",
+      route: "article",
       span: 3,
       class: "right-col",
       icon: {

@@ -20,10 +20,10 @@
 </template>
 
 <script>
-import PageHeader from './PageHeader/PageHeader.vue';
-import PageAside from './PageAside/PageAside.vue';
-import PageMain from './PageMain/PageMain.vue';
-import { requestData } from '../../public/static/data/requestData.js';
+import PageHeader from '@components/PageHeader/PageHeader.vue';
+import PageAside from '@components/PageAside/PageAside.vue';
+import PageMain from '@components/PageMain/PageMain.vue';
+import { requestData } from '@static/data/requestData.js';
 export default {
   inject: ['reload'],
   name: 'PageContainer',
