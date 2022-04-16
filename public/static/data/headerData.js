@@ -27,7 +27,10 @@ export function headerData() {
       route: "editor",
       span: 3,
       class: "right-col",
-      icon: "edit",
+      icon: {
+        icon_name: "edit",
+        icon_size: "16",
+      },
     },
     multilang: {
       text: "测试网址",

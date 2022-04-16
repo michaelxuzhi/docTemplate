@@ -22,7 +22,7 @@
       </div></el-col
     >
     <!-- header中区域 -->
-    <el-col :span="7"
+    <el-col :span="6"
       ><div class="header-mid">
         <el-button @click="reloadPage" :icon="RefreshRight">reload</el-button>
         <el-button @click="resetPage" :icon="Refresh" :disabled="this.$route.path !== '/'"
@@ -31,10 +31,10 @@
       </div></el-col
     >
     <!-- header右区域 -->
-    <el-col :span="14">
+    <el-col :span="15">
       <div class="header-right">
         <el-row>
-          <el-col :span="10">
+          <el-col :span="9">
             <div>
               <el-tooltip
                 effect="dark"
@@ -65,7 +65,9 @@
               @click="headerOptClick(item.route)"
             >
               {{ item.text }}
-              <el-icon v-if="item.icon" :size="item.icon.icon_size"> <edit /></el-icon>
+              <el-icon v-if="item.icon" :size="item.icon.icon_size">
+                <component :is="item.icon.icon_name"
+              /></el-icon>
             </div>
             <template v-if="item.dropdown">
               <el-dropdown class="header-dropdown" @command="handleDropdownItemClick">
