@@ -5,6 +5,7 @@ import * as EleIcons from "@element-plus/icons-vue";
 import mitt from "mitt";
 import router from "./router";
 import axios from "axios";
+import { store } from "./store";
 import App from "./App.vue";
 
 let app = createApp(App);
@@ -16,6 +17,7 @@ app.use(router);
 app.config.globalProperties.axios = axios;
 // 创建事件总线
 app.config.globalProperties.$eventBus = new mitt();
+app.use(store);
 app.mount("#app");
 
 export default app;

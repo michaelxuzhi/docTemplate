@@ -45,6 +45,9 @@ export default {
   created() {
     this.requestResData();
   },
+  mounted() {
+    console.log(this.$route.name);
+  },
 };
 </script>
 
