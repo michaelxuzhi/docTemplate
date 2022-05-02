@@ -137,7 +137,7 @@ export default {
   activated() {
     this.initSearchRecord();
     // console.log('PageShow activated');
-    // 重置showw-content的位置，但是不起效果
+    // 重置show-content的位置，但是不起效果
     document.getElementsByClassName('show-content')[0].scrollTop = 0;
   },
   computed: {

@@ -23,7 +23,7 @@
 import PageHeader from '@components/PageHeader/PageHeader.vue';
 import PageAside from '@components/PageAside/PageAside.vue';
 import PageMain from '@components/PageMain/PageMain.vue';
-import { requestData } from '@static/data/requestData.js';
+import { requestURL } from '@static/data/requestData.js';
 export default {
   inject: ['reload'],
   name: 'PageContainer',
@@ -35,8 +35,6 @@ export default {
   data() {
     return {
       atObjGlobal: null,
-      atAsideData: {},
-      atMainData: {},
     };
   },
   methods: {
@@ -52,8 +50,8 @@ export default {
   },
   created() {
     // 初始化时，获取请求的url
-    let requestURL = requestData().url;
-    this.requestJSON(requestURL);
+    let url = requestURL().atURL;
+    this.requestJSON(url);
   },
   mounted() {},
 };

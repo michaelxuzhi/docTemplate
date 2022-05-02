@@ -1,0 +1,2263 @@
+{
+"0": {
+"ParentName": "at",
+"desc": "获取部队的一些属性",
+"example": "示例 at.army.get()",
+"name": "MTL",
+"params": "参数 无参数"
+},
+"1": {
+"ParentName": "at",
+"desc": "清除埋点flag",
+"example": "示例 at.ff(\"adclear\")",
+"name": "adclear",
+"params": "参数"
+},
+"2": {
+"ParentName": "at",
+"desc": "给指定武将增加技能",
+"example": "示例 at.add_skill(0,1001,8,1002,5)",
+"name": "add_skill",
+"params": "参数 参数1 武将位置（默认第一个，可选） 参数2 技能 参数3 技能等级（默认10级，可选） 参数4 技能2（可选） 参数5 技能2等级（可选）"
+},
+"3": {
+"ParentName": "at",
+"desc": "给指定武将增加战法等级",
+"example": "示例 at.add_skill_lv(0,1001,8)",
+"name": "add_skill_lv",
+"params": "参数 参数1 武将位置（默认第一个，可选） 参数2 技能位置 参数3 技能等级（默认1级，可选）"
+},
+"4": {
+"ParentName": "at",
+"desc": "强行攻打某个NPC城池",
+"example": "示例 at.att_city",
+"name": "att_city",
+"params": "参数 参数1 x 参数2 y"
+},
+"5": {
+"ParentName": "at",
+"desc": "给玩家发奖励",
+"example": "示例 at.award(\"wood\", 1000)",
+"name": "award",
+"params": "参数 参数1 资源类型 资源数目"
+},
+"6": {
+"ParentName": "at",
+"desc": "快速调用服务器里entity的某个函数",
+"example": "",
+"name": "call",
+"params": "作者 黄成浩"
+},
+"7": {
+"ParentName": "at",
+"desc": "敏感词检查",
+"example": "示例 at.check_word()",
+"name": "check_word",
+"params": "参数 无参数"
+},
+"8": {
+"ParentName": "at",
+"desc": "将自身的四种资源，铜币，策书，金株设为0",
+"example": "示例 at.clean_res()",
+"name": "clean_res",
+"params": "参数 无参数"
+},
+"9": {
+"ParentName": "at",
+"desc": "清除试炼补给部队",
+"example": "示例 at.take()",
+"name": "clear_npc",
+"params": "参数 无参数"
+},
+"10": {
+"ParentName": "at",
+"desc": "清除at的定时器",
+"example": "示例 at.clear_timer()",
+"name": "clear_timer",
+"params": "参数 无参数"
+},
+"11": {
+"ParentName": "at",
+"desc": "刷新npc",
+"example": "示例 at.npc(x, y, group_id, 0/1)",
+"name": "clone_city",
+"params": "参数 参数1"
+},
+"12": {
+"ParentName": "at",
+"desc": "清除指引列表",
+"example": "示例 at.cls()",
+"name": "cls",
+"params": "参数 无参数"
+},
+"13": {
+"ParentName": "at",
+"desc": "立即增加死兵",
+"example": "示例 at.deadtroop(100)",
+"name": "deadtroop",
+"params": "参数 死兵数量"
+},
+"14": {
+"ParentName": "at",
+"desc": "刷新npc",
+"example": "示例 at.elf(x, y, elf_no, 0/1)",
+"name": "elf",
+"params": "参数 参数1"
+},
+"15": {
+"ParentName": "at",
+"desc": "把玩家资源设到较少的值",
+"example": "示例 at.empty()",
+"name": "empty",
+"params": "参数 无参数"
+},
+"16": {
+"ParentName": "at",
+"desc": "再起",
+"example": "示例 at.evacuate()",
+"name": "evacuate",
+"params": "参数 无参数"
+},
+"17": {
+"ParentName": "at",
+"desc": "货币兑换",
+"example": "示例 at.exchange(\"jade\",100)",
+"name": "exchange",
+"params": "参数 参数1 资源类型 参数2 资源数目/参数1 资源数目（默认兑换jade）"
+},
+"18": {
+"ParentName": "at",
+"desc": "开启和关闭DD调试",
+"example": "1是开启，0是关闭",
+"name": "fdebug",
+"params": "作者 黄成浩"
+},
+"19": {
+"ParentName": "at",
+"desc": "直接完成建筑升级",
+"example": "",
+"name": "finish",
+"params": "作者 李愿"
+},
+"20": {
+"ParentName": "at",
+"desc": "把玩家资源加到上限",
+"example": "示例 at.full()",
+"name": "full",
+"params": "参数 无参数"
+},
+"21": {
+"ParentName": "at",
+"desc": "建筑等级全满，获得所有武将，上阵固定武将，资源全满，征兵全满",
+"example": "示例 at.full_account()",
+"name": "full_account",
+"params": "参数 无参数"
+},
+"22": {
+"ParentName": "at",
+"desc": "设置建筑的等级为最大",
+"example": "示例 at.full_building()",
+"name": "full_building",
+"params": "参数 无参数"
+},
+"23": {
+"ParentName": "at",
+"desc": "满资源",
+"example": "示例 at.full_res()",
+"name": "full_res",
+"params": "参数 无参数"
+},
+"24": {
+"ParentName": "at",
+"desc": "获取征兵相关的数据",
+"example": "示例 at.get_draft()",
+"name": "general_lv",
+"params": "参数 无参数"
+},
+"25": {
+"ParentName": "at",
+"desc": "获取自身的id和名字",
+"example": "示例 at.get()",
+"name": "get",
+"params": "参数 无参数"
+},
+"26": {
+"ParentName": "at",
+"desc": "获取新手buff",
+"example": "示例 at.get_buff()",
+"name": "get_buff",
+"params": "参数 无参数"
+},
+"27": {
+"ParentName": "at",
+"desc": "获取建筑数据",
+"example": "示例 at.get_building()",
+"name": "get_building",
+"params": "参数 无参数"
+},
+"28": {
+"ParentName": "at",
+"desc": "获取建筑的坐标",
+"example": "示例 at.get_city()",
+"name": "get_city",
+"params": "参数 参数1 建筑类型"
+},
+"29": {
+"ParentName": "at",
+"desc": "获取征兵相关的数据",
+"example": "示例 at.get_draft()",
+"name": "get_draft",
+"params": "参数 无参数"
+},
+"30": {
+"ParentName": "at",
+"desc": "获取elf属性",
+"example": "示例 at.get_elf()",
+"name": "get_elf",
+"params": "参数 参数1 地块x 参数2 地块y"
+},
+"31": {
+"ParentName": "at",
+"desc": "获取资源数据",
+"example": "示例 at.get_gf()",
+"name": "get_gf",
+"params": "参数 无参数"
+},
+"32": {
+"ParentName": "at",
+"desc": "获取主城的基本信息",
+"example": "示例 at.get_mycity()",
+"name": "get_mycity",
+"params": "参数 无参数"
+},
+"33": {
+"ParentName": "at",
+"desc": "坐标转换指令",
+"example": "示例 at.get_pos()",
+"name": "get_pos",
+"params": "参数 无参数"
+},
+"34": {
+"ParentName": "at",
+"desc": "生成property参数",
+"example": "示例 at.get_property()",
+"name": "get_property",
+"params": "参数 无参数"
+},
+"35": {
+"ParentName": "at",
+"desc": "获取排行榜",
+"example": "示例 at.get_rank()",
+"name": "get_rank",
+"params": "参数 无参数"
+},
+"36": {
+"ParentName": "at",
+"desc": "获取资源数据",
+"example": "示例 at.get_res()",
+"name": "get_res",
+"params": "参数 无参数"
+},
+"37": {
+"ParentName": "at",
+"desc": "获取内服系统时间戳",
+"example": "示例 at.get_time()",
+"name": "get_time",
+"params": "参数 无参数"
+},
+"38": {
+"ParentName": "at",
+"desc": "获取全部的定时器",
+"example": "示例 at.get_timer()",
+"name": "get_timer",
+"params": "参数 无参数"
+},
+"39": {
+"ParentName": "at",
+"desc": "直接跳转到坐标点",
+"example": "示例 at.goto()",
+"name": "goto",
+"params": "参数 无参数"
+},
+"40": {
+"ParentName": "at",
+"desc": "初始化账号",
+"example": "示例 at.init()",
+"name": "init",
+"params": "参数 无参数"
+},
+"41": {
+"ParentName": "at",
+"desc": "踢掉某个玩家",
+"example": "示例 at.kick",
+"name": "kick",
+"params": "参数 玩家uid"
+},
+"42": {
+"ParentName": "at",
+"desc": "让各种建筑残血，方便攻占",
+"example": "示例 at.kill_building(111, 222)",
+"name": "kill_building",
+"params": "参数 参数1：迁城的x坐标 参数2：迁城的y坐标"
+},
+"43": {
+"ParentName": "at",
+"desc": "迁城",
+"example": "示例 at.migrate(111,222)",
+"name": "migrate",
+"params": "参数 参数1：迁城的x坐标 参数2：迁城的y坐标"
+},
+"44": {
+"ParentName": "at",
+"desc": "增加货币",
+"example": "示例 at.money(\"gold\",100)",
+"name": "money",
+"params": "参数 参数1：货币类型 参数2：货币数值，可以为负"
+},
+"45": {
+"ParentName": "at",
+"desc": "创建国家",
+"example": "示例 at.ff(\"nation\")",
+"name": "nation",
+"params": "参数 无参数"
+},
+"46": {
+"ParentName": "at",
+"desc": "刷新npc",
+"example": "示例 at.npc(x, y, group_id, 0/1)",
+"name": "npc",
+"params": "参数 参数1"
+},
+"47": {
+"ParentName": "at",
+"desc": "获得指定队伍的战斗力",
+"example": "示例 at.npc_score(npc_id)",
+"name": "npc_score",
+"params": "参数 参数1 指定野外队伍的npc_army_id"
+},
+"48": {
+"ParentName": "at",
+"desc": "指定玩家同野外的部队进行战斗",
+"example": "示例 at.pve(3428178)",
+"name": "pve",
+"params": "参数 参数1 指定野外队伍的npc_army_id"
+},
+"49": {
+"ParentName": "at",
+"desc": "指定两个玩家的部队进行战斗",
+"example": "示例 at.pvp(3428178)",
+"name": "pvp",
+"params": "参数 参数1 指定玩家id"
+},
+"50": {
+"ParentName": "at",
+"desc": "方便测试参数",
+"example": "示例 at.quick()",
+"name": "quick",
+"params": "参数 无参数"
+},
+"51": {
+"ParentName": "at",
+"desc": "脱离俘虏",
+"example": "示例 update get_time",
+"name": "rescue_capture",
+"params": "参数 参数1 文件路径（包含文件名）"
+},
+"52": {
+"ParentName": "at",
+"desc": "再起",
+"example": "示例 at.restart",
+"name": "restart",
+"params": "参数 目标州"
+},
+"53": {
+"ParentName": "at",
+"desc": "直接发奖",
+"example": "示例 at.reward(\"wood\",1000)",
+"name": "reward",
+"params": "参数 参数1 资源类型 资源数目"
+},
+"54": {
+"ParentName": "at",
+"desc": "有钱(加钱加资源)",
+"example": "示例 at.rich()",
+"name": "rich",
+"params": "参数 无参数"
+},
+"55": {
+"ParentName": "at",
+"desc": "闭城的rpc接口",
+"example": "示例 at.city.rpc_close_city(1)",
+"name": "rpc_close_city",
+"params": "参数 参数1 目标状态"
+},
+"56": {
+"ParentName": "at",
+"desc": "游戏内发公告",
+"example": "示例 at.say('hello world')",
+"name": "say",
+"params": "参数 参数1 str"
+},
+"57": {
+"ParentName": "at",
+"desc": "获取战力值",
+"example": "示例 at.score()",
+"name": "score",
+"params": "参数 无参数"
+},
+"58": {
+"ParentName": "at",
+"desc": "游戏发邮件",
+"example": "示例 at.send_mail('hello world')",
+"name": "send_mail",
+"params": "参数 参数1 str"
+},
+"59": {
+"ParentName": "at",
+"desc": "设置建筑的等级",
+"example": "示例 at.set_building(2,20)",
+"name": "set_building",
+"params": "参数 参数1 建筑编号 建筑等级"
+},
+"60": {
+"ParentName": "at",
+"desc": "设置战斗结果",
+"example": "示例 at.fight()",
+"name": "set_fight",
+"params": "参数 无参数"
+},
+"61": {
+"ParentName": "at",
+"desc": "设置新手期",
+"example": "示例 at.set_newbie(24)",
+"name": "set_newbie",
+"params": "参数 参数1"
+},
+"62": {
+"ParentName": "at",
+"desc": "设置资源数目",
+"example": "示例 at.set_res(\"wood\",1000)",
+"name": "set_res",
+"params": "参数 参数1 资源类型 资源数目"
+},
+"63": {
+"ParentName": "at",
+"desc": "设置内服时间/将内服时间还原",
+"example": "示例 at.set_time(\"2021-01-05\",\"08:00:00\")",
+"name": "set_time",
+"params": "参数 参数1 年-月-日 参数2 时:分:秒/无参数"
+},
+"64": {
+"ParentName": "at",
+"desc": "给指定武将增加战法等级",
+"example": "示例 at.skill_upgrade(0,1)",
+"name": "skill_upgrade",
+"params": "参数 参数1 武将位置（默认第一个，可选） 参数2 技能位置"
+},
+"65": {
+"ParentName": "at",
+"desc": "跳过新手2.0",
+"example": "示例 at.skip()",
+"name": "skip",
+"params": "参数 无参数"
+},
+"66": {
+"ParentName": "at",
+"desc": "取消主城免战状态",
+"example": "示例 at.city.stop_immune()",
+"name": "stop_immune",
+"params": "参数 参数一：uid(默认自己)"
+},
+"67": {
+"ParentName": "at",
+"desc": "模拟问卷服务器回调",
+"example": "om at.at_utils import debug_tell",
+"name": "survey",
+"params": "参数 surveyid"
+},
+"68": {
+"ParentName": "at",
+"desc": "手动触发服务器资源生产",
+"example": "示例 at.take()",
+"name": "take",
+"params": "参数 无参数"
+},
+"69": {
+"ParentName": "at",
+"desc": "测试下sync属性同步",
+"example": "示例 at.test()",
+"name": "test",
+"params": "参数 无参数"
+},
+"70": {
+"ParentName": "at",
+"desc": "翻译MD5",
+"example": "示例 at.ff('translate',\"8a1939ad08cdebfb471609f83ead6df6\")",
+"name": "trans",
+"params": "参数 参数1 md5"
+},
+"71": {
+"ParentName": "at",
+"desc": "解锁英雄技能并升级到满级",
+"example": "示例 at.unlock_skill(50)",
+"name": "unlock_skill",
+"params": "参数 1:技能升级的具体等级"
+},
+"72": {
+"ParentName": "at",
+"desc": "更新at目录",
+"example": "示例 at.up()",
+"name": "up",
+"params": "参数 无参数"
+},
+"73": {
+"ParentName": "at",
+"desc": "热更新某个文件",
+"example": "示例 at.update(\"get_time.py\")",
+"name": "update",
+"params": "参数 参数1 文件路径（包含文件名）"
+},
+"74": {
+"ParentName": "at",
+"desc": "构建初级/中级/高级 账号",
+"example": "示例",
+"name": "wpk",
+"params": "参数 参数1：1（初级账号） 2（中级账号）3（高级账号）"
+},
+"75": {
+"ParentName": "at",
+"desc": "构建初级/中级/高级 账号",
+"example": "示例 at.WPK(1)",
+"name": "wpk_role",
+"params": "参数 参数1：1（初级账号） 2（中级账号）3（高级账号）"
+},
+"76": {
+"ParentName": "at",
+"desc": "给指定武将增加兵力并消除重伤状态",
+"example": "示例 at.zhengbing(0,500)",
+"name": "zhengbing",
+"params": "参数 参数1 武将在部队中的位置  参数2 征兵数量"
+},
+"77": {
+"ParentName": "activity",
+"desc": "设置登录信息",
+"example": "示例 at.activity.login(1)",
+"name": "login",
+"params": "参数 参数1 签到天数"
+},
+"78": {
+"ParentName": "activity",
+"desc": "清除",
+"example": "示例 at.activity.reset()",
+"name": "reset",
+"params": "参数 无参数"
+},
+"79": {
+"ParentName": "army",
+"desc": "广播部队的状态",
+"example": "示例 at.army.broad_info",
+"name": "broad_info",
+"params": "参数 参数1 部队idx"
+},
+"80": {
+"ParentName": "army",
+"desc": "取消部队的重伤状态",
+"example": "示例 at.army.clear(1)",
+"name": "clear",
+"params": "参数 参数1 部队idx"
+},
+"81": {
+"ParentName": "army",
+"desc": "重置部队状态",
+"example": "示例 at.army.full()",
+"name": "full",
+"params": "参数 无参数"
+},
+"82": {
+"ParentName": "army",
+"desc": "获取部队的一些属性",
+"example": "示例 at.army.get()",
+"name": "get",
+"params": "参数 无参数"
+},
+"83": {
+"ParentName": "army",
+"desc": "获取指定pos到部队camp的distance",
+"example": "示例 at.army.get_dis(x, y)",
+"name": "get_dis",
+"params": "参数 参数1 x 参数2 y"
+},
+"84": {
+"ParentName": "army",
+"desc": "获取指定部队的状态属性",
+"example": "示例 at.army.get_st(0)",
+"name": "get_st",
+"params": "参数 参数1 部队id"
+},
+"85": {
+"ParentName": "army",
+"desc": "重置部队状态",
+"example": "示例 at.army.reset()",
+"name": "reset",
+"params": "参数 无参数"
+},
+"86": {
+"ParentName": "army",
+"desc": "给指定部队上阵武将",
+"example": "示例 at.army.shangzheng(0,0,\"3429372_2\")",
+"name": "shangzheng",
+"params": "参数 参数1 部队位置, 参数2 武将位置 参数3 武将id"
+},
+"87": {
+"ParentName": "army",
+"desc": "部队直接隐身",
+"example": "示例 at.army.yinshen(0)",
+"name": "yinshen",
+"params": "参数 参数1 部队位置"
+},
+"88": {
+"ParentName": "army",
+"desc": "启动营帐征兵",
+"example": "示例 at.army.yz_draft(0,1000,0)",
+"name": "yz_draft",
+"params": "参数：参数1 部队号（0-5) 参数2 征兵数量 参数3 武将位置"
+},
+"89": {
+"ParentName": "army",
+"desc": "停止营帐征兵",
+"example": "示例 at.army.yz_draft_stop(0,0)",
+"name": "yz_draft_stop",
+"params": "参数 参数1 武将位置 参数2 部队ID"
+},
+"90": {
+"ParentName": "banshu",
+"desc": "清空抽卡倒计时",
+"example": "示例 at.banshu.troops()",
+"name": "free",
+"params": "参数 无参数"
+},
+"91": {
+"ParentName": "banshu",
+"desc": "",
+"example": "om at.at_utils import debug_tell",
+"name": "full",
+"params": "修改时间 20210928"
+},
+"92": {
+"ParentName": "banshu",
+"desc": "获得当前所有武将",
+"example": "示例 at.banshu.general_all()",
+"name": "general_all",
+"params": "参数 无参数"
+},
+"93": {
+"ParentName": "banshu",
+"desc": "加进度的方式完成任务",
+"example": "示例 at.quest.fin2()",
+"name": "quest",
+"params": "参数 任务id或者'all'"
+},
+"94": {
+"ParentName": "banshu",
+"desc": "武将的体力加满",
+"example": "示例 at.banshu.strong()",
+"name": "strong",
+"params": "参数 无参数"
+},
+"95": {
+"ParentName": "banshu",
+"desc": "主城预备兵增加250000",
+"example": "示例 at.banshu.troops()",
+"name": "troops",
+"params": "参数 无参数"
+},
+"96": {
+"ParentName": "capture",
+"desc": "俘虜某個玩家",
+"example": "示例 update get_time",
+"name": "cap",
+"params": "参数 参数1 文件路径（包含文件名）"
+},
+"97": {
+"ParentName": "capture",
+"desc": "俘虏玩家",
+"example": "示例 at.capture_player(3,3431453_2)",
+"name": "capture_player",
+"params": "参数 参数一：国家id  参数二：部队id"
+},
+"98": {
+"ParentName": "capture",
+"desc": "俘虏相关信息",
+"example": "示例 at.capture.get",
+"name": "get",
+"params": "参数 无"
+},
+"99": {
+"ParentName": "capture",
+"desc": "解救俘虏",
+"example": "示例 at.capture.rescue",
+"name": "rescue",
+"params": "参数 无"
+},
+"100": {
+"ParentName": "capture",
+"desc": "缴纳资源脱离俘虏",
+"example": "示例 at.capture.rescue_res(100)",
+"name": "rescue_res",
+"params": "参数 1 粮食的数量 2 石料 3 木材 4 铁矿"
+},
+"101": {
+"ParentName": "chat",
+"desc": "获取全部的channel",
+"example": "示例 at.chat.get()",
+"name": "get",
+"params": "参数 无参数"
+},
+"102": {
+"ParentName": "chat",
+"desc": "获取world channel的一些特殊属性",
+"example": "示例 at.chat.get_world()",
+"name": "get_world",
+"params": "参数 无参数"
+},
+"103": {
+"ParentName": "chat",
+"desc": "测试下分线程后的http性能",
+"example": "示例 at.chat.test_post()",
+"name": "test_post",
+"params": "参数 无参数"
+},
+"104": {
+"ParentName": "city",
+"desc": "闭城  第一次输入进入闭城，第二次输入取消闭城",
+"example": "示例 at.city.close()",
+"name": "close",
+"params": "参数 无参数"
+},
+"105": {
+"ParentName": "city",
+"desc": "获取主城的属性",
+"example": "示例 at.city.get()",
+"name": "get",
+"params": "参数 无参数"
+},
+"106": {
+"ParentName": "city",
+"desc": "获取某个功能的建筑list",
+"example": "示例 at.city.get_able_building(2)",
+"name": "get_able_building",
+"params": "参数 参数1 功能编号"
+},
+"107": {
+"ParentName": "city",
+"desc": "获取某个功能的总值",
+"example": "示例 at.city.get_able_value(2)",
+"name": "get_able_value",
+"params": "参数 参数1 功能编号"
+},
+"108": {
+"ParentName": "city",
+"desc": "设置主城的属性",
+"example": "示例 at.city.set()",
+"name": "set",
+"params": "参数 无参数"
+},
+"109": {
+"ParentName": "city",
+"desc": "提高征兵的速度",
+"example": "示例 at.city.set_draft_speed()",
+"name": "set_draft_speed",
+"params": "参数 参数1 时间"
+},
+"110": {
+"ParentName": "city",
+"desc": "攻击/解救/放逐主城",
+"example": "示例 at.city.sub_attack(1,333,222)",
+"name": "sub_attack",
+"params": "参数 参数一：{1：攻击，2：解救，3，放逐}  参数二：x坐标   参数三：y坐标"
+},
+"111": {
+"ParentName": "db",
+"desc": "dump下ldb的信息",
+"example": "示例 at.db.ldb_dump()",
+"name": "ldb_dump",
+"params": "参数 无参数"
+},
+"112": {
+"ParentName": "db",
+"desc": "测试下mongo的性能表现",
+"example": "示例 at.db.mongo_job()",
+"name": "mongo_job",
+"params": "参数 无参数"
+},
+"113": {
+"ParentName": "db",
+"desc": "测试下mongo的性能表现",
+"example": "示例 at.db.mongo_test()",
+"name": "mongo_test",
+"params": "参数 无参数"
+},
+"114": {
+"ParentName": "fight",
+"desc": "自测用，开启stateless的战斗",
+"example": "示例 at.ff(\"fight/do_all_fight\", 1)",
+"name": "do_all_fight",
+"params": "参数"
+},
+"115": {
+"ParentName": "fight",
+"desc": "自测用，开启stateless的战斗",
+"example": "示例 at.ff(\"fight/do_fight\", 1)",
+"name": "do_fight",
+"params": "参数"
+},
+"116": {
+"ParentName": "fight",
+"desc": "获取all_fight的内容",
+"example": "示例 at.fight.get_all()",
+"name": "get_all",
+"params": "参数 无参数"
+},
+"117": {
+"ParentName": "fight",
+"desc": "获取部队的info",
+"example": "示例 at.fight.get_info(\"3428822_2\")",
+"name": "get_info",
+"params": "参数 参数1 部队entity_name"
+},
+"118": {
+"ParentName": "fight",
+"desc": "设置战斗结果",
+"example": "示例 at.fight.set_res(1)",
+"name": "set_fight",
+"params": "参数 参数1 1/2/3（1攻方胜利，2守方胜利，3平局）"
+},
+"119": {
+"ParentName": "guild",
+"desc": "接受友好关系",
+"example": "示例 at.guild.acc_friend(2)",
+"name": "acc_friend",
+"params": "参数 参数1 国家id guild_id"
+},
+"120": {
+"ParentName": "guild",
+"desc": "同意国家发出的国家邀请",
+"example": "示例 at.guild.accept_avatar_invitation(1)",
+"name": "accept_avatar_invitation",
+"params": "参数 参数1 guild_id"
+},
+"121": {
+"ParentName": "guild",
+"desc": "同意玩家的国家进入申请",
+"example": "示例 at.guild.accept_join_req(324905500)",
+"name": "accept_join_req",
+"params": "参数 参数1 avt_uid"
+},
+"122": {
+"ParentName": "guild",
+"desc": "添加国家的经验",
+"example": "示例 at.guild.add_exp(1000)",
+"name": "add_exp",
+"params": "参数 参数1 经验数目"
+},
+"123": {
+"ParentName": "guild",
+"desc": "取消国家科技",
+"example": "示例 at.guild.cancel_city_skill()",
+"name": "cancel_city_skill",
+"params": "参数 参数1 科技对应的城池id"
+},
+"124": {
+"ParentName": "guild",
+"desc": "取消标记地块",
+"example": "示例 at.guild.cancel_tag_position(100,100)",
+"name": "cancel_tag_postion",
+"params": "参数 参数1 取消标记地块的横坐标 参数2 取消标记地块的纵坐标"
+},
+"125": {
+"ParentName": "guild",
+"desc": "立刻立国",
+"example": "示例 at.guild.capital()",
+"name": "capital",
+"params": "参数 无参数"
+},
+"126": {
+"ParentName": "guild",
+"desc": "清除自己的退盟冷却时间",
+"example": "示例 at.guild.clear_cooltime()",
+"name": "clear_cooltime",
+"params": "参数 无参数"
+},
+"127": {
+"ParentName": "guild",
+"desc": "绕过检查条件创建国家",
+"example": "示例 at.guild.create(\"国家测试\")",
+"name": "create",
+"params": "参数 参数1 国家名字"
+},
+"128": {
+"ParentName": "guild",
+"desc": "建造国家建筑",
+"example": "示例 at.guild.create_building(1500,1134,384,\"瞭望塔一\")",
+"name": "create_building",
+"params": "参数 参数1 建筑类型 参数2 x 参数3 y 参数4 建筑名字"
+},
+"129": {
+"ParentName": "guild",
+"desc": "绕过条件检查强行创建国家",
+"example": "示例 at.guild.create_ex(\"国家测试\")",
+"name": "create_ex",
+"params": "参数 参数1 国家名字"
+},
+"130": {
+"ParentName": "guild",
+"desc": "解散玩家所属国家",
+"example": "示例 at.guild.del()",
+"name": "del",
+"params": "参数 无参数"
+},
+"131": {
+"ParentName": "guild",
+"desc": "拆除国家建筑",
+"example": "示例 at.guild.del_building(\"11500\")",
+"name": "del_building",
+"params": "参数 参数1 building_id"
+},
+"132": {
+"ParentName": "guild",
+"desc": "免除国家官员",
+"example": "示例 at.guild.del_job(\"3254898\")",
+"name": "del_job",
+"params": "参数 参数1 玩家id"
+},
+"133": {
+"ParentName": "guild",
+"desc": "删除国家日志",
+"example": "示例 at.guild.del_log(1)",
+"name": "del_log",
+"params": "参数 日志类型"
+},
+"134": {
+"ParentName": "guild",
+"desc": "强制删除某个国策效果",
+"example": "示例 at.guild.del_skill(\"g_3\",4720011)",
+"name": "del_skill",
+"params": "参数 参数1 contaner_id 参数2 eff_id"
+},
+"135": {
+"ParentName": "guild",
+"desc": "删除国家标记",
+"example": "示例 at.guild.del_tag(1385,387，\"今晚九点打这里\")",
+"name": "del_tag",
+"params": "参数 参数1 x 参数2 y 参数3 标记内容"
+},
+"136": {
+"ParentName": "guild",
+"desc": "捐献资源到自己所在的国家",
+"example": "示例 at.guild.donate(\"wood\",1000)",
+"name": "donate",
+"params": "参数 参数1 资源类型 参数2 资源数目"
+},
+"137": {
+"ParentName": "guild",
+"desc": "设置国家资源为较少的值",
+"example": "示例 at.guild.empty()",
+"name": "empty",
+"params": "参数 无参数"
+},
+"138": {
+"ParentName": "guild",
+"desc": "",
+"example": "",
+"name": "enter_auto",
+"params": "作者 黄成浩"
+},
+"139": {
+"ParentName": "guild",
+"desc": "金株加速国家建筑",
+"example": "示例 at.guild.finish_up_building(11500)",
+"name": "finish_up_building",
+"params": "参数 参数1 building_id"
+},
+"140": {
+"ParentName": "guild",
+"desc": "设置国家资源为较多的值",
+"example": "示例 at.guild.full()",
+"name": "full",
+"params": "参数 无参数"
+},
+"141": {
+"ParentName": "guild",
+"desc": "查看当前自己的国家",
+"example": "示例 at.guild.get()",
+"name": "get",
+"params": "参数 无参数"
+},
+"142": {
+"ParentName": "guild",
+"desc": "查看某个格子所属的盟",
+"example": "示例 at.guild.get_grid(1055,387)",
+"name": "get_grid",
+"params": "参数 参数1 格子x坐标 参数2 格子y坐标"
+},
+"143": {
+"ParentName": "guild",
+"desc": "获取国家关系",
+"example": "示例 at.guild.get_guanxi(2)",
+"name": "get_guanxi",
+"params": "参数 参数1 国家id guild_id"
+},
+"144": {
+"ParentName": "guild",
+"desc": "发动国策",
+"example": "示例 at.guild.get_skill()",
+"name": "get_skill",
+"params": "参数 无参数"
+},
+"145": {
+"ParentName": "guild",
+"desc": "打印当前服务器所有的国家列表",
+"example": "示例 at.guild.guild_list()",
+"name": "guild_list",
+"params": "参数 无参数"
+},
+"146": {
+"ParentName": "guild",
+"desc": "邀请玩家加入国家",
+"example": "示例 at.guild.invite_avatar_join(\"30450222\")",
+"name": "invite_avatar_join",
+"params": "参数 参数1 avt_uid"
+},
+"147": {
+"ParentName": "guild",
+"desc": "金株加速国家建筑",
+"example": "示例 at.guild.jinzhu_building(121500)",
+"name": "jinzhu_building",
+"params": "参数 参数1 building_id"
+},
+"148": {
+"ParentName": "guild",
+"desc": "直接加入国家",
+"example": "示例 at.guild.join(\"国家测试\")",
+"name": "join",
+"params": "参数 参数1 guild_name"
+},
+"149": {
+"ParentName": "guild",
+"desc": "强行加入国家-忽略任何入盟条件，慎用",
+"example": "示例 at.guild.join_force(\"国家测试\")",
+"name": "join_force",
+"params": "参数 参数1 guild_name"
+},
+"150": {
+"ParentName": "guild",
+"desc": "踢人",
+"example": "示例 at.guild.kick(\"32005540\")",
+"name": "kick",
+"params": "参数 参数1 avt_uid"
+},
+"151": {
+"ParentName": "guild",
+"desc": "激活国家科技",
+"example": "示例 at.guild.live_city_skill()",
+"name": "live_city_skill",
+"params": "参数 参数1 科技对应的城池id"
+},
+"152": {
+"ParentName": "guild",
+"desc": "占领37范围的地形，方便用于看范围对不对",
+"example": "示例 at.guild.occupy_37(1358,395,3)",
+"name": "logs_300",
+"params": "参数 参数1 中心点坐标x 参数2 中心点坐标y 参数3 占领范围"
+},
+"153": {
+"ParentName": "guild",
+"desc": "查看国家成员名字&职位",
+"example": "示例 at.guild.memlist('国家名字')",
+"name": "memlist",
+"params": "参数 国家名字"
+},
+"154": {
+"ParentName": "guild",
+"desc": "正常创建国家",
+"example": "示例 at.guild.normal_create(\"国家测试\")",
+"name": "normal_create",
+"params": "参数 参数1 国家名称"
+},
+"155": {
+"ParentName": "guild",
+"desc": "占领232格子，已达到某些前置条件",
+"example": "示例 at.guild.occupy_232(1358,395)",
+"name": "occupy_232",
+"params": "参数 参数1 中心点坐标x 参数2 中心点坐标y"
+},
+"156": {
+"ParentName": "guild",
+"desc": "强行所有的野外城池(3级以上)",
+"example": "示例 at.guild.occupy_all(1)",
+"name": "occupy_all",
+"params": "参数 参数1 guild_id"
+},
+"157": {
+"ParentName": "guild",
+"desc": "强行占领某个野外城池(3级以上)",
+"example": "示例 at.guild.occupy_city(1)",
+"name": "occupy_city",
+"params": "参数 参数1 guild_id 参数2 x 参数3 y"
+},
+"158": {
+"ParentName": "guild",
+"desc": "强行占领某个野外城池(3级以上)",
+"example": "示例 at.guild.occupy_city(1)",
+"name": "occupy_city2",
+"params": "参数 参数1 city_id"
+},
+"159": {
+"ParentName": "guild",
+"desc": "强行所有的野外城池(3级以上)",
+"example": "示例 at.guild.occupy_citys(1221,151)",
+"name": "occupy_citys",
+"params": "参数 参数1 guild_id"
+},
+"160": {
+"ParentName": "guild",
+"desc": "强行一个jun内所有的城池，方便立国",
+"example": "示例 at.guild.occupy_jun(1221,151)",
+"name": "occupy_jun",
+"params": "参数 参数1 x 参数2 y"
+},
+"161": {
+"ParentName": "guild",
+"desc": "退出国家",
+"example": "示例 at.guild.quit()",
+"name": "quit",
+"params": "参数 无参数"
+},
+"162": {
+"ParentName": "guild",
+"desc": "取消关系",
+"example": "示例 at.guild.quxiao(2)",
+"name": "quxiao",
+"params": "参数 参数1 国家id guild_id"
+},
+"163": {
+"ParentName": "guild",
+"desc": "拒绝友好关系",
+"example": "示例 at.guild.ref_friend(2)",
+"name": "ref_friend",
+"params": "参数 参数1 国家id guild_id"
+},
+"164": {
+"ParentName": "guild",
+"desc": "拒绝玩家发给玩家自己的国家邀请",
+"example": "示例 at.guild.refuse_avatar_invitation(321105555)",
+"name": "refuse_avatar_invitation",
+"params": "参数 avt_uid"
+},
+"165": {
+"ParentName": "guild",
+"desc": "玩家申请加入国家",
+"example": "示例 at.guild.rep_join(1)",
+"name": "rep_join",
+"params": "参数 guild_id"
+},
+"166": {
+"ParentName": "guild",
+"desc": "拒绝某个玩家的申请",
+"example": "示例 at.guild.rufuse_join_req(320054000)",
+"name": "rufuse_join_req",
+"params": "参数 avt_uid"
+},
+"167": {
+"ParentName": "guild",
+"desc": "触发服务器发送自己的国家主界面信息",
+"example": "示例 at.guild.send_guild_desc()",
+"name": "send_guild_desc",
+"params": "参数 无参数"
+},
+"168": {
+"ParentName": "guild",
+"desc": "触发服务器发送玩家的所有邀请国家列表",
+"example": "示例 at.guild.send_inv_list()",
+"name": "send_inv_list",
+"params": "参数 无参数"
+},
+"169": {
+"ParentName": "guild",
+"desc": "触发服务器发送申请此国家的申请列表",
+"example": "示例 at.guild.send_join_list()",
+"name": "send_join_list",
+"params": "参数 无参数"
+},
+"170": {
+"ParentName": "guild",
+"desc": "设置自己的退盟冷却时间",
+"example": "示例 at.guild.set_cooltime(1616658102)",
+"name": "set_cooltime",
+"params": "参数 参数1 退盟时间戳"
+},
+"171": {
+"ParentName": "guild",
+"desc": "设置敌对关系",
+"example": "示例 at.guild.set_enemy(2)",
+"name": "set_enemy",
+"params": "参数 参数1 国家id guild_id"
+},
+"172": {
+"ParentName": "guild",
+"desc": "设置友好关系",
+"example": "示例 at.guild.set_friend(2)",
+"name": "set_friend",
+"params": "参数 参数1 国家id guild_id"
+},
+"173": {
+"ParentName": "guild",
+"desc": "调用修改公告的rpc接口",
+"example": "示例 at.guild.set_gonggao(\"公告内容\")",
+"name": "set_gonggao",
+"params": "参数 参数1 公告内容"
+},
+"174": {
+"ParentName": "guild",
+"desc": "任命国家官员",
+"example": "示例 at.guild.set_job(3254898,11)",
+"name": "set_job",
+"params": "参数 参数1 玩家id 参数2 目标职位"
+},
+"175": {
+"ParentName": "guild",
+"desc": "设置国家等级",
+"example": "示例 at.guild.set_lv(50)",
+"name": "set_lv",
+"params": "参数 参数1 国家等级"
+},
+"176": {
+"ParentName": "guild",
+"desc": "设置同盟成员人数",
+"example": "示例 at.guild.set_member(cnt)",
+"name": "set_member",
+"params": "参数 参数1:同盟成员人数"
+},
+"177": {
+"ParentName": "guild",
+"desc": "设置资源（4类，国令）",
+"example": "示例 at.guild.set_res(\"raw_order_card\",10)",
+"name": "set_res",
+"params": "参数 参数1 资源类型 参数2 数量"
+},
+"178": {
+"ParentName": "guild",
+"desc": "设置国家标记",
+"example": "示例 at.guild.set_tag(1385,387，\"今晚九点打这里\")",
+"name": "set_tag",
+"params": "参数 参数1 x 参数2 y 参数3 标记内容"
+},
+"179": {
+"ParentName": "guild",
+"desc": "调用禅让的rpc接口",
+"example": "示例 at.guild.shanrang(321105555)",
+"name": "shanrang",
+"params": "参数 参数1 aim_uid"
+},
+"180": {
+"ParentName": "guild",
+"desc": "取消禅让的rpc接口",
+"example": "示例 at.guild.shanrang_esc()",
+"name": "shanrang_esc",
+"params": "参数 无参数"
+},
+"181": {
+"ParentName": "guild",
+"desc": "查看国家日志",
+"example": "示例 at.guild.showlog(1)",
+"name": "showlog",
+"params": "参数 日志类型"
+},
+"182": {
+"ParentName": "guild",
+"desc": "发动国策",
+"example": "示例 at.guild.skill(1,1345,1224)",
+"name": "skill",
+"params": "参数 参数1 skill编号（1-其疾如风，2-援军之策，3-死战不退，4-兵贵神速，5-五谷丰登） 参数2 x 参数3 y"
+},
+"183": {
+"ParentName": "guild",
+"desc": "将所属国家成员列表添加指定个数的占位成员(会影响档)，生成的数量取历史数量最大值",
+"example": "示例 at.guild.super_add_mem(\"国家测试\",4)",
+"name": "super_add_mem",
+"params": "参数 参数1 guild_name 参数2 添加数"
+},
+"184": {
+"ParentName": "guild",
+"desc": "删掉由super_add_mem生成的成员",
+"example": "示例 at.guild.super_del_mem(\"国家测试\",4)",
+"name": "super_del_mem",
+"params": "参数 参数1 guild_name 参数2 添加数"
+},
+"185": {
+"ParentName": "guild",
+"desc": "标记地块",
+"example": "示例 at.guild.tag_position(100,100)",
+"name": "tag_position",
+"params": "参数 参数1 标记地块的横坐标 参数2 标记地块的纵坐标"
+},
+"186": {
+"ParentName": "guild",
+"desc": "测试国家日志",
+"example": "示例 at.guild.testlog(1,2,3924305,3924315,3)",
+"name": "testlog",
+"params": "参数 参数1 '事件 1', '成员 2', '战斗 3' 参数2 logtype 参数3 及后按照子事件需要传入参数"
+},
+"187": {
+"ParentName": "guild",
+"desc": "升级国家建筑",
+"example": "示例 at.guild.up_building(71500)",
+"name": "up_building",
+"params": "参数 参数1 building_id"
+},
+"188": {
+"ParentName": "fenzu",
+"desc": "添加分组成员",
+"example": "示例 at.guild.fenzu.add(1,30259453)",
+"name": "add",
+"params": "参数 参数1 分组id 参数2 玩家UID"
+},
+"189": {
+"ParentName": "fenzu",
+"desc": "创建分组",
+"example": "示例 at.guild.fenzu.create(\"分组1\")",
+"name": "create",
+"params": "参数 参数1 分组名"
+},
+"190": {
+"ParentName": "fenzu",
+"desc": "删除分组",
+"example": "示例 at.guild.fenzu.del(1)",
+"name": "del",
+"params": "参数 参数1 分组ID"
+},
+"191": {
+"ParentName": "fenzu",
+"desc": "移除分组成员",
+"example": "示例 at.guild.fenzu.kick(1,30259453)",
+"name": "kick",
+"params": "参数 参数1 分组id 参数2 玩家UID"
+},
+"192": {
+"ParentName": "fenzu",
+"desc": "设置分组管理员",
+"example": "示例 at.guild.fenzu.set(1,3258781)",
+"name": "set",
+"params": "参数 参数1 分组id 参数2 aim_uid"
+},
+"193": {
+"ParentName": "fenzu",
+"desc": "设置分组管理员",
+"example": "示例 at.guild.fenzu.set_admin(1,30259453)",
+"name": "set_admin",
+"params": "参数 参数1 分组id 参数2 玩家UID"
+},
+"194": {
+"ParentName": "harvest",
+"desc": "get收菜仓库",
+"example": "示例 at.harvest.get()",
+"name": "get",
+"params": "参数 参数1 资源类型 参数2 增加的数量"
+},
+"195": {
+"ParentName": "house",
+"desc": "获取自身野外建筑的属性",
+"example": "示例 at.house.get()",
+"name": "get",
+"params": "参数 无参数"
+},
+"196": {
+"ParentName": "jf",
+"desc": "直接内购某件商品",
+"example": "示例 at.jf.buy",
+"name": "buy",
+"params": "参数 goods_id"
+},
+"197": {
+"ParentName": "lang",
+"desc": "自测多语言用",
+"example": "示例 at.ff(\"lang/test\", 1)",
+"name": "test",
+"params": "参数"
+},
+"198": {
+"ParentName": "league",
+"desc": "同意邀请",
+"example": "示例 at.league.accept(1)",
+"name": "accept",
+"params": "参数 参数1 guild_id"
+},
+"199": {
+"ParentName": "league",
+"desc": "查看邀请列表",
+"example": "示例 at.league.check_inv(0)",
+"name": "check_inv",
+"params": "参数 无参数"
+},
+"200": {
+"ParentName": "league",
+"desc": "清除自己的联邦冷却时间",
+"example": "示例 at.league.clear_cooltime()",
+"name": "clear_cooltime",
+"params": "参数 无参数"
+},
+"201": {
+"ParentName": "league",
+"desc": "删除联邦集结点",
+"example": "示例 at.league.clear_rally()",
+"name": "clear_rally",
+"params": "参数 无参数"
+},
+"202": {
+"ParentName": "league",
+"desc": "创建联邦",
+"example": "示例 at.league.create(\"联邦测试\")",
+"name": "create",
+"params": "参数 参数1 联邦名字"
+},
+"203": {
+"ParentName": "league",
+"desc": "解散自己的联邦",
+"example": "示例 at.league.del()",
+"name": "del",
+"params": "参数 无参数"
+},
+"204": {
+"ParentName": "league",
+"desc": "获取联邦的信息",
+"example": "示例 at.league.get()",
+"name": "get",
+"params": "参数 无参数"
+},
+"205": {
+"ParentName": "league",
+"desc": "邀请其他国家加入联邦",
+"example": "示例 at.league.inv(2)",
+"name": "inv",
+"params": "参数 参数1 guild_id"
+},
+"206": {
+"ParentName": "league",
+"desc": "接受其他国家加入联邦",
+"example": "示例 at.league.join(2)",
+"name": "join",
+"params": "参数 参数1 guild_id"
+},
+"207": {
+"ParentName": "league",
+"desc": "踢出联邦",
+"example": "示例 at.league.kick(2)",
+"name": "kick",
+"params": "参数 参数1 目标国家id aim_guild_id"
+},
+"208": {
+"ParentName": "league",
+"desc": "退出联邦",
+"example": "示例 at.league.quit()",
+"name": "quit",
+"params": "参数 无参数"
+},
+"209": {
+"ParentName": "league",
+"desc": "拒绝邀请",
+"example": "示例 at.league.refuse(1)",
+"name": "refuse",
+"params": "参数 参数1 guild_id"
+},
+"210": {
+"ParentName": "league",
+"desc": "同意邀请",
+"example": "示例 at.league.set_friend(1)",
+"name": "set_friend",
+"params": "参数 参数1 guild_id"
+},
+"211": {
+"ParentName": "league",
+"desc": "设置联邦集结点",
+"example": "示例 at.league.set_rally(1385,387)",
+"name": "set_rally",
+"params": "参数 参数1 x 参数2 y"
+},
+"212": {
+"ParentName": "league",
+"desc": "踢出联邦",
+"example": "示例 at.league.shanrang(2)",
+"name": "shanrang",
+"params": "参数 参数1 目标国家id aim_guild_id"
+},
+"213": {
+"ParentName": "legion",
+"desc": "获取军团的属性数据",
+"example": "示例 at.legion.get",
+"name": "get",
+"params": "参数 legion_name"
+},
+"214": {
+"ParentName": "legion",
+"desc": "把军团的第一支部队设置为1兵力，更容易战败",
+"example": "示例 at.legion.set_weak",
+"name": "set_weak",
+"params": "参数 无"
+},
+"215": {
+"ParentName": "mail",
+"desc": "发送邮件（1-法令 2-国家邮件 3-分组邮件(发给自己所在分组) 4-系统邮件 5-全局邮件）(注意不是正常流程发送，是强制发送)",
+"example": "示例 at.mail.semd_mail(4,\"testtitle\",\"testtext\",\"1\")",
+"name": "send_mail",
+"params": "参数 参数1 邮件类型 参数2 邮件标题 参数3 邮件内容 参数4 附件（可选）"
+},
+"216": {
+"ParentName": "mail",
+"desc": "使用rpc接口发送邮件（1-法令 2-国家 3-分组）",
+"example": "示例 at.mail.mail(1,\"testtitle\",\"testtext\")",
+"name": "send_mail2",
+"params": "参数 参数1 邮件类型 参数2 邮件标题 参数3 邮件内容"
+},
+"217": {
+"ParentName": "map",
+"desc": "取消放弃领地",
+"example": "示例 at.map.cancel_give_up(101,120)",
+"name": "cancel_give_up",
+"params": "参数 参数1 x 参数2 y"
+},
+"218": {
+"ParentName": "map",
+"desc": "导入npc_city_data文件并逐个跳转到城市所在坐标 然后截图 间隔3秒",
+"example": "示例 at.map.check_city() 遍历跳转所有城市并截图",
+"name": "check_city",
+"params": "参数 无"
+},
+"219": {
+"ParentName": "map",
+"desc": "清除grid上的战斗信息",
+"example": "示例 at.map.clear(x,y)",
+"name": "clear",
+"params": "参数 参数1 x坐标 参数2 y坐标"
+},
+"220": {
+"ParentName": "map",
+"desc": "地图上清除一个主城",
+"example": "示例 at.map.clear_city(80,42)",
+"name": "clear_city",
+"params": "参数 参数1 x坐标 参数2 y坐标"
+},
+"221": {
+"ParentName": "map",
+"desc": "清理连通性，这个指令需要重启才能生效",
+"example": "示例 at.map.clear_transport()",
+"name": "clear_transport",
+"params": "参数 参数1 x坐标 参数2 y坐标"
+},
+"222": {
+"ParentName": "map",
+"desc": "完成地块上的建筑建造",
+"example": "示例 at.map.fin_build()",
+"name": "fin_build",
+"params": "参数 无参数"
+},
+"223": {
+"ParentName": "map",
+"desc": "快速完成建筑",
+"example": "示例 at.map.finish(111,222)",
+"name": "finish",
+"params": "参数 参数1：建筑的x坐标 参数2：建筑的y坐标"
+},
+"224": {
+"ParentName": "map",
+"desc": "获取指定坐标附近的信息",
+"example": "示例 at.map.get_around(80,42)",
+"name": "get_around",
+"params": "参数 参数1 x坐标 参数2 y坐标"
+},
+"225": {
+"ParentName": "map",
+"desc": "获取出生点位置",
+"example": "示例 at.map.get_born()",
+"name": "get_born",
+"params": "参数 无参数"
+},
+"226": {
+"ParentName": "map",
+"desc": "获取地图上的城池信息",
+"example": "示例 at.map.get_city()",
+"name": "get_city",
+"params": "参数 无参数"
+},
+"227": {
+"ParentName": "map",
+"desc": "获取grid的全部信息",
+"example": "示例 at.map.get_grid(1384,58)",
+"name": "get_grid",
+"params": "参数 参数1 x坐标 参数2 y坐标"
+},
+"228": {
+"ParentName": "map",
+"desc": "获取grid的全部战斗信息",
+"example": "示例 at.map.get_grid_fight(80,42)",
+"name": "get_grid_fight",
+"params": "参数 参数1 x坐标 参数2 y坐标"
+},
+"229": {
+"ParentName": "map",
+"desc": "获取个人的领地信息",
+"example": "示例 at.map.get_manors()",
+"name": "get_manors",
+"params": "参数 无"
+},
+"230": {
+"ParentName": "map",
+"desc": "获取map_born_scope的全部property",
+"example": "示例 at.map.get_map_born_scope()",
+"name": "get_map_born_scope",
+"params": "参数 参数1 x坐标 参数2 y坐标"
+},
+"231": {
+"ParentName": "map",
+"desc": "获取grid的全部信息",
+"example": "示例 at.map.get_grid(1384,58)",
+"name": "get_transport",
+"params": "参数 参数1 x坐标 参数2 y坐标"
+},
+"232": {
+"ParentName": "map",
+"desc": "获取grid的视野信息",
+"example": "示例 at.map.get_view(80,42)",
+"name": "get_view",
+"params": "参数 参数1 x坐标 参数2 y坐标"
+},
+"233": {
+"ParentName": "map",
+"desc": "正常放弃领地",
+"example": "示例 map.give_up(101,120)",
+"name": "give_up",
+"params": "参数 参数1 x 参数2 y"
+},
+"234": {
+"ParentName": "map",
+"desc": "占领某个坐标(这个坐标不能被玩家占领)",
+"example": "示例 at.map.occupy(1355,384)",
+"name": "occupy",
+"params": "参数 参数1 x坐标 参数2 y坐标"
+},
+"235": {
+"ParentName": "map",
+"desc": "占领37范围的地形，方便用于看范围对不对",
+"example": "示例 at.guild.occupy_37(1358,395,3)",
+"name": "occupy_37",
+"params": "参数 参数1 中心点坐标x 参数2 中心点坐标y 参数3 占领范围"
+},
+"236": {
+"ParentName": "map",
+"desc": "不管有没有人占领，直接据为己有",
+"example": "示例 at.map.occupy_ex(80,29)",
+"name": "occupy_ex",
+"params": "参数 参数1 x坐标 参数2 y坐标"
+},
+"237": {
+"ParentName": "map",
+"desc": "主动触发一键收取",
+"example": "示例 at.harvest.all(6)",
+"name": "occupy_rand",
+"params": "参数 参数一：地块等级 默认参数：10"
+},
+"238": {
+"ParentName": "map",
+"desc": "修改导航信息以后刷新出生点",
+"example": "示例 at.map.reset_born()",
+"name": "reset_born",
+"params": "参数 参数1 x坐标 参数2 y坐标"
+},
+"239": {
+"ParentName": "map",
+"desc": "重置npc_City为中立状态",
+"example": "示例 at.map.reset_npc_city()",
+"name": "reset_npc_city",
+"params": "参数 参数1 x坐标 参数2 y坐标"
+},
+"240": {
+"ParentName": "map",
+"desc": "强制指定出生点",
+"example": "示例 at.map.set_born(45,78)",
+"name": "set_born",
+"params": "参数 参数1 x坐标 参数2 y坐标"
+},
+"241": {
+"ParentName": "map",
+"desc": "强制放弃领地",
+"example": "示例 at.map.super_give_up(101,120)",
+"name": "super_give_up",
+"params": "参数 参数1 x 参数2 y"
+},
+"242": {
+"ParentName": "map",
+"desc": "批量生成出生城市",
+"example": "示例 at.map.test_born(10)",
+"name": "test_born",
+"params": "参数 参数1 需要生成的城市数量"
+},
+"243": {
+"ParentName": "map",
+"desc": "测试get_view_by_range",
+"example": "示例 at.map.test_view(80,42,0)",
+"name": "test_view",
+"params": "参数 参数1 x坐标 参数2 y坐标 参数3 距离"
+},
+"244": {
+"ParentName": "namecard",
+"desc": "获取namecard的信息",
+"example": "示例 at.namecard.get()",
+"name": "get",
+"params": "参数 无参数"
+},
+"245": {
+"ParentName": "news",
+"desc": "清除城报cd",
+"example": "示例 at.ff(\"news/cd\")",
+"name": "cd",
+"params": "参数"
+},
+"246": {
+"ParentName": "news",
+"desc": "清除城报次数",
+"example": "示例 at.ff(\"news/cd\")",
+"name": "cdd",
+"params": "参数"
+},
+"247": {
+"ParentName": "news",
+"desc": "刷新城报每日战功、占地、攻城数",
+"example": "示例 at.ff(\"news/refresh\")",
+"name": "refresh",
+"params": "参数"
+},
+"248": {
+"ParentName": "news",
+"desc": "自测快报用",
+"example": "示例 at.ff(\"news/test\", 1)",
+"name": "test",
+"params": "参数"
+},
+"249": {
+"ParentName": "nickname",
+"desc": "自测昵称用",
+"example": "示例 at.ff(\"nickname/test\", 1)",
+"name": "test",
+"params": "参数"
+},
+"250": {
+"ParentName": "pay",
+"desc": "领取每日奖励",
+"example": "示例 at.city.rpc_close_city(\"w6_0xy\")",
+"name": "get_day_goods",
+"params": "参数 参数1 goods_id"
+},
+"251": {
+"ParentName": "quest",
+"desc": "新增任务(包括已完成的任务)",
+"example": "示例 at.quest.add(101)",
+"name": "add",
+"params": "参数 任务编号"
+},
+"252": {
+"ParentName": "quest",
+"desc": "移除任务",
+"example": "示例 at.quest.del(101)",
+"name": "del",
+"params": "参数 任务编号"
+},
+"253": {
+"ParentName": "quest",
+"desc": "直接加进度完成任务",
+"example": "示例 at.quest.fin(\"all\")",
+"name": "fin",
+"params": "参数 任务id或者'all'"
+},
+"254": {
+"ParentName": "quest",
+"desc": "加进度的方式完成任务",
+"example": "示例 at.quest.fin2()",
+"name": "fin2",
+"params": "参数 无参数"
+},
+"255": {
+"ParentName": "quest",
+"desc": "查看任务列表",
+"example": "示例 at.quest.get()",
+"name": "get",
+"params": "参数 无参数"
+},
+"256": {
+"ParentName": "quest",
+"desc": "直接加进度完成任务",
+"example": "示例 quest/fin qid",
+"name": "progress",
+"params": "参数 任务id或者'all'"
+},
+"257": {
+"ParentName": "quest",
+"desc": "开启任务章节，自动补全finish_quests",
+"example": "示例 at.quest.section()",
+"name": "section",
+"params": "参数 参数1 需要开启的章节编号"
+},
+"258": {
+"ParentName": "rank",
+"desc": "增加一个排行榜数据项",
+"example": "示例 at.rank.add(0,500)",
+"name": "add",
+"params": "参数 参数1 entity_id 参数2 分数值"
+},
+"259": {
+"ParentName": "rank",
+"desc": "清空排行榜数据",
+"example": "示例 at.rank.clear()",
+"name": "clear",
+"params": "参数 无参数"
+},
+"260": {
+"ParentName": "rank",
+"desc": "删除排行榜数据中的某一项",
+"example": "示例 at.rank.del(\"3428772_1\")",
+"name": "del",
+"params": "参数 排行中的entity_id"
+},
+"261": {
+"ParentName": "rank",
+"desc": "获取排行榜数据",
+"example": "示例 at.rank.get()",
+"name": "get",
+"params": "参数 无参数"
+},
+"262": {
+"ParentName": "rank",
+"desc": "初始化测试排行榜数据 随机创建排序列表",
+"example": "示例 at.rank.test_rank(10,1)",
+"name": "test_rank",
+"params": "参数 参数1 随机创建数量 创建排行榜类型 0:个人势力, 1:同盟"
+},
+"263": {
+"ParentName": "recruit",
+"desc": "抽卡",
+"example": "示例 at.wujiang.draw(\"pool_1\",5)",
+"name": "draw",
+"params": "参数 参数1 卡池 参数2 抽卡次数 参数3 可选/是否连抽"
+},
+"264": {
+"ParentName": "recruit",
+"desc": "查询抽卡次数",
+"example": "示例 at.recruit.query()",
+"name": "query",
+"params": "参数 参数1 可选，次数"
+},
+"265": {
+"ParentName": "redis",
+"desc": "修改redis数据的指令",
+"example": "示例 at.redis.mod map_105 xx yy",
+"name": "mod",
+"params": "参数 key value"
+},
+"266": {
+"ParentName": "robot",
+"desc": "集合同盟部队到某个地点",
+"example": "om universal import const",
+"name": "assemble",
+"params": ""
+},
+"267": {
+"ParentName": "robot",
+"desc": "集合同盟部队到某个地点",
+"example": "om universal import const",
+"name": "assemble_async",
+"params": ""
+},
+"268": {
+"ParentName": "robot",
+"desc": "批量创建机器人账号",
+"example": "",
+"name": "create",
+"params": "作者 黄成浩"
+},
+"269": {
+"ParentName": "robot",
+"desc": "批量创建空城机器人账号",
+"example": "",
+"name": "create_empty",
+"params": "作者 黄成浩"
+},
+"270": {
+"ParentName": "robot",
+"desc": "",
+"example": "",
+"name": "guild",
+"params": "作者 黄成浩"
+},
+"271": {
+"ParentName": "robot",
+"desc": "",
+"example": "",
+"name": "main",
+"params": "作者 黄成浩"
+},
+"272": {
+"ParentName": "robot",
+"desc": "初始化部队并随机攻占土地",
+"example": "prot_$.doSendToServer_$(\"game.at_admin\", \"on_com_at\", [\"at\",\"robot/occupy\", 0, 10])",
+"name": "occupy",
+"params": "作者 杨嘉"
+},
+"273": {
+"ParentName": "robot",
+"desc": "初始化部队并随机攻占土地",
+"example": "prot_$.doSendToServer_$(\"game.at_admin\", \"on_com_at\", [\"at\",\"robot/occupy\", 0, 10])",
+"name": "occupy_async",
+"params": "作者 杨嘉"
+},
+"274": {
+"ParentName": "robot",
+"desc": "初始化部队并随机时间周围行军",
+"example": "",
+"name": "walk",
+"params": "作者 黄成浩"
+},
+"275": {
+"ParentName": "robot",
+"desc": "初始化部队并随机时间周围行军",
+"example": "",
+"name": "walk_async",
+"params": "作者 黄成浩"
+},
+"276": {
+"ParentName": "util",
+"desc": "批量创建机器人账号的主城",
+"example": "",
+"name": "create_city",
+"params": "作者 黄成浩"
+},
+"277": {
+"ParentName": "season",
+"desc": "获取当前的赛季开始的天数(注：修改此时间使用set_kfday指令)",
+"example": "示例 at.season.get_day()",
+"name": "get_day",
+"params": "参数 无参数"
+},
+"278": {
+"ParentName": "season",
+"desc": "获取开服日期字符串",
+"example": "示例 at.season.get_kfday(0)",
+"name": "get_kfday",
+"params": "参数 无"
+},
+"279": {
+"ParentName": "season",
+"desc": "获取开服时间",
+"example": "示例 at.season.get_kftime()",
+"name": "get_kftime",
+"params": "参数 无"
+},
+"280": {
+"ParentName": "season",
+"desc": "获取开服时间",
+"example": "示例 at.season.get_pool()",
+"name": "get_pool",
+"params": "参数 无"
+},
+"281": {
+"ParentName": "season",
+"desc": "获取当前的赛季",
+"example": "示例 at.season.get_sea()",
+"name": "get_sea",
+"params": "参数 无参数"
+},
+"282": {
+"ParentName": "season",
+"desc": "修改开服日期字符串",
+"example": "示例 at.season.set_kfday(\"2016-03-17\")",
+"name": "set_kfday",
+"params": "参数 参数1 XXXX-XX-XX"
+},
+"283": {
+"ParentName": "season",
+"desc": "设置开服时间",
+"example": "示例 at.season.set_kftime(1615949580)",
+"name": "set_kftime",
+"params": "参数 参数1 开服时间戳"
+},
+"284": {
+"ParentName": "season",
+"desc": "设置当前的赛季",
+"example": "示例 at.season.set_sea(1)",
+"name": "set_sea",
+"params": "参数 参数1 赛季数"
+},
+"285": {
+"ParentName": "shop",
+"desc": "购买商品",
+"example": "示例 at.shop.buy(3，138)",
+"name": "buy",
+"params": "参数 参数1 商店id 参数2 商品id"
+},
+"286": {
+"ParentName": "shop",
+"desc": "获取商店的一些属性",
+"example": "示例 at.shop.check_ref()",
+"name": "check_ref",
+"params": "参数 无参数"
+},
+"287": {
+"ParentName": "shop",
+"desc": "获取商店列表",
+"example": "示例 at.shop.get()",
+"name": "get",
+"params": "参数 商店id"
+},
+"288": {
+"ParentName": "shop",
+"desc": "获取商品的一些属性",
+"example": "示例 at.shop.get_item(1)",
+"name": "get_item",
+"params": "参数 参数1 商品id"
+},
+"289": {
+"ParentName": "shop",
+"desc": "获取商店的一些属性",
+"example": "示例 at.shop.get_shopinfo(1)",
+"name": "get_shop_info",
+"params": "参数 参数1 商店id"
+},
+"290": {
+"ParentName": "shop",
+"desc": "强制刷新商店",
+"example": "示例 at.shop.super_ref(1)",
+"name": "super_ref",
+"params": "参数 参数1 商店id"
+},
+"291": {
+"ParentName": "stateless",
+"desc": "内服在游戏内快速重启stateless的指令",
+"example": "",
+"name": "re",
+"params": "作者 黄成浩"
+},
+"292": {
+"ParentName": "time",
+"desc": "时间测试",
+"example": "示例 at.time.test_time()",
+"name": "test_time",
+"params": "参数 无"
+},
+"293": {
+"ParentName": "txds",
+"desc": "开启全部天下大势",
+"example": "示例 at.txds.check()",
+"name": "check",
+"params": "参数 无"
+},
+"294": {
+"ParentName": "txds",
+"desc": "写天下大势缓存",
+"example": "示例 at.txds.fin(1,1,100)",
+"name": "fin",
+"params": "参数 参数1 任务index 参数2 任务参数 参数3 自定进度值"
+},
+"295": {
+"ParentName": "txds",
+"desc": "开启天下大势功能",
+"example": "示例 at.txds.open(1,2,3)",
+"name": "open",
+"params": "参数 参数1 功能id1 参数2 功能id2"
+},
+"296": {
+"ParentName": "txds",
+"desc": "清除天下大势数据",
+"example": "示例 at.txds.reset()",
+"name": "reset",
+"params": "参数 无"
+},
+"297": {
+"ParentName": "txds",
+"desc": "直接开启任意天下大势",
+"example": "示例 at.txds.task(1)",
+"name": "task",
+"params": "参数 任务序号"
+},
+"298": {
+"ParentName": "wujiang",
+"desc": "给玩家添加指定的武将",
+"example": "示例 at.wujiang.add(1005)",
+"name": "add",
+"params": "参数 参数1 武将编号"
+},
+"299": {
+"ParentName": "wujiang",
+"desc": "增加所有将魂",
+"example": "示例 at.ff(\"wujiang/add_allsoul\",500)",
+"name": "add_allsoul",
+"params": "参数 参数1 增加将魂数量"
+},
+"300": {
+"ParentName": "wujiang",
+"desc": "给指定武将增加经验",
+"example": "示例 at.wujiang.add_exp(\"3428822_8\",100)",
+"name": "add_exp",
+"params": "参数 参数1 武将entityid（根据每个玩家的id不同而变化） 参数2 经验数量"
+},
+"301": {
+"ParentName": "wujiang",
+"desc": "增加将魂",
+"example": "示例 at.wujiang.add_soul(1015,500)",
+"name": "add_soul",
+"params": "参数 参数1 武将id  参数2 增加将魂数量"
+},
+"302": {
+"ParentName": "wujiang",
+"desc": "增加列传点数",
+"example": "示例 at.wujiang.addpoint('4545063_8',3,100)",
+"name": "addpoint",
+"params": "参数 参数1 武将id  参数2 增加的项数 参数3 增加的数量"
+},
+"303": {
+"ParentName": "wujiang",
+"desc": "清空玩家的武将",
+"example": "示例 at.wujiang.clear()",
+"name": "clear",
+"params": "参数 无参数"
+},
+"304": {
+"ParentName": "wujiang",
+"desc": "清空玩家的抽卡变量",
+"example": "示例 at.wujiang.clear_draw()",
+"name": "clear_draw",
+"params": "参数 无参数"
+},
+"305": {
+"ParentName": "wujiang",
+"desc": "给指定武将洗点",
+"example": "示例 at.wujiang.clear_point(3428822,8)",
+"name": "clear_point",
+"params": "参数 参数1 武将entityid（根据每个玩家的id不同而变化）"
+},
+"306": {
+"ParentName": "wujiang",
+"desc": "删除玩家指定的武将",
+"example": "示例 at.wujiang.del(\"3428822_11\")",
+"name": "del",
+"params": "参数 武将entity的id"
+},
+"307": {
+"ParentName": "wujiang",
+"desc": "指令抽卡（消耗金株）",
+"example": "示例 at.wujiang.draw(\"pool_1\",5)",
+"name": "draw",
+"params": "参数 参数1 卡池key（quality_pool中可以查） 参数2 抽卡次数"
+},
+"308": {
+"ParentName": "wujiang",
+"desc": "给指定武将增加经验",
+"example": "示例 at.ff(\"wujiang/firstaddexp\",\"0\",\"2000\")",
+"name": "firstaddexp",
+"params": "参数 参数1 第一个部队的第几个武将 参数2 经验数量"
+},
+"309": {
+"ParentName": "wujiang",
+"desc": "玩家拥有武将满级",
+"example": "示例 at.wujiang.full()",
+"name": "full",
+"params": "参数 无参数"
+},
+"310": {
+"ParentName": "wujiang",
+"desc": "获取玩家全部的武将，注意是快照",
+"example": "示例 at.wujiang.get()",
+"name": "get",
+"params": "参数 无参数"
+},
+"311": {
+"ParentName": "wujiang",
+"desc": "获取抽卡用到的一些变量（上次免费抽卡时间和是否拥有半价抽卡）",
+"example": "示例 at.wujiang.get_draw()",
+"name": "get_draw",
+"params": "参数 无参数"
+},
+"312": {
+"ParentName": "wujiang",
+"desc": "查看玩家武将属性",
+"example": "示例 at.wujiang.get_prop(0)",
+"name": "get_prop",
+"params": "参数 参数 武将位置"
+},
+"313": {
+"ParentName": "wujiang",
+"desc": "将魂",
+"example": "示例 at.wujiang.get_soul()",
+"name": "get_soul",
+"params": "参数 无参数"
+},
+"314": {
+"ParentName": "wujiang",
+"desc": "武将直接重伤",
+"example": "示例 at.wujiang.hurt()",
+"name": "hurt",
+"params": "参数 无参数"
+},
+"315": {
+"ParentName": "wujiang",
+"desc": "高级队伍模板队伍配置",
+"example": "示例 at.wujiang.nb()",
+"name": "nb",
+"params": "参数 无参数"
+},
+"316": {
+"ParentName": "wujiang",
+"desc": "设置玩家武将属性",
+"example": "示例 at.wujiang.prop_set(\"3428822_10\",\"v_dam\",10)",
+"name": "prop_set",
+"params": "参数 参数1 武将entity的id 参数2 属性type 参数3 属性值"
+},
+"317": {
+"ParentName": "wujiang",
+"desc": "设置玩家武将信息，部分信息无法修改",
+"example": "示例 at.wujiang.set(\"3428822_10\",\"grade\",10)",
+"name": "set",
+"params": "参数 参数1 武将entity的id 参数2 属性type 参数3 属性值"
+},
+"318": {
+"ParentName": "wujiang",
+"desc": "设置英雄列传等级",
+"example": "示例 at.wujiang.setLv('4545063_8',3)",
+"name": "setLv",
+"params": "参数 参数1 武将id  参数2 等级"
+},
+"319": {
+"ParentName": "wujiang",
+"desc": "武将满红星",
+"example": "示例 at.wujiang.star()",
+"name": "star",
+"params": "参数 无参数"
+},
+"320": {
+"ParentName": "wujiang",
+"desc": "武将的体力加满",
+"example": "示例 at.wujiang.strong()",
+"name": "strong",
+"params": "参数 无参数"
+},
+"321": {
+"ParentName": "wujiang",
+"desc": "测试抽卡概率",
+"example": "示例 at.wujiang.test_draw(\"pool_1\",5)",
+"name": "test_draw",
+"params": "参数 参数1 卡池key（quality_pool中可以查） 参数2 抽卡次数"
+},
+"322": {
+"ParentName": "wujiang",
+"desc": "武将的体力扣除",
+"example": "示例 at.wujiang.use_strength(wujiang_name, val)",
+"name": "use_strength",
+"params": "参数 wujiang_name val"
+}
+}

@@ -42,7 +42,7 @@ export default {
 
       // 广播assideClick事件
       // 重复点击同一个subMenuItem时，发送空字符串并取消选中
-      key == this.asideAtKey ? (this.asideAtKey = '') : (this.asideAtKey = key);
+      this.asideAtKey = key == this.asideAtKey ? '' : key;
       this.$eventBus.emit('asideClick', this.asideAtKey);
     },
   },
@@ -68,6 +68,7 @@ export default {
   },
   watch: {
     $route() {
+      // 非home页面时，禁用aside
       this.isDisabled = this.$route.name !== 'home';
       //   this.asideAtKey = '';
     },
@@ -76,10 +77,6 @@ export default {
 </script>
 
 <style scoped>
-/* 清除原有样式 */
-/* .el-menu {
-  border: 0;
-} */
 .aside-content {
   background-color: var(--current-background-color);
   color: var(--current-aside-font-color);

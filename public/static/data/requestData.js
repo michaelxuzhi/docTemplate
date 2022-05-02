@@ -1,6 +1,8 @@
-export function requestData() {
+export function requestURL() {
   return {
-    url: "http://localhost:8888",
+    // url: "http://localhost:8888",
+    atURL: "./static/data/atNew.json",
+    resURL: "./static/data/resData.json",
   };
 }
 

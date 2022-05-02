@@ -6,6 +6,7 @@
 
 <script>
 import PageContainer from '@components/PageContainer.vue';
+import { watermark } from '@utils/watermark.js';
 
 export default {
   name: 'App',
@@ -29,6 +30,11 @@ export default {
         this.isRouterAlive = true;
       });
     },
+  },
+  mounted() {
+    // 测试水印
+    // watermark(CON,H,W,R,C,S,O); // 值一一对应
+    watermark('测试水印', '100', '200', '-25', '#DCDCDC', '12', '0.1');
   },
   created() {},
 };

@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import { requestURL } from '@static/data/requestData.js';
 export default {
   name: 'objectView',
   data() {
@@ -32,21 +33,21 @@ export default {
     };
   },
   methods: {
-    requestResData() {
+    requestResData(url) {
       let that = this;
-      this.axios.get('/static/data/resData.json').then(response => {
+      this.axios.get(url).then(response => {
         for (const i in response.data) {
           that.resData[i] = response.data[i];
         }
-        // console.log(that.resData);
       });
     },
   },
   created() {
-    this.requestResData();
+    let url = requestURL().resURL;
+    this.requestResData(url);
   },
   mounted() {
-    console.log(this.$route.name);
+    // console.log(this.$route.name);
   },
 };
 </script>

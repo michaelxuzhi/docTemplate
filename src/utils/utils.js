@@ -1,6 +1,13 @@
 // 全局通知控件
 import { ElNotification } from "element-plus";
-// 兼容复制操作
+// 一些常量
+const NOTICE_DURATION = 2000;
+const NOTICE_OFFSET = 80;
+const LS_OBJECT_LENGTH = 20;
+const LS_ARRAY_HEAD_LENGTH = 10;
+const LS_ARRAY_TAIL_LENGTH = 5;
+
+// 兼容复制操作，需要在dom先渲染好一个工具节点
 export function utilsCopy(tool_dom, text) {
   let textarea = document.createElement("textarea"); //创建input对象
   let current_focus = document.activeElement; //当前获得焦点的元素
@@ -29,8 +36,8 @@ export function utilsNotice(type, title, text) {
     title: title,
     message: text,
     type: type,
-    duration: 2000,
-    offset: 80,
+    duration: NOTICE_DURATION,
+    offset: NOTICE_OFFSET,
   });
 }
 
@@ -83,7 +90,7 @@ export function utilsSortLocalStorage(LSObj, LSObjType) {
     // todo：localstorage对数组的处理
   }
   // 限制长度<=20,对象类型只存20个元素
-  if (LSSearchInfoArr.length > 20) {
+  if (LSSearchInfoArr.length > LS_OBJECT_LENGTH) {
     LSSearchInfoArr = utilsLimitLocalStorage(LSSearchInfoArr);
   }
   // console.log(LSSearchInfoArr);
@@ -134,9 +141,12 @@ export function utilsGetLocalStorage(LSkey) {
 // localStorage对象和数组类型长度限制
 export function utilsLimitLocalStorage(LSSearchInfoArr) {
   // 截取前10个
-  let headInfo = utilsArrayFrag(LSSearchInfoArr, 0, 10);
+  let headInfo = utilsArrayFrag(LSSearchInfoArr, 0, LS_ARRAY_HEAD_LENGTH);
   // 截取后5个
-  let tailInfo = utilsArrayFrag(LSSearchInfoArr, LSSearchInfoArr.length - 5);
+  let tailInfo = utilsArrayFrag(
+    LSSearchInfoArr,
+    LSSearchInfoArr.length - LS_ARRAY_TAIL_LENGTH
+  );
   return [...headInfo, ...tailInfo];
 }
 // localStorage删除
