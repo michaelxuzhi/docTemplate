@@ -40,7 +40,9 @@
             : key
         }}</el-button
       >
-      <el-backtop target=".show-content" :visibility-height="20"></el-backtop>
+      <el-tooltip effect="dark" placement="left" content="返回顶部">
+        <el-backtop target=".show-content" :visibility-height="20"></el-backtop>
+      </el-tooltip>
     </div>
     <div v-show="!atNum">
       <EmptyView />
