@@ -23,8 +23,8 @@ export function headerData() {
       icon: undefined,
     },
     system: {
-      text: "编辑器",
-      route: "editor",
+      text: "抽卡展示",
+      route: "recruit",
       span: 3,
       class: "right-col",
       icon: {
