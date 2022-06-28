@@ -132,7 +132,7 @@ export function utilsGetLocalStorage(LSkey) {
       // console.log(recordInfoObj);
       return recordInfoObj;
     }
-    let parseObj = recordInfoObj ? JSON.parse(recordInfoObj) : {};
+    let parseObj = recordInfoObj ? JSON.parse(recordInfoObj) : {}; // 这里需要一个空对象回调
     return parseObj;
   } catch (error) {
     console.log(error);
@@ -153,7 +153,7 @@ export function utilsLimitLocalStorage(LSSearchInfoArr) {
 export function utilsRemoveLocalStorage(key) {
   try {
     localStorage.removeItem(key);
-    return utilsGetLocalStorage(key) ? false : true;
+    return !utilsGetLocalStorage(key);
   } catch (error) {
     console.error(error);
   }
@@ -162,7 +162,7 @@ export function utilsRemoveLocalStorage(key) {
 export function utilsClearLocalStorage() {
   try {
     localStorage.clear();
-    return localStorage.length === 0 ? true : false;
+    return !!localStorage.length === 0;
   } catch (error) {
     console.error(error);
   }
