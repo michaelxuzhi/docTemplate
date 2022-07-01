@@ -8,6 +8,8 @@ import axios from "axios";
 import { store } from "./store";
 import App from "./App.vue";
 
+import LRUCache from './utils/LRU.js'
+
 let app = createApp(App);
 for (const name in EleIcons) {
   app.component(name, EleIcons[name]);
@@ -17,6 +19,7 @@ app.use(router);
 app.config.globalProperties.axios = axios;
 // 创建事件总线
 app.config.globalProperties.$eventBus = new mitt();
+app.config.globalProperties.$LRU = new LRUCache(5);
 app.use(store);
 app.mount("#app");
 
