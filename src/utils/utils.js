@@ -3,9 +3,9 @@ import { ElNotification } from "element-plus";
 // 一些常量
 const NOTICE_DURATION = 2000;
 const NOTICE_OFFSET = 80;
-const LS_OBJECT_LENGTH = 20;
-const LS_ARRAY_HEAD_LENGTH = 10;
-const LS_ARRAY_TAIL_LENGTH = 5;
+const LS_OBJECT_LENGTH = 10;
+// const LS_ARRAY_HEAD_LENGTH = 10;
+// const LS_ARRAY_TAIL_LENGTH = 5;
 
 // 兼容复制操作，需要在dom先渲染好一个工具节点
 export function utilsCopy(tool_dom, text) {
@@ -83,13 +83,18 @@ export function utilsSortLocalStorage(LSObj, LSObjType) {
     for (let key in LSObj) {
       LSSearchInfoArr.push(LSObj[key]);
     }
+    // LFU算法：排序优先级+容量限制
     LSSearchInfoArr.sort(function (a, b) {
-      return b.cnt - a.cnt;
+      if(a.cnt != b.cnt){
+        return (b.cnt - a.cnt) || (b.clickTime - a.clickTime);
+      }else{
+        return b.clickTime - a.clickTime;
+      }
     });
   } else if (LSObjType === "array") {
     // todo：localstorage对数组的处理
   }
-  // 限制长度<=20,对象类型只存20个元素
+  // 限制容量
   if (LSSearchInfoArr.length > LS_OBJECT_LENGTH) {
     LSSearchInfoArr = utilsLimitLocalStorage(LSSearchInfoArr);
   }
@@ -98,26 +103,29 @@ export function utilsSortLocalStorage(LSObj, LSObjType) {
 }
 
 // localStorage存储
-export function utilsSetLocalStorage(LSkey, LSval) {
-  let LSObj = utilsGetLocalStorage(LSkey);
-  let LSObjType = checkType(LSObj);
-  if (LSObjType === "string") {
+export function utilsSetLocalStorage(LSkey, LSval, clickTime) {
+  let oldLSObj = utilsGetLocalStorage(LSkey);
+  let oldLSObjType = checkType(oldLSObj);
+  if (oldLSObjType === "string") {
     localStorage.setItem(LSkey, LSval);
     return;
-  } else if (LSObjType === "array") {
+  } else if (oldLSObjType === "array") {
     // todo: localstorage存数组操作
-  } else if (LSObjType === "object") {
+  } else if (oldLSObjType === "object") {
     // 将proxy对象转换为json字符串再转成普通对象
     let nowObj = JSON.parse(JSON.stringify(LSval));
     let key = nowObj.name;
-    LSObj[key]
-      ? LSObj[key]["cnt"]++
-      : ((LSObj[key] = nowObj), (LSObj[key]["cnt"] = 1));
-    let sortedArr = utilsSortLocalStorage(LSObj, LSObjType);
+    oldLSObj[key]
+      ? ((oldLSObj[key]["cnt"]++), (oldLSObj[key]["clickTime"] = clickTime))
+      : ((oldLSObj[key] = nowObj), (oldLSObj[key]["cnt"] = 1),(oldLSObj[key]["clickTime"] = clickTime));
+    // 此时oldLS数据已更新
+    let sortedArr = utilsSortLocalStorage(oldLSObj, oldLSObjType);
+    // console.log("排序后",sortedArr);
     let newObj = {};
     sortedArr.forEach((item) => {
       newObj[item.name] = item;
     });
+    // console.log("new",newObj);
     localStorage.setItem(LSkey, JSON.stringify(newObj));
   }
 }
@@ -132,7 +140,7 @@ export function utilsGetLocalStorage(LSkey) {
       // console.log(recordInfoObj);
       return recordInfoObj;
     }
-    let parseObj = recordInfoObj ? JSON.parse(recordInfoObj) : {}; // 这里需要一个空对象回调
+    let parseObj = recordInfoObj ? JSON.parse(recordInfoObj) : {}; // 这里需要一个空对象回调，处理的是null/undefined，null可以被解析，undefinedui解析报错
     return parseObj;
   } catch (error) {
     console.log(error);
@@ -140,14 +148,18 @@ export function utilsGetLocalStorage(LSkey) {
 }
 // localStorage对象和数组类型长度限制
 export function utilsLimitLocalStorage(LSSearchInfoArr) {
+  // 自创算法，舍弃
   // 截取前10个
-  let headInfo = utilsArrayFrag(LSSearchInfoArr, 0, LS_ARRAY_HEAD_LENGTH);
-  // 截取后5个
-  let tailInfo = utilsArrayFrag(
-    LSSearchInfoArr,
-    LSSearchInfoArr.length - LS_ARRAY_TAIL_LENGTH
-  );
-  return [...headInfo, ...tailInfo];
+  // let headInfo = utilsArrayFrag(LSSearchInfoArr, 0, LS_ARRAY_HEAD_LENGTH);
+  // // 截取后5个
+  // let tailInfo = utilsArrayFrag(
+  //   LSSearchInfoArr,
+  //   LSSearchInfoArr.length - LS_ARRAY_TAIL_LENGTH
+  // );
+  // return [...headInfo, ...tailInfo];
+
+  // LFU以cnt和clickTime作优先级排序截取
+  return utilsArrayFrag(LSSearchInfoArr, 0, LS_OBJECT_LENGTH);
 }
 // localStorage删除
 export function utilsRemoveLocalStorage(key) {

@@ -18,6 +18,14 @@ module.exports = defineConfig({
       },
     },
   },
+  // 启动端口
+  devServer: {
+    port: 3002,
+  },
+  // 打包配置
+  publicPath: "/",
+  outputDir: "dist",
+  assetsDir: "assets",
   /* 开启代理服务器 */
   // devServer: {
   //   proxy: {

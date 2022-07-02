@@ -97,7 +97,9 @@ export default {
 		// 存储搜索历史到localStorage
 		handleSearchRecord(LSkey, LSval) {
 			// this.$LRU.set(LSkey, LSval);
-			utilsSetLocalStorage(LSkey, LSval);
+			let clickTime = new Date().getTime();
+			console.log(clickTime);
+			utilsSetLocalStorage(LSkey, LSval, clickTime);
 		},
 		initSearchRecord() {
 			let searchInfo = utilsGetLocalStorage('searchInfo') || {};
