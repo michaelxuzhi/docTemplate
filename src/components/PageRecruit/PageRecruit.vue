@@ -15,7 +15,7 @@
 			<span>总次数：{{ recruitTotalCnt }}</span>
 			<el-divider direction="vertical" />
 			<span v-for="(v, k) in resShow" :key="k"
-				>{{ k }}:{{ v }}
+				>{{ k }}:{{ v }} {{(v/recruitTotalCnt*100).toFixed(2)+'%'}}
 				<el-divider direction="vertical" />
 			</span>
 		</div>

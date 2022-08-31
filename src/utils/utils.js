@@ -69,10 +69,7 @@ export function utilsArrayFrag(
 
 export function utilsArrayDel(arr, ele) {
   let eleIndex = arr.indexOf(ele);
-  if (eleIndex !== -1) {
-    arr.splice(eleIndex, 1);
-    return arr;
-  }
+  eleIndex !== -1 && arr.splice(eleIndex, 1);
   return arr;
 }
 
@@ -140,7 +137,7 @@ export function utilsGetLocalStorage(LSkey) {
       // console.log(recordInfoObj);
       return recordInfoObj;
     }
-    let parseObj = recordInfoObj ? JSON.parse(recordInfoObj) : {}; // 这里需要一个空对象回调，处理的是null/undefined，null可以被解析，undefinedui解析报错
+    let parseObj = recordInfoObj ? JSON.parse(recordInfoObj) : {}; // 这里需要一个空对象回调，处理的是null/undefined，null可以被解析，undefined会解析报错
     return parseObj;
   } catch (error) {
     console.log(error);
@@ -174,7 +171,7 @@ export function utilsRemoveLocalStorage(key) {
 export function utilsClearLocalStorage() {
   try {
     localStorage.clear();
-    return !!localStorage.length === 0;
+    return localStorage.length === 0;
   } catch (error) {
     console.error(error);
   }
