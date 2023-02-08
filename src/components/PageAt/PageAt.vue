@@ -8,7 +8,7 @@
             border
         >
             >
-            <el-descriptions-item v-for="(val, key) in atInfo" :key="key" :label="key">
+            <el-descriptions-item v-for="(val, key) in newAtInfo" :key="key" :label="key">
                 <div v-if="key === 'tag'">
                     <!-- 删除操作只存在index>=2的tag -->
                     <el-tag
@@ -205,13 +205,27 @@ export default {
             this.atName = this.$route.params.key;
             this.atInfo = JSON.parse(this.$route.params.val);
             this.atInfo.tag = [this.atInfo.ParentName, this.atInfo.name];
+            // 剔除_id属性，有点暴力
+            // delete this.atInfo._id;
             // console.log(this.atInfo);
         } else {
             // 如果没有传入参数，则强制跳转到首页
             this.$router.push({ name: 'home' });
         }
     },
-    computed: {},
+    computed: {
+        // 用计算属性的方式剔除_id
+        newAtInfo() {
+            let tempObj = {};
+            for (const key in this.atInfo) {
+                if (key == '_id') {
+                    continue;
+                }
+                tempObj[key] = this.atInfo[key];
+            }
+            return tempObj;
+        },
+    },
 };
 </script>
 <style scoped>

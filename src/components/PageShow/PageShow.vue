@@ -114,7 +114,7 @@ export default {
             let searchInfo = utilsGetLocalStorage('searchInfo') || {};
             // console.log(searchInfo);
             this.searchHistoryCnt = Object.keys(searchInfo).length;
-            console.log(searchInfo);
+            // console.log(searchInfo);
             this.searchHistoryInfo = searchInfo;
         },
     },

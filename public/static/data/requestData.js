@@ -1,10 +1,14 @@
 export function requestURL() {
-  return {
-    // url: "http://localhost:8888",
-    atURL: "./static/data/atNew.json",
-    resURL: "./static/data/resData.json",
-  };
+    return {
+        // url: "http://localhost:8888",
+        atURL: './static/data/atNew.json',
+        resURL: './static/data/resData.json',
+    };
 }
+
+export const mongoDB_config = {
+    reqUrl: 'http://localhost:3000',
+};
 
 // 弃用旧的xhr请求，使用axios替代
 // let xhr = new XMLHttpRequest();
