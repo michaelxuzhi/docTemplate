@@ -42,6 +42,7 @@ export default {
         requestJSON(url) {
             let that = this;
             this.axios.get(url).then(response => {
+                // console.log(response.data);
                 that.atObjGlobal = response.data;
             });
             // this.axios.get(url).then(response => {

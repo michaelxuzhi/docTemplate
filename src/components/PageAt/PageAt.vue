@@ -89,7 +89,7 @@
 
 <script>
 import { utilsCopy, utilsNotice } from '@utils/utils.js';
-// import { nextTick } from 'vue';
+import { mongoDB_config } from '@static/data/requestData.js';
 export default {
     name: 'PageAt',
     data() {
@@ -175,7 +175,11 @@ export default {
             let inputValue = this.inputValue;
             if (inputValue) {
                 // todo: 数据库插入操作
-                this.atInfo.tag.push(inputValue);
+                // this.atInfo.tag.push(inputValue);
+                let url = mongoDB_config.reqUrl;
+                this.axios.put(`${url}/tagedit/${this.atInfo._id}`, {
+                    tag: [inputValue],
+                });
             }
             this.inputVisible = false;
             this.inputValue = '';
@@ -204,7 +208,7 @@ export default {
         if (this.$route.params.key) {
             this.atName = this.$route.params.key;
             this.atInfo = JSON.parse(this.$route.params.val);
-            this.atInfo.tag = [this.atInfo.ParentName, this.atInfo.name];
+            // this.atInfo.tag = [this.atInfo.ParentName, this.atInfo.name];
             // 剔除_id属性，有点暴力
             // delete this.atInfo._id;
             // console.log(this.atInfo);

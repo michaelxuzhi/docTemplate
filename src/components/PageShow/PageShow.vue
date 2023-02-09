@@ -92,7 +92,7 @@ export default {
                 name: 'at',
                 params: { key: key, val: JSON.stringify(val) },
             });
-            console.log(val, JSON.stringify(val));
+            // console.log(val, JSON.stringify(val));
             // 记录历史搜索次数
             // this.handleSearchRecord(key, JSON.stringify(val)); // 这个格式给LRU用
             this.handleSearchRecord('searchInfo', val);
