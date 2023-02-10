@@ -6,7 +6,7 @@
             </el-header>
             <el-container>
                 <el-aside class="page-aside">
-                    <PageAside :at="atObjGlobal" v-if="atObjGlobal" />
+                    <PageAside :at="atDataForAside" v-if="atDataForAside" />
                 </el-aside>
                 <el-container>
                     <el-main class="page-main">
@@ -36,6 +36,7 @@ export default {
     data() {
         return {
             atObjGlobal: null,
+            atDataForAside: null,
         };
     },
     methods: {
@@ -44,6 +45,7 @@ export default {
             this.axios.get(url).then(response => {
                 // console.log(response.data);
                 that.atObjGlobal = response.data;
+                that.atDataForAside = that.fmtDataForAside(that.atObjGlobal);
             });
             // this.axios.get(url).then(response => {
             //   that.atObjGlobal = response.data;
@@ -51,6 +53,17 @@ export default {
         },
         reloadPage() {
             this.reload();
+        },
+        // 处理好数据再传给PageAside,不用传整个数据
+        fmtDataForAside(atObjGlobal) {
+            let tempObj = {};
+            for (let item of Object.values(atObjGlobal)) {
+                tempObj[item.ParentName]
+                    ? tempObj[item.ParentName]++
+                    : (tempObj[item.ParentName] = 1);
+            }
+            // console.log('keyObj', tempObj);
+            return tempObj;
         },
     },
     created() {
