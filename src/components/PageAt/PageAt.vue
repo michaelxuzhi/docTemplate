@@ -174,20 +174,28 @@ export default {
         handleTagInputConfirm() {
             let inputValue = this.inputValue;
             if (inputValue) {
-                // todo: 数据库插入操作
-                // this.atInfo.tag.push(inputValue);
+                // 数据库插入操作,op=1=add
                 let url = mongoDB_config.reqUrl;
                 this.axios.put(`${url}/tagedit/${this.atInfo._id}`, {
-                    tag: [inputValue],
+                    op: 1, // 操作符
+                    tag: inputValue, // 新增数据类型:字符串
                 });
+                // 本地先加入taglist，视觉假象
+                this.atInfo.tag.push(inputValue);
             }
             this.inputVisible = false;
             this.inputValue = '';
         },
         // tag的删除/关闭
         handleTagClose(tagItem) {
-            // todo: 数据库删除操作
-            console.log(tagItem);
+            // console.log(tagItem);
+            // 数据库删除操作,op=2=delete
+            let url = mongoDB_config.reqUrl;
+            this.axios.put(`${url}/tagedit/${this.atInfo._id}`, {
+                op: 2, // 操作符
+                tag: tagItem, // 删除数据类型:字符串
+            });
+            // 本地先去除taglist内容，视觉假象
             this.atInfo.tag.pop(tagItem);
         },
 
