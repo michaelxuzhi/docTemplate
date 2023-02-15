@@ -8,42 +8,50 @@
             border
         >
             >
-            <el-descriptions-item v-for="(val, key) in newAtInfo" :key="key" :label="key">
-                <div v-if="key === 'tag'">
-                    <!-- 删除操作只存在index>=2的tag -->
-                    <el-tag
-                        class="tagItemStyle"
-                        v-for="tagItem in val"
-                        :key="tagItem"
-                        type="danger"
-                        effect="light"
-                        :closable="val.indexOf(tagItem) >= 2"
-                        @close="handleTagClose(tagItem)"
+            <template v-for="(val, key) in atInfo" :key="key">
+                <el-descriptions-item :label="key" v-if="key !== '_id'">
+                    <div v-if="key === 'tag'">
+                        <!-- 删除操作只存在index>=2的tag -->
+                        <el-tag
+                            class="tagItemStyle"
+                            v-for="tagItem in val"
+                            :key="tagItem"
+                            type="danger"
+                            effect="light"
+                            :closable="val.indexOf(tagItem) >= 2"
+                            @close="handleTagClose(tagItem)"
+                        >
+                            <div>{{ tagItem }}</div>
+                        </el-tag>
+                        <el-input
+                            v-if="inputVisible"
+                            class="input-new-tag"
+                            size="small"
+                            v-model="inputValue"
+                            @keyup.enter="handleTagInputConfirm"
+                            @blur="handleTagInputConfirm"
+                        />
+                        <el-button
+                            v-else
+                            class="button-new-tag"
+                            @click="handleShowTagInput"
+                        >
+                            + New Tag
+                        </el-button>
+                    </div>
+                    <el-tooltip
+                        v-if="val.length > 30"
+                        effect="dark"
+                        :content="val"
+                        placement="top"
                     >
-                        <div>{{ tagItem }}</div>
-                    </el-tag>
-                    <el-input
-                        v-if="inputVisible"
-                        class="input-new-tag"
-                        size="small"
-                        v-model="inputValue"
-                        @keyup.enter="handleTagInputConfirm"
-                        @blur="handleTagInputConfirm"
-                    />
-                    <el-button v-else class="button-new-tag" @click="handleShowTagInput">
-                        + New Tag
-                    </el-button>
-                </div>
-                <el-tooltip
-                    v-if="val.length > 30"
-                    effect="dark"
-                    :content="val"
-                    placement="top"
-                >
-                    {{ val.substr(0, 30) + '...' }}
-                </el-tooltip>
-                <div v-if="val.toString().length <= 30 && key !== 'tag'">{{ val }}</div>
-            </el-descriptions-item>
+                        {{ val.substr(0, 30) + '...' }}
+                    </el-tooltip>
+                    <div v-if="val.toString().length <= 30 && key !== 'tag'">
+                        {{ val }}
+                    </div>
+                </el-descriptions-item>
+            </template>
             <el-descriptions-item label="短指令" :span="2">
                 {{ handleAtShort(atInfo.ParentName, atInfo.name) }}
                 <!-- 复制工具节点: at_copy_tool -->
@@ -217,27 +225,12 @@ export default {
             this.atName = this.$route.params.key;
             this.atInfo = JSON.parse(this.$route.params.val);
             // this.atInfo.tag = [this.atInfo.ParentName, this.atInfo.name];
-            // 剔除_id属性，有点暴力
-            // delete this.atInfo._id;
-            // console.log(this.atInfo);
         } else {
             // 如果没有传入参数，则强制跳转到首页
             this.$router.push({ name: 'home' });
         }
     },
-    computed: {
-        // 用计算属性的方式剔除_id
-        newAtInfo() {
-            let tempObj = {};
-            for (const key in this.atInfo) {
-                if (key == '_id') {
-                    continue;
-                }
-                tempObj[key] = this.atInfo[key];
-            }
-            return tempObj;
-        },
-    },
+    computed: {},
 };
 </script>
 <style scoped>
