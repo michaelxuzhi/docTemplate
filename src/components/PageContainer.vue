@@ -68,7 +68,7 @@ export default {
     },
     created() {
         // 初始化时，获取请求的url
-        // let url = requestURL().atURL;
+        // let url = requestURL.atURL;
         let url = mongoDB_config.reqUrl;
         // console.log(url);
         this.requestJSON(url);

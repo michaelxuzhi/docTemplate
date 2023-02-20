@@ -1,10 +1,8 @@
-export function requestURL() {
-    return {
-        // url: "http://localhost:8888",
-        atURL: './static/data/atNew.json',
-        resURL: './static/data/resData.json',
-    };
-}
+export const requestURL = {
+    // url: "http://localhost:8888",
+    atURL: './static/data/atNew.json',
+    resURL: './static/data/resData.json',
+};
 
 export const mongoDB_config = {
     reqUrl: 'http://localhost:3000',

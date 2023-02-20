@@ -60,6 +60,7 @@
 <script>
 import EmptyView from '@views/emptyView.vue';
 import { utilsGetLocalStorage, utilsSetLocalStorage } from '@utils/utils.js';
+import { mongoDB_config } from '@static/data/requestData.js';
 export default {
     name: 'PageShow',
     components: {
@@ -92,10 +93,11 @@ export default {
                 name: 'at',
                 params: { key: key, val: JSON.stringify(val) },
             });
-            // console.log(val, JSON.stringify(val));
+            // console.log(JSON.stringify(val));
+            this.handleSaveSearchRecord(val);
             // 记录历史搜索次数
             // this.handleSearchRecord(key, JSON.stringify(val)); // 这个格式给LRU用
-            this.handleSearchRecord('searchInfo', val);
+            // this.handleSearchRecord('searchInfo', val);
         },
         // 统计一下界面上的指令数量
         handleCountAtNum() {
@@ -116,6 +118,21 @@ export default {
             this.searchHistoryCnt = Object.keys(searchInfo).length;
             // console.log(searchInfo);
             this.searchHistoryInfo = searchInfo;
+        },
+
+        // 数据库记录指令的点击
+        handleSaveSearchRecord(val) {
+            // 数据处理
+            let finalRecord = {};
+            let { _id, renderName, desc } = val;
+            let clickTime = new Date().getTime();
+            finalRecord = { renderName, clickTime };
+            finalRecord['atId'] = _id;
+            finalRecord['atDesc'] = desc;
+            // console.log(_id, renderName, desc);
+            // 请求存入数据库
+            let url = mongoDB_config.reqUrl;
+            this.axios.put(`${url}/search/${_id}`, finalRecord);
         },
     },
 
