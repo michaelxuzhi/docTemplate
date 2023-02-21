@@ -5,17 +5,17 @@
                 :size="size"
                 class="at-btn-search"
                 round
-                v-for="(v, k, idx) in searchHistoryInfo"
-                v-show="idx < 10"
-                :key="k"
-                @click="handleClick(v, k)"
-                :icon="v.cnt >= 5 ? hotIcon : ''"
+                v-for="(val, key) in searchInfo"
+                v-show="+key < 10"
+                :key="key"
+                @click="handleClick(val, key)"
+                :icon="val.count >= 5 ? hotIcon : ''"
                 >{{
-                    v.desc
-                        ? v.desc.length >= 35
-                            ? v.desc.slice(0, 35) + '...'
-                            : v.desc
-                        : v.renderName
+                    val.atDesc
+                        ? val.atDesc.length >= 35
+                            ? val.atDesc.slice(0, 35) + '...'
+                            : val.atDesc
+                        : val.renderName
                 }}
             </el-button>
         </div>
@@ -68,6 +68,7 @@ export default {
     },
     data() {
         return {
+            url: '',
             size: 'default',
             type: 'primary',
             asideSearchText: '',
@@ -89,13 +90,15 @@ export default {
     },
     methods: {
         handleClick(val, key) {
-            this.$router.push({
-                name: 'at',
-                params: { key: key, val: JSON.stringify(val) },
-            });
+            // this.atInfo.
+            // this.$router.push({
+            //     name: 'at',
+            //     params: { key: key, val: JSON.stringify(val) },
+            // });
             // console.log(JSON.stringify(val));
-            this.handleSaveSearchRecord(val);
-            // 记录历史搜索次数
+            // 新版：处理后传给数据库
+            // this.handleSaveSearchRecord(val);
+            // 旧版：记录历史搜索次数-本地
             // this.handleSearchRecord(key, JSON.stringify(val)); // 这个格式给LRU用
             // this.handleSearchRecord('searchInfo', val);
         },
@@ -113,11 +116,13 @@ export default {
             utilsSetLocalStorage(LSkey, LSval, clickTime);
         },
         initSearchRecord() {
-            let searchInfo = utilsGetLocalStorage('searchInfo') || {};
-            // console.log(searchInfo);
-            this.searchHistoryCnt = Object.keys(searchInfo).length;
-            // console.log(searchInfo);
-            this.searchHistoryInfo = searchInfo;
+            // 旧版：从本地读取搜索记录
+            // let searchInfo = utilsGetLocalStorage('searchInfo') || {};
+            // this.searchHistoryCnt = Object.keys(searchInfo).length;
+            // this.searchHistoryInfo = searchInfo;
+
+            this.searchHistoryCnt = this.searchHistoryInfo.length;
+            // console.log(this.searchHistoryCnt, this.searchHistoryInfo);
         },
 
         // 数据库记录指令的点击
@@ -131,12 +136,13 @@ export default {
             finalRecord['atDesc'] = desc;
             // console.log(_id, renderName, desc);
             // 请求存入数据库
-            let url = mongoDB_config.reqUrl;
-            this.axios.put(`${url}/search/${_id}`, finalRecord);
+            this.axios.put(`${this.url}/search/${_id}/in`, finalRecord);
         },
     },
 
     created() {
+        // 初始化数据库url
+        this.url = mongoDB_config.reqUrl;
         // 监听来自PageHeader的搜索框handleInput事件
         this.$eventBus.on('headerInputEvent', val => {
             if (val.trim().length === 0) {
@@ -160,6 +166,11 @@ export default {
         });
         // 初始化的时候，获取历史搜索记录-可以注释，在activated中获取即可
         // this.initSearchRecord();
+        this.axios.get(`${this.url}/search/`).then(res => {
+            this.searchHistoryInfo = res.data;
+            // console.log(res);
+            this.initSearchRecord();
+        });
     },
     mounted() {
         this.handleCountAtNum();
@@ -168,7 +179,7 @@ export default {
         this.handleCountAtNum();
     },
     activated() {
-        this.initSearchRecord();
+        // this.initSearchRecord();
         // console.log('PageShow activated');
         // 重置show-content的位置，但是不起效果
         document.getElementsByClassName('show-content')[0].scrollTop = 0;
@@ -183,7 +194,18 @@ export default {
                       (val['renderName'] = `${val.ParentName}${val.name}`))
                     : ((keyItem[val.name] = val), (val['renderName'] = `${val.name}`));
             }
+            console.log(keyItem);
             return keyItem;
+        },
+        // 从数据库异步获取，用计算属性更新最新值
+        searchInfo: {
+            get: function () {
+                // console.log(this.searchHistoryInfo);
+                // todo: 从atInfoShow中获取详情数据
+                // for (let val of Object.values(this.searchHistoryInfo)) {
+                // }
+                return this.searchHistoryInfo;
+            },
         },
     },
 };
