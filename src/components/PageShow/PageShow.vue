@@ -8,7 +8,7 @@
                 v-for="(val, key) in searchInfo"
                 v-show="+key < 10"
                 :key="key"
-                @click="handleClick(val, key)"
+                @click="handleClick(val, key, true)"
                 :icon="val.count >= 5 ? hotIcon : ''"
                 >{{
                     val.atDesc
@@ -89,15 +89,34 @@ export default {
         },
     },
     methods: {
-        handleClick(val, key) {
-            // this.atInfo.
-            // this.$router.push({
-            //     name: 'at',
-            //     params: { key: key, val: JSON.stringify(val) },
-            // });
+        handleClick(val, key, isHistory = false) {
+            // console.log(val.atId, key, isHistory);
+            // 路由跳转函数
+            let that = this;
+            function jumpToAtInfo(k, v) {
+                that.$router.push({
+                    name: 'at',
+                    params: { key: k, val: JSON.stringify(val) },
+                });
+            }
+            // 历史记录的点击，请求数据库获取最新值
+            if (isHistory) {
+                let tempRenderName = val.renderName;
+                this.axios.get(`${this.url}/one/${val.atId}`).then(response => {
+                    val = response.data[0];
+                    val.renderName = tempRenderName;
+                    jumpToAtInfo(val);
+                    // 新版：处理后传给数据库
+                    that.handleSaveSearchRecord(val);
+                });
+            } else {
+                // 正常点击跳转，不请求最新数据
+                jumpToAtInfo(key, val);
+                // 新版：处理后传给数据库
+                that.handleSaveSearchRecord(val);
+            }
+
             // console.log(JSON.stringify(val));
-            // 新版：处理后传给数据库
-            // this.handleSaveSearchRecord(val);
             // 旧版：记录历史搜索次数-本地
             // this.handleSearchRecord(key, JSON.stringify(val)); // 这个格式给LRU用
             // this.handleSearchRecord('searchInfo', val);
@@ -132,8 +151,8 @@ export default {
             let { _id, renderName, desc } = val;
             let clickTime = new Date().getTime();
             finalRecord = { renderName, clickTime };
-            finalRecord['atId'] = _id;
-            finalRecord['atDesc'] = desc;
+            finalRecord.atId = _id;
+            finalRecord.atDesc = desc;
             // console.log(_id, renderName, desc);
             // 请求存入数据库
             this.axios.put(`${this.url}/search/${_id}/in`, finalRecord);
@@ -164,13 +183,6 @@ export default {
         this.$eventBus.on('themeChange', val => {
             this.globalTheme = val;
         });
-        // 初始化的时候，获取历史搜索记录-可以注释，在activated中获取即可
-        // this.initSearchRecord();
-        this.axios.get(`${this.url}/search/`).then(res => {
-            this.searchHistoryInfo = res.data;
-            // console.log(res);
-            this.initSearchRecord();
-        });
     },
     mounted() {
         this.handleCountAtNum();
@@ -179,7 +191,12 @@ export default {
         this.handleCountAtNum();
     },
     activated() {
-        // this.initSearchRecord();
+        // 每次激活show界面，即请求获取最新历史搜索记录
+        this.axios.get(`${this.url}/search/`).then(res => {
+            this.searchHistoryInfo = res.data;
+            // console.log(this.searchHistoryInfo);
+            this.initSearchRecord();
+        });
         // console.log('PageShow activated');
         // 重置show-content的位置，但是不起效果
         document.getElementsByClassName('show-content')[0].scrollTop = 0;
@@ -191,10 +208,10 @@ export default {
             for (let val of Object.values(this.atInfo)) {
                 keyItem[val.name]
                     ? ((keyItem[val.ParentName + val.name] = val),
-                      (val['renderName'] = `${val.ParentName}${val.name}`))
-                    : ((keyItem[val.name] = val), (val['renderName'] = `${val.name}`));
+                      (val.renderName = `${val.ParentName}${val.name}`))
+                    : ((keyItem[val.name] = val), (val.renderName = `${val.name}`));
             }
-            console.log(keyItem);
+            // console.log(keyItem);
             return keyItem;
         },
         // 从数据库异步获取，用计算属性更新最新值
@@ -202,8 +219,6 @@ export default {
             get: function () {
                 // console.log(this.searchHistoryInfo);
                 // todo: 从atInfoShow中获取详情数据
-                // for (let val of Object.values(this.searchHistoryInfo)) {
-                // }
                 return this.searchHistoryInfo;
             },
         },
