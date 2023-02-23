@@ -90,6 +90,12 @@ export default {
 .el-header {
     padding: 0;
 }
+/* 去除input的prepend样式 */
+:deep(.el-input-group__prepend) {
+    background-color: transparent;
+    box-shadow: none;
+}
+
 .page-container {
     width: 100vw;
     height: 100vh;
