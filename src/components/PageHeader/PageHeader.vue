@@ -132,7 +132,7 @@ export default {
             headerInputText: '',
             isDisabled: false,
             inputTipsVisible: false,
-            inputTips: '匹配: 指令名 | 描述 | 指令父文件夹',
+            inputTips: '匹配: 指令名 | 描述 | 指令父文件夹 | tag',
             switchVal: false,
             Check: 'sunny',
             Close: 'moon',

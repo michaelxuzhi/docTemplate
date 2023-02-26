@@ -31,11 +31,11 @@
                 :plain="!globalTheme"
                 class="at-btn"
                 :class="{
-                    'at-btn-disappear':
-                        (val.ParentName !== asideSearchText && asideSearchText.length) ||
-                        (val.desc + val.name + val.ParentName).indexOf(
-                            headerSearchText
-                        ) == -1,
+                    'at-btn-disappear': filterAll(
+                        val.ParentName,
+                        val.ParentName + val.desc + val.name,
+                        val.tag
+                    ),
                 }"
                 @click="handleClick(val, key)"
                 v-for="(val, key) in atInfoShow"
@@ -59,7 +59,7 @@
 </template>
 <script>
 import EmptyView from '@views/emptyView.vue';
-import { utilsGetLocalStorage, utilsSetLocalStorage } from '@utils/utils.js';
+// import { utilsGetLocalStorage, utilsSetLocalStorage } from '@utils/utils.js';
 import { mongoDB_config } from '@static/data/requestData.js';
 export default {
     name: 'PageShow',
@@ -110,10 +110,12 @@ export default {
                     that.handleSaveSearchRecord(val);
                 });
             } else {
-                // 正常点击跳转，不请求最新数据
-                jumpToAtInfo(key, val);
-                // 新版：处理后传给数据库
                 that.handleSaveSearchRecord(val);
+                // 拿最新的at数据
+                this.axios.get(`${this.url}/one/${val._id}`).then(response => {
+                    val = response.data[0];
+                    jumpToAtInfo(key, val);
+                });
             }
 
             // console.log(JSON.stringify(val));
@@ -132,7 +134,7 @@ export default {
             // this.$LRU.set(LSkey, LSval);
             let clickTime = new Date().getTime();
             // console.log(clickTime);
-            utilsSetLocalStorage(LSkey, LSval, clickTime);
+            // utilsSetLocalStorage(LSkey, LSval, clickTime);
         },
         initSearchRecord() {
             // 旧版：从本地读取搜索记录
@@ -153,9 +155,52 @@ export default {
             finalRecord = { renderName, clickTime };
             finalRecord.atId = _id;
             finalRecord.atDesc = desc;
-            // console.log(_id, renderName, desc);
             // 请求存入数据库
             this.axios.put(`${this.url}/search/${_id}/in`, finalRecord);
+        },
+
+        // 搜索过滤条件-汇总处理
+        // filterAll(parentName) {
+        //     // (val.ParentName !== asideSearchText && asideSearchText.length) ||
+        //     //             ((val.desc + val.name + val.ParentName).indexOf(
+        //     //                 headerSearchText
+        //     //             ) == -1 &&
+        //     //                 headerSearchText.length) ||
+        //     //             (val.tag.indexOf(headerSearchText) == -1 &&
+        //     //                 headerSearchText.length),
+        //     let doFilter = false;
+        //     // aside过滤
+        //     if (this.asideSearchText.length) {
+        //         doFilter = parentName !== this.asideSearchText;
+        //     }
+        //     return doFilter;
+        // },
+        filterAll(parentName, mixStr, tags) {
+            if (!this.asideSearchText && !this.headerSearchText) return; // 提前断路
+            let asideFilter = false;
+            let headerFilter = false;
+            let tagFilter = false;
+            // aside过滤
+            if (this.asideSearchText.length) {
+                asideFilter = parentName !== this.asideSearchText;
+            }
+            // header-搜索过滤
+            if (this.headerSearchText.length) {
+                // 基础过滤
+                headerFilter = mixStr.indexOf(this.headerSearchText) == -1;
+            }
+            // tags元素过滤
+            if (this.headerSearchText.length && tags.length) {
+                // 数组元素拼接成字符串后再进行匹配
+                let tempStr = tags.join('');
+                tagFilter = tempStr.indexOf(this.headerSearchText) == -1;
+                if (!tagFilter && headerFilter) {
+                    headerFilter = false;
+                } else if (tagFilter && !headerFilter) {
+                    tagFilter = false;
+                }
+            }
+            return asideFilter || headerFilter || tagFilter;
         },
     },
 
