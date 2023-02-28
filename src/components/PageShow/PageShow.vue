@@ -176,31 +176,66 @@ export default {
         //     return doFilter;
         // },
         filterAll(parentName, mixStr, tags) {
-            if (!this.asideSearchText && !this.headerSearchText) return; // 提前断路
-            let asideFilter = false;
-            let headerFilter = false;
-            let tagFilter = false;
-            // aside过滤
+            if (!this.asideSearchText.length && !this.headerSearchText.length) {
+                // 提前断路
+                return false;
+            }
+            // let asideFilter = false;
+            // let headerFilter = false;
+            // let tagFilter = false;
+            // // aside过滤
+            // if (this.asideSearchText.length) {
+            //     asideFilter = parentName !== this.asideSearchText;
+            // }
+            // // header-搜索过滤
+            // if (this.headerSearchText.length) {
+            //     // 基础过滤
+            //     headerFilter = mixStr.indexOf(this.headerSearchText) == -1;
+            // }
+            // // tags元素过滤
+            // if (this.headerSearchText.length && tags.length) {
+            //     // 数组元素拼接成字符串后再进行匹配
+            //     let tempStr = tags.join('');
+            //     tagFilter = tempStr.indexOf(this.headerSearchText) == -1;
+            //     if (!tagFilter && headerFilter) {
+            //         headerFilter = false;
+            //     } else if (tagFilter && !headerFilter) {
+            //         tagFilter = false;
+            //     }
+            // }
+            // return asideFilter || headerFilter || tagFilter;
+
+            // 位运算判断输入匹配状态
+            let asideStatus = 0;
+            let headerStatus = 0;
+            let tagStatus = 0;
             if (this.asideSearchText.length) {
-                asideFilter = parentName !== this.asideSearchText;
+                asideStatus = parentName == this.asideSearchText ? 1 << 0 : 0;
             }
-            // header-搜索过滤
             if (this.headerSearchText.length) {
-                // 基础过滤
-                headerFilter = mixStr.indexOf(this.headerSearchText) == -1;
+                headerStatus = mixStr.indexOf(this.headerSearchText) !== -1 ? 1 << 1 : 0;
             }
-            // tags元素过滤
             if (this.headerSearchText.length && tags.length) {
                 // 数组元素拼接成字符串后再进行匹配
                 let tempStr = tags.join('');
-                tagFilter = tempStr.indexOf(this.headerSearchText) == -1;
-                if (!tagFilter && headerFilter) {
-                    headerFilter = false;
-                } else if (tagFilter && !headerFilter) {
-                    tagFilter = false;
-                }
+                tagStatus = tempStr.indexOf(this.headerSearchText) !== -1 ? 1 << 2 : 0;
             }
-            return asideFilter || headerFilter || tagFilter;
+            if (this.headerSearchText.length) {
+                return (
+                    (headerStatus | tagStatus) == 0 ||
+                    (asideStatus == 0 && this.asideSearchText.length)
+                );
+            } else {
+                return asideStatus == 0;
+            }
+            // 普通位运算写法：3种情况
+            // if (this.headerSearchText.length && !this.asideSearchText.length) {
+            //     return (headerStatus | tagStatus) == 0;
+            // } else if (this.headerSearchText.length && this.asideSearchText.length) {
+            //     return (headerStatus | tagStatus) == 0 || (asideStatus == 0 && this.asideSearchText.length);
+            // } else {
+            //     return asideStatus == 0;
+            // }
         },
     },
 
