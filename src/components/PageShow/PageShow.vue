@@ -132,16 +132,20 @@ export default {
         // 存储搜索历史到localStorage
         handleSearchRecord(LSkey, LSval) {
             // this.$LRU.set(LSkey, LSval);
-            let clickTime = new Date().getTime();
+            // let clickTime = new Date().getTime();
             // console.log(clickTime);
             // utilsSetLocalStorage(LSkey, LSval, clickTime);
         },
-        initSearchRecord() {
+        initSearchRecord(resData) {
             // 旧版：从本地读取搜索记录
             // let searchInfo = utilsGetLocalStorage('searchInfo') || {};
             // this.searchHistoryCnt = Object.keys(searchInfo).length;
             // this.searchHistoryInfo = searchInfo;
 
+            // 处理从数据库获取到的搜索记录，搜索次数高到低排序
+            this.searchHistoryInfo = resData.sort((a, b) => {
+                return b.count - a.count;
+            });
             this.searchHistoryCnt = this.searchHistoryInfo.length;
             // console.log(this.searchHistoryCnt, this.searchHistoryInfo);
         },
@@ -160,26 +164,10 @@ export default {
         },
 
         // 搜索过滤条件-汇总处理
-        // filterAll(parentName) {
-        //     // (val.ParentName !== asideSearchText && asideSearchText.length) ||
-        //     //             ((val.desc + val.name + val.ParentName).indexOf(
-        //     //                 headerSearchText
-        //     //             ) == -1 &&
-        //     //                 headerSearchText.length) ||
-        //     //             (val.tag.indexOf(headerSearchText) == -1 &&
-        //     //                 headerSearchText.length),
-        //     let doFilter = false;
-        //     // aside过滤
-        //     if (this.asideSearchText.length) {
-        //         doFilter = parentName !== this.asideSearchText;
-        //     }
-        //     return doFilter;
-        // },
         filterAll(parentName, mixStr, tags) {
-            if (!this.asideSearchText.length && !this.headerSearchText.length) {
-                // 提前断路
+            // 提前断路
+            if (!this.asideSearchText.length && !this.headerSearchText.length)
                 return false;
-            }
             // let asideFilter = false;
             // let headerFilter = false;
             // let tagFilter = false;
@@ -214,13 +202,12 @@ export default {
             }
             if (this.headerSearchText.length) {
                 headerStatus = mixStr.indexOf(this.headerSearchText) !== -1 ? 1 << 1 : 0;
-            }
-            if (this.headerSearchText.length && tags.length) {
-                // 数组元素拼接成字符串后再进行匹配
-                let tempStr = tags.join('');
-                tagStatus = tempStr.indexOf(this.headerSearchText) !== -1 ? 1 << 2 : 0;
-            }
-            if (this.headerSearchText.length) {
+                if (tags.length) {
+                    // 数组元素拼接成字符串后再进行匹配
+                    let tempStr = tags.join('');
+                    tagStatus =
+                        tempStr.indexOf(this.headerSearchText) !== -1 ? 1 << 2 : 0;
+                }
                 return (
                     (headerStatus | tagStatus) == 0 ||
                     (asideStatus == 0 && this.asideSearchText.length)
@@ -228,14 +215,6 @@ export default {
             } else {
                 return asideStatus == 0;
             }
-            // 普通位运算写法：3种情况
-            // if (this.headerSearchText.length && !this.asideSearchText.length) {
-            //     return (headerStatus | tagStatus) == 0;
-            // } else if (this.headerSearchText.length && this.asideSearchText.length) {
-            //     return (headerStatus | tagStatus) == 0 || (asideStatus == 0 && this.asideSearchText.length);
-            // } else {
-            //     return asideStatus == 0;
-            // }
         },
     },
 
@@ -273,9 +252,8 @@ export default {
     activated() {
         // 每次激活show界面，即请求获取最新历史搜索记录
         this.axios.get(`${this.url}/search/`).then(res => {
-            this.searchHistoryInfo = res.data;
-            // console.log(this.searchHistoryInfo);
-            this.initSearchRecord();
+            // console.log(res.data);
+            this.initSearchRecord(res.data);
         });
         // console.log('PageShow activated');
         // 重置show-content的位置，但是不起效果
