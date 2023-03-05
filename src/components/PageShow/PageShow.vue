@@ -105,7 +105,7 @@ export default {
                 this.axios.get(`${this.url}/one/${val.atId}`).then(response => {
                     val = response.data[0];
                     val.renderName = tempRenderName;
-                    jumpToAtInfo(val);
+                    jumpToAtInfo(key, val);
                     // 新版：处理后传给数据库
                     that.handleSaveSearchRecord(val);
                 });
@@ -155,7 +155,8 @@ export default {
             // 数据处理
             let finalRecord = {};
             let { _id, renderName, desc } = val;
-            let clickTime = new Date().getTime();
+            // let clickTime = new Date().getTime();
+            let clickTime = Date.now();
             finalRecord = { renderName, clickTime };
             finalRecord.atId = _id;
             finalRecord.atDesc = desc;
